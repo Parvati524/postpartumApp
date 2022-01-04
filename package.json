@@ -1,0 +1,26 @@
+{
+  "name": "postpartumapp",
+  "version": "1.0.0",
+  "description": "App for postpartum women",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ACCSoftwareBootcamp/postpartumApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ACCSoftwareBootcamp/postpartumApp/issues"
+  },
+  "homepage": "https://github.com/ACCSoftwareBootcamp/postpartumApp#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.5",
+    "node-fetch": "^2.6.1",
+    "yelp-fusion": "^3.0.0"
+  }
+}
