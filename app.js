@@ -8,6 +8,9 @@ const yelpApiKey = keys.yelpApiKey;
 const youtubeApiKey = keys.youtubeApiKey;
 const client = yelp.client(yelpApiKey);
 const mongoURIKey = keys.mongoURIKey;
+
+//import css
+app.use(express.static('public'))
 //mongo Connect to DB function
 mongoose.connect(mongoURIKey)
 .then(()=> {

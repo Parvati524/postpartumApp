@@ -1,0 +1,4 @@
+/* just in there so once we have css in header imported properly, we can know the app is getting our css. */
+body{
+    background-color:blue;
+}
