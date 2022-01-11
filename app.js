@@ -17,16 +17,31 @@ mongoose.connect(mongoURIKey)
     console.log(`you are connected!`)
 })
 .catch(err => {
-    console.log(`Error connecting ${err}`)
+    console.log(`Error connecting to DB: ${err}`)
 })
 
 
 
 //root route
 app.get('/', (req, res) => {
-    res.render('home.ejs')
-})
+    res.render('home.ejs');
+});
 
+app.get('/login', (req, res)=>{
+    res.render('login.ejs');
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup.ejs');
+});
+
+app.get('/signs', (req, res)=> {
+    res.render('signssymptoms.ejs');
+});
+
+app.get('/resources', (req, res) => {
+    res.render('resources.ejs');
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
