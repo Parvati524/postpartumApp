@@ -8,6 +8,9 @@ const yelpApiKey = keys.yelpApiKey;
 const youtubeApiKey = keys.youtubeApiKey;
 const client = yelp.client(yelpApiKey);
 const mongoURIKey = keys.mongoURIKey;
+app.use(express.json());//getting information through body
+app.use(express.urlencoded({ extended: false }));
+//sending information through the url 
 
 //import css
 app.use(express.static('public'))
