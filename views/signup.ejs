@@ -1,0 +1,15 @@
+<%- include("partials/header")%>
+
+<h1>Welcome to Sign up Page</h1>
+<form action="/signup" method="POST">
+    <label for="username">User Name:</label><br>
+    <input type="text"  name="username" placeholder="enter username"><br>
+    <label for="password">Password: </label><br>
+    <input type="password"  name="password" placeholder="enter password"><br><br>
+      <!-- Need to add the remaining questions here   -->
+    <label for="location">Location: </label> <br>
+    <input type="text"  name="location" placeholder="enter location"><br><br>
+    <input type="submit" value="Submit">
+</form> 
+
+<%- include("partials/footer.ejs") %> 
