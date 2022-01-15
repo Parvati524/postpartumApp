@@ -62,18 +62,22 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
-    let newUser = new User({username: req.body.username});
-    //we will add the other form data to the object
-    User.register(newUser, req.body.password, (err, user) => {
-        if(err) {
-            console.log(err);
-            return res.render("signup");
-        } else {
-            passport.authenticate("local"(req, res, () => {
-                res.redirect("/login"); // or do we want to redirect to the personal userpage. *** check on this one with the team
-            }))
-        }
-    })
+    // let newUser = new User({username: req.body.username});
+ 
+   let {location, username, password, ppd, ppa} = req.body
+  
+    
+    
+    // User.register(newUser, req.body.password, (err, user) => {
+    //     if(err) {
+    //         console.log(err);
+    //         return res.render("signup");
+    //     } else {
+    //         passport.authenticate("local"(req, res, () => {
+    //             res.redirect("/login"); 
+    //         }))
+    //     }
+    // })
 })
 
 

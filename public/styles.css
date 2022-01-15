@@ -22,5 +22,8 @@ body, html{
     margin:0 auto;
 }
 
+form{
+    width:40%;
+}
 
     
