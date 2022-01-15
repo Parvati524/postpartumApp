@@ -16,14 +16,9 @@ app.use(express.urlencoded({ extended: false }));
 const passport = require('passport');
 const LocalStrategy = require("passport-local");
 
-// The following will parse the data:
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 //import css
 app.use(express.static('public'));
-
-//
 app.set("view engine", "ejs");
 
 //mongo Connect to DB function
@@ -60,8 +55,15 @@ app.get('/signs', (req, res)=> {
     res.render('signssymptoms.ejs');
 });
 
+// Route for logout: /logout
+app.get('/logout', (req, res) => {
+    // req.logout();
+    res.redirect('/');
+})
+
 app.post('/signup', (req, res) => {
     let newUser = new User({username: req.body.username});
+    //we will add the other form data to the object
     User.register(newUser, req.body.password, (err, user) => {
         if(err) {
             console.log(err);
@@ -74,12 +76,6 @@ app.post('/signup', (req, res) => {
     })
 })
 
-
-// Route for logout: /logout
-app.get('/logout', (req, res) => {
-    // req.logout();
-    res.redirect('/');
-})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
