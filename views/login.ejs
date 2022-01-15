@@ -1,3 +1,10 @@
-<h1>Login page</h1>
+<%- include("partials/header")%>
 
-<p>test for git </p>
+<h1>Welcome to the Login Page</h1>
+<form action="/login" method="POST">
+    <input type="text" name="username" placeholder="username">
+    <input type="password" name="password" placeholder="password">
+    <button>Log In</button>
+</form>
+
+<%- include("partials/footer.ejs") %> 
