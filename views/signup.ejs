@@ -1,6 +1,6 @@
 <%- include("partials/header")%>
 
-    <h1>Sign Up Here</h1>
+    <h1 class="myForm">Sign Up Here</h1>
     <form action='/signup' method="POST" class="my-3">
         <div class="mb-3">
             <label for="username" class="form-label">Username</label>
@@ -17,13 +17,13 @@
             <div class="ppdContainer mt-3">
                 <h6>Do you feel you may be experiencing Postpartum Depression?</h6>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppd" id="ppdTrue" value="true">
+                    <input class="form-check-input" type="radio" name="ppd" id="ppdTrue" value=true>
                     <label class="form-check-label" for="ppdTrue">
                         yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppd" id="ppdFalse" value="false">
+                    <input class="form-check-input" type="radio" name="ppd" id="ppdFalse" value=false>
                     <label class="form-check-label" for="ppdFalse">
                         no
                     </label>
@@ -32,18 +32,65 @@
             <div class="ppaContainer mt-3">
                 <h6>Do you feel you may be experiencing Postpartum Anxiety?</h6>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppa" id="ppaTrue" value="true">
+                    <input class="form-check-input" type="radio" name="ppa" id="ppaTrue" value='true'>
                     <label class="form-check-label" for="ppaTrue">
                         yes
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppa" id="ppaFalse" value="false">
+                    <input class="form-check-input" type="radio" name="ppa" id="ppaFalse" value=false>
                     <label class="form-check-label" for="ppaFalse">
                         no
                     </label>
                 </div>
             </div>
+            <div class="pregnancyTraumaContainer mt-3">
+                <h6>Did you experience trauma in your pregnancy?</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pregnancyTrauma" id="pregTraumaTrue" value=true>
+                    <label class="form-check-label" for="pregTraumaTrue">
+                        yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="pregnancyTrauma" id="pregTraumaFalse"
+                        value=false>
+                    <label class="form-check-label" for="pregTraumaFalse">
+                        no
+                    </label>
+                </div>
+            </div>
+            <div class="birthTraumaContainer mt-3">
+                <h6>Did you experience trauma during the birth?</h6>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaTrue" value=true>
+                    <label class="form-check-label" for="birthTraumaTrue">
+                        yes
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaFalse" value=false>
+                    <label class="form-check-label" for="birthTraumaFalse">
+                        no
+                    </label>
+                </div>
+            </div>
+            <div class="physicalPainContainer mt-3">
+                <h6>Are you currently experiencing physical pain in any of these areas?</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="abdominalPain" name="abdominalPain" value=true>
+                    <label class="form-check-label" for="abdominalPain">Abdominal</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="pelvicPain" name="pelvicPain" value=true>
+                    <label class="form-check-label" for="pelvicPain">Pelvic</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="backPain" name="backPain" value=true>
+                    <label class="form-check-label" for="backPain">Back</label>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 

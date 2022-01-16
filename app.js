@@ -1,4 +1,4 @@
-const express = require ('express');
+const express = require('express');
 const app = express();
 const yelp = require('yelp-fusion');
 const keys = require("./config/keys");
@@ -23,12 +23,12 @@ app.set("view engine", "ejs");
 
 //mongo Connect to DB function
 mongoose.connect(mongoURIKey)
-.then(()=> {
-    console.log(`you are connected!`)
-})
-.catch(err => {
-    console.log(`Error connecting to DB: ${err}`)
-})
+    .then(() => {
+        console.log(`you are connected!`)
+    })
+    .catch(err => {
+        console.log(`Error connecting to DB: ${err}`)
+    })
 
 
 // Build our blueprints:
@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
     res.render('home.ejs');
 });
 
-app.get('/login', (req, res)=>{
+app.get('/login', (req, res) => {
     res.render('login.ejs');
 });
 
@@ -51,7 +51,7 @@ app.get('/resources', (req, res) => {
     res.render('resources.ejs');
 });
 
-app.get('/signs', (req, res)=> {
+app.get('/signs', (req, res) => {
     res.render('signssymptoms.ejs');
 });
 
@@ -63,11 +63,31 @@ app.get('/logout', (req, res) => {
 
 app.post('/signup', (req, res) => {
     // let newUser = new User({username: req.body.username});
- 
-   let {location, username, password, ppd, ppa} = req.body
-  
-    
-    
+    let { location, username, password, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
+    let booleanArray = [];
+    booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
+    for (let i = 0; i < booleanArray.length; i++) {
+        //checks if any of the physical pain areas were unchecked (thus undefined) and converts them to false
+        if (booleanArray[i] === undefined) {
+            booleanArray[i] = false;
+        }
+        //converts all that are strings "true" or "false" to the boolean true or false
+        if (booleanArray[i] === "true") {
+            booleanArray[i] = true;
+        }
+
+        if (booleanArray[i] === "false") {
+            booleanArray[i] = false;
+        }
+    }
+    ppd = booleanArray[0];
+    ppa = booleanArray[1];
+    pregnancyTrauma = booleanArray[2];
+    birthTrauma = booleanArray[3];
+    abdominalPain = booleanArray[4];
+    pelvicPain = booleanArray[5];
+    backPain = booleanArray[6];
+    console.log(backPain, pelvicPain, abdominalPain)
     // User.register(newUser, req.body.password, (err, user) => {
     //     if(err) {
     //         console.log(err);
@@ -78,7 +98,7 @@ app.post('/signup', (req, res) => {
     //         }))
     //     }
     // })
-})
+});
 
 
 const port = process.env.PORT || 3000;
