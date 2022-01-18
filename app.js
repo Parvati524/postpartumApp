@@ -88,19 +88,24 @@ app.post('/signup', (req, res) => {
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
     console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
-     // let newUser = new User({username: username, password:password,);
-    // User.register(newUser, req.body.password, (err, user) => {
-    //     if(err) {
-    //         console.log(err);
-    //         return res.render("signup");
-    //     } else {
-    //         passport.authenticate("local"(req, res, () => {
-    //             res.redirect("/login"); 
-    //         }))
-    //     }
-    // })
+     let newUser = new User({username: username, password:password,location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
+    User.register(newUser, req.body.password, (err, user) => {
+        if(err) {
+            console.log(err);
+            return res.render("signup");
+        } else {
+            passport.authenticate("local"(req, res, () => {
+                res.redirect("/user"); 
+            }))
+        }
+    })
 });
 
+app.get('/user', (req, res) => {
+    //MAKE API calls
+    //send variables to this ejs page
+    res.render("userpage");
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

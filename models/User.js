@@ -30,16 +30,19 @@ let userSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
-    physical_pain: {
-        required: true,
-        back: Boolean,
-        pelvis: Boolean,
-        abdominal: Boolean
+    back_pain: {
+        type: Boolean,
+        required: true
+    },
+    pelvic_pain: {
+        type: Boolean,
+        required: true
+    },
+    abdominal_pain: { 
+        type: Boolean,
+        required: true
     }
-})
-
+});
 userSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model("users", userSchema);
-
-
+module.exports = mongoose.model("users", userSchema)
