@@ -32,7 +32,7 @@ mongoose.connect(mongoURIKey)
 
 
 // Build our blueprints:
-const User = require("./models/User");
+const User = require("./models/model.js");
 
 //root route
 app.get('/', (req, res) => {
@@ -62,7 +62,7 @@ app.get('/logout', (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
-    // let newUser = new User({username: req.body.username});
+    
     let { location, username, password, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
@@ -87,7 +87,8 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-    console.log(backPain, pelvicPain, abdominalPain)
+    console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
+     // let newUser = new User({username: username, password:password,);
     // User.register(newUser, req.body.password, (err, user) => {
     //     if(err) {
     //         console.log(err);
