@@ -32,7 +32,7 @@ mongoose.connect(mongoURIKey)
 
 
 // Build our blueprints:
-const User = require("./models/model.js");
+const User = require("./models/user.js");
 
 //root route
 app.get('/', (req, res) => {
@@ -94,17 +94,23 @@ app.post('/signup', (req, res) => {
             console.log(err);
             return res.render("signup");
         } else {
-            passport.authenticate("local"(req, res, () => {
+            passport.authenticate("local")(req, res, () => {
                 res.redirect("/user"); 
-            }))
+            })
         }
     })
 });
 
-app.get('/user', (req, res) => {
+app.get('/home', (req, res) => {
     //MAKE API calls
     //send variables to this ejs page
     res.render("userpage");
+})
+
+app.get('/user', (req, res) => {
+    //get USERS data back from DB
+    //render the users data on an ejs page with a submit button
+ 
 })
 
 const port = process.env.PORT || 3000;

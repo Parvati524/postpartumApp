@@ -1,3 +1,8 @@
+var heading = document.getElementById("#myForm");
+
 function changeHeading(){
-    document.querySelector("#myForm").innerHTML = "It worked"
+    console.log("Hello")
+    console.log(document.querySelector("#myForm"));
+    heading.innerHTML = "It worked!"
 }
+
