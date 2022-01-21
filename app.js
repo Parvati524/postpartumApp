@@ -8,14 +8,7 @@ const yelpApiKey = keys.yelpApiKey;
 const youtubeApiKey = keys.youtubeApiKey;
 const client = yelp.client(yelpApiKey);
 const flash = require("connect-flash");
-app.use(flash());
 
-//needed to use flash
-// app.configure(function() {
-//     app.use(express.cookieParser('keyboard cat'));
-//     app.use(express.session({ cookie: { maxAge: 60000 }}));
-//     app.use(flash());
-//   });
 
 const mongoURIKey = keys.mongoURIKey;
 app.use(express.json());//getting information through body
@@ -33,6 +26,13 @@ app.use(require('express-session')({
     resave: false,             // save the session obj even if not changed 
     saveUninitialized: false   // save the session obj even if not initialized
   }));  // here we are creating the information that will verify whether or not we are who we say we are 
+
+  app.use(flash());
+  app.use(function(req,res,next){
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success")
+    next();
+})
   
   app.use(passport.initialize());
   app.use(passport.session());
