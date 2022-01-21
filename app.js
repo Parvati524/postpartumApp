@@ -69,9 +69,12 @@ app.get('/signs', (req, res) => {
 
 // Route for logout: /logout
 app.get('/logout', (req, res) => {
-    // req.logout();
+    req.logout();  // we run a method called logout
     res.redirect('/');
-})
+});
+   // When logout, passport destroys all the user data in the session
+   // And then, we redirect them to the home page
+  
 
 app.post('/signup', (req, res) => {
     let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
@@ -122,11 +125,12 @@ const isLoggedIn = (req, res, next) => {
 } 
 app.get('/userpage', isLoggedIn, (req, res) => {
     console.log(req.user)
+    const {username, password, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain} = req.user
 
 
     //MAKE API calls
     //send variables to this ejs page
-    res.render("userpage");
+    res.render("userpage", {username:username});
 })
 
 app.get('/user', (req, res) => {
@@ -135,6 +139,15 @@ app.get('/user', (req, res) => {
     //render the users data on an ejs page with a submit button
  
 })
+
+app.post('/login', passport.authenticate('local',
+{
+    successRedirect: '/userpage',
+    failureRedirect: '/login'
+}), (req, res)=>{
+    // We don’t need anything in our callback function
+​
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
