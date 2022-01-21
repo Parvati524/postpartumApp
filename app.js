@@ -7,6 +7,16 @@ const mongoose = require('mongoose');
 const yelpApiKey = keys.yelpApiKey;
 const youtubeApiKey = keys.youtubeApiKey;
 const client = yelp.client(yelpApiKey);
+const flash = require("connect-flash");
+app.use(flash());
+
+//needed to use flash
+// app.configure(function() {
+//     app.use(express.cookieParser('keyboard cat'));
+//     app.use(express.session({ cookie: { maxAge: 60000 }}));
+//     app.use(flash());
+//   });
+
 const mongoURIKey = keys.mongoURIKey;
 app.use(express.json());//getting information through body
 app.use(express.urlencoded({ extended: false }));
@@ -94,12 +104,12 @@ app.post('/signup', (req, res) => {
     // console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
    console.log(passport)
     let newUser = new User({username: username, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
-    User.register(newUser, req.body.password, (err, user) => {
+    User.register(newUser, passport, (err, user) => {
         if(err) {
             console.log(err);
             return res.render("signup");
         } else {
-            passport.authenticate("local")(req, res, () => {
+            passport.authenticate("local" )(req, res, () => {
                 res.redirect("/userpage"); 
             })
         }
@@ -107,13 +117,15 @@ app.post('/signup', (req, res) => {
 });
 
  // Route handler for POST - login - checking whether the user exist in the database - if it exist - it will redire
- app.post('/login', passport.authenticate('local',
+ app.post('/login', passport.authenticate('local', 
  {
      successRedirect: '/userpage',
-     failureRedirect: '/login'
+     failureRedirect: '/login',
+     failureFlash: true
+    }
      //way to add error message
      
- }), (req, res)=>{
+ ), (req, res)=>{
      // We don’t need anything in our callback function
 });
 
