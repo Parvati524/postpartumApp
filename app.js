@@ -147,8 +147,8 @@ const isLoggedIn = (req, res, next) => {
 } 
 app.get('/userpage', isLoggedIn, (req, res) => {
     console.log(req.user)
-    const {username, password, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain} = req.user
-
+    const {username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain} = req.user
+    
 
     //MAKE API calls
     //send variables to this ejs page
