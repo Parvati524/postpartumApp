@@ -82,6 +82,8 @@ app.post('/signup', (req, res) => {
             booleanArray[i] = false;
         }
     }
+
+    
     ppd = booleanArray[0];
     ppa = booleanArray[1];
     pregnancyTrauma = booleanArray[2];
@@ -91,8 +93,8 @@ app.post('/signup', (req, res) => {
     backPain = booleanArray[6];
     console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
   
-    let newUser = new User({username: username, password:password, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
-    User.register(newUser, req.body.password, (err, user) => {
+    let newUser = new User({username: username, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
+    User.register(newUser, password, (err, user) => {
         if(err) {
             console.log(err);
             return res.render("signup");
@@ -109,6 +111,8 @@ app.post('/signup', (req, res) => {
  {
      successRedirect: '/userpage',
      failureRedirect: '/login'
+     //way to add error message
+     
  }), (req, res)=>{
      // We don’t need anything in our callback function
 });
