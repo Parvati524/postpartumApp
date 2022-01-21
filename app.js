@@ -67,6 +67,7 @@ app.get('/signs', (req, res) => {
 app.post('/signup', (req, res) => {
     let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
+    
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
         //checks if any of the physical pain areas were unchecked (thus undefined) and converts them to false
@@ -82,7 +83,6 @@ app.post('/signup', (req, res) => {
             booleanArray[i] = false;
         }
     }
-
     
     ppd = booleanArray[0];
     ppa = booleanArray[1];
@@ -91,10 +91,10 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-    console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
-  
+    // console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
+   console.log(passport)
     let newUser = new User({username: username, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
-    User.register(newUser, password, (err, user) => {
+    User.register(newUser, req.body.password, (err, user) => {
         if(err) {
             console.log(err);
             return res.render("signup");
