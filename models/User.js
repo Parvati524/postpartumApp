@@ -7,7 +7,7 @@ let userSchema = mongoose.Schema({
         // required: [true, "You must enter a username"]
     },
     password: {
-        type: String,
+        type: String
         
     },
     location: {
