@@ -139,7 +139,12 @@ app.get('/user', (req, res) => {
     //render the users data on an ejs page with a submit button
  
 })
-
+app.post('/login', passport.authenticate('local',
+{
+    successRedirect: '/userpage',
+    failureRedirect: '/login'
+}), (req, res)=>{ 
+});
 
 
 const port = process.env.PORT || 3000;
