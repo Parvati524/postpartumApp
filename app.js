@@ -65,7 +65,7 @@ app.get('/signs', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
+    let { location, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
@@ -91,8 +91,8 @@ app.post('/signup', (req, res) => {
     backPain = booleanArray[6];
     console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
   
-    let newUser = new User({username: username, password:password,location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
-    User.register(newUser, password, (err, user) => {
+    let newUser = new User({username: username, password:password, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
+    User.register(newUser, req.body.password, (err, user) => {
         if(err) {
             console.log(err);
             return res.render("signup");
