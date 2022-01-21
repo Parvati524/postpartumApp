@@ -43,9 +43,6 @@ mongoose.connect(mongoURIKey)
         console.log(`Error connecting to DB: ${err}`)
     })
 
-
-
-
 //root route
 app.get('/', (req, res) => {
     res.render('home.ejs');
@@ -66,15 +63,6 @@ app.get('/resources', (req, res) => {
 app.get('/signs', (req, res) => {
     res.render('signssymptoms.ejs');
 });
-
-// Route for logout: /logout
-app.get('/logout', (req, res) => {
-    req.logout();  // we run a method called logout
-    res.redirect('/');
-});
-   // When logout, passport destroys all the user data in the session
-   // And then, we redirect them to the home page
-  
 
 app.post('/signup', (req, res) => {
     let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
@@ -115,6 +103,24 @@ app.post('/signup', (req, res) => {
         }
     })
 });
+
+ // Route handler for POST - login - checking whether the user exist in the database - if it exist - it will redire
+ app.post('/login', passport.authenticate('local',
+ {
+     successRedirect: '/userpage',
+     failureRedirect: '/login'
+ }), (req, res)=>{
+     // We don’t need anything in our callback function
+});
+
+// Route for logout: /logout
+app.get('/logout', (req, res) => {
+    req.logout();  // we run a method called logout
+    res.redirect('/');
+});
+        // When logout, passport destroys all the user data in the session
+        // And then, we redirect them to the home page
+
 // Creating the middleware function:
 const isLoggedIn = (req, res, next) => {
     if(req.isAuthenticated()){ //
@@ -138,9 +144,7 @@ app.get('/user', (req, res) => {
     //get USERS data back from DB
     //render the users data on an ejs page with a submit button
  
-})
-
-
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
