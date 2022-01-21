@@ -7,4 +7,12 @@
     <button>Log In</button>
 </form>
 
+<% if(error && error.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+        <div class="container">
+            <%= error %>
+        </div>
+    </div>
+<% } %>
+
 <%- include("partials/footer") %> 
