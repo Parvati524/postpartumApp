@@ -3,12 +3,11 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 let userSchema = mongoose.Schema({
     username: {
-        type: String
-        // required: [true, "You must enter a username"]
+        type: String,
+        required: [true, "You must enter a username"]
     },
     password: {
         type: String
-        
     },
     location: {
         type: String,
