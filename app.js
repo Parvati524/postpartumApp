@@ -140,14 +140,7 @@ app.get('/user', (req, res) => {
  
 })
 
-app.post('/login', passport.authenticate('local',
-{
-    successRedirect: '/userpage',
-    failureRedirect: '/login'
-}), (req, res)=>{
-    // We don’t need anything in our callback function
-​
-});
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
