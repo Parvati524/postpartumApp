@@ -65,7 +65,7 @@ app.get('/signs', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    let { location, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
+    let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
