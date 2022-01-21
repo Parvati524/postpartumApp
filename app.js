@@ -95,19 +95,28 @@ app.post('/signup', (req, res) => {
             return res.render("signup");
         } else {
             passport.authenticate("local")(req, res, () => {
-                res.redirect("/user"); 
+                res.redirect("/home"); 
             })
         }
     })
 });
-
-app.get('/home', (req, res) => {
+// Creating the middleware function:
+const isLoggedIn = (req, res, next) => {
+    if(req.isAuthenticated()){ //
+        // console.log(isLoggedIn)
+        return next();
+    }
+    res.redirect('/')
+} 
+app.get('/userpage', isLoggedIn, (req, res) => {
+    console.log(req.user)
     //MAKE API calls
     //send variables to this ejs page
     res.render("userpage");
 })
 
 app.get('/user', (req, res) => {
+    
     //get USERS data back from DB
     //render the users data on an ejs page with a submit button
  
