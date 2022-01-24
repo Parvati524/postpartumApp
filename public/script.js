@@ -8,11 +8,10 @@
 //     console.log(videoId)
 //     let endpoint = `http://localhost:3000/${username}`
 //     let self = this;
-//     fetch(endpoint, {method: "PUT",   
-//     headers:{
-//         'Content-Type':'application/json'
-//         },
-//         body:JSON.stringify({video:videoId})})
+//     fetch(endpoint, 
+        //  {method: "PUT",   
+//          headers:{'Content-Type':'application/json'},
+//          body:JSON.stringify({video:videoId})})
 
 //     .then(function(response){
 //       if(!response.ok){
