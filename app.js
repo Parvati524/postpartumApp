@@ -77,6 +77,7 @@ app.get('/signs', (req, res) => {
 app.post('/signup', (req, res) => {
     let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
+  
     
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
@@ -101,10 +102,9 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-    // console.log(ppd, ppa, pregnancyTrauma, birthTrauma, backPain, pelvicPain, abdominalPain)
-   console.log(passport)
+   
     let newUser = new User({username: username, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
-    User.register(newUser, passport, (err, user) => {
+    User.register(newUser, password, (err, user) => {
         if(err) {
             console.log(err);
             return res.render("signup");
@@ -151,7 +151,8 @@ app.get('/userpage', isLoggedIn, (req, res) => {
     
 
     //MAKE API calls
-    //send variables to this ejs page
+    //send variables to this ejs page: yelp name, phone number, rating, url 
+    //youtube: title, videoId, description, channelTitle
     res.render("userpage", {username:username});
 })
 
@@ -159,7 +160,13 @@ app.get('/user', (req, res) => {
     
     //get USERS data back from DB
     //render the users data on an ejs page with a submit button
+    //form has a put route to /user to update
 });
+
+app.put('/username', (req, res)=> {
+     
+      });
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

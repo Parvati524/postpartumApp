@@ -9,6 +9,9 @@ let userSchema = mongoose.Schema({
     password: {
         type: String
     },
+   videosWatched: {
+       type:[String]
+   },
     location: {
         type: String,
         required: true
