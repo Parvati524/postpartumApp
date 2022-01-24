@@ -25,20 +25,20 @@ app.use(require('express-session')({
     secret: "It can be any kind of string",  // used to encrypt the user info before saving to db 
     resave: false,             // save the session obj even if not changed 
     saveUninitialized: false   // save the session obj even if not initialized
-  }));  // here we are creating the information that will verify whether or not we are who we say we are 
+}));  // here we are creating the information that will verify whether or not we are who we say we are 
 
-  app.use(flash());
-  app.use(function(req,res,next){
+app.use(flash());
+app.use(function (req, res, next) {
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success")
     next();
 })
-  
-  app.use(passport.initialize());
-  app.use(passport.session());
-  passport.use(new LocalStrategy(User.authenticate()));
-  passport.serializeUser(User.serializeUser());  // we are starting the session
-  passport.deserializeUser(User.deserializeUser()); // we are getting that information from the database
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());  // we are starting the session
+passport.deserializeUser(User.deserializeUser()); // we are getting that information from the database
 
 //import css
 app.use(express.static('public'));
@@ -77,8 +77,8 @@ app.get('/signs', (req, res) => {
 app.post('/signup', (req, res) => {
     let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
-  
-    
+
+
     booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
         //checks if any of the physical pain areas were unchecked (thus undefined) and converts them to false
@@ -94,7 +94,7 @@ app.post('/signup', (req, res) => {
             booleanArray[i] = false;
         }
     }
-    
+
     ppd = booleanArray[0];
     ppa = booleanArray[1];
     pregnancyTrauma = booleanArray[2];
@@ -102,31 +102,31 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-   
-    let newUser = new User({username: username, location: location, postpartum_depression:ppd, postpartum_anxiety:ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth:birthTrauma, back_pain:backPain, pelvic_pain:pelvicPain, abdominal_pain:abdominalPain});
+
+    let newUser = new User({ username: username, location: location, postpartum_depression: ppd, postpartum_anxiety: ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth: birthTrauma, back_pain: backPain, pelvic_pain: pelvicPain, abdominal_pain: abdominalPain });
     User.register(newUser, password, (err, user) => {
-        if(err) {
+        if (err) {
             console.log(err);
             return res.render("signup");
         } else {
-            passport.authenticate("local" )(req, res, () => {
-                res.redirect("/userpage"); 
+            passport.authenticate("local")(req, res, () => {
+                res.redirect("/userpage");
             })
         }
     })
 });
 
- // Route handler for POST - login - checking whether the user exist in the database - if it exist - it will redire
- app.post('/login', passport.authenticate('local', 
- {
-     successRedirect: '/userpage',
-     failureRedirect: '/login',
-     failureFlash: true
+// Route handler for POST - login - checking whether the user exist in the database - if it exist - it will redire
+app.post('/login', passport.authenticate('local',
+    {
+        successRedirect: '/userpage',
+        failureRedirect: '/login',
+        failureFlash: true
     }
-     //way to add error message
-     
- ), (req, res)=>{
-     // We don’t need anything in our callback function
+    //way to add error message
+
+), (req, res) => {
+    // We don’t need anything in our callback function
 });
 
 // Route for logout: /logout
@@ -134,38 +134,55 @@ app.get('/logout', (req, res) => {
     req.logout();  // we run a method called logout
     res.redirect('/');
 });
-        // When logout, passport destroys all the user data in the session
-        // And then, we redirect them to the home page
+// When logout, passport destroys all the user data in the session
+// And then, we redirect them to the home page
 
 // Creating the middleware function:
 const isLoggedIn = (req, res, next) => {
-    if(req.isAuthenticated()){ //
+    if (req.isAuthenticated()) { //
         // console.log(isLoggedIn)
         return next();
     }
     res.redirect('/')
-} 
+}
 app.get('/userpage', isLoggedIn, (req, res) => {
-    console.log(req.user)
-    const {username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain} = req.user
-    
+    // console.log(req.user)
+    const { username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
 
     //MAKE API calls
-    //send variables to this ejs page: yelp name, phone number, rating, url 
+    //order youtube by view count, 
+    //subtract second by first
+    //send first of each back.
+    // let difference = arr1.filter(x => !arr2.includes(x));
+    //yelp name, phone number, rating, url 
     //youtube: title, videoId, description, channelTitle
-    res.render("userpage", {username:username});
+    res.render("userpage", { username: username });
 })
 
-app.get('/user', (req, res) => {
-    
+app.get('/username', (req, res) => {
+
     //get USERS data back from DB
     //render the users data on an ejs page with a submit button
     //form has a put route to /user to update
 });
 
-app.put('/username', (req, res)=> {
-     
-      });
+app.put('/:username', (req, res) => {
+    let username = req.params.username;
+    let video = req.body.video;
+    User.findOneAndUpdate(
+        { username: username },
+        { $push: { videosWatched: video } },
+        function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(success);
+            }
+        });
+
+
+    console.log(`${username}, it worked!`)
+});
 
 
 const port = process.env.PORT || 3000;
