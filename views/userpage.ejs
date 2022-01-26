@@ -1,35 +1,44 @@
-<%-include('partials/header')%>
-<h1>User Page - After Authentication</h1>
-<h1> Welcome <%=username%> </h1>
-<a href="/logout">Log Out</a>
+<%-include('partials /header')%>
+    <h1>User Page - After Authentication</h1>
+    <h1> Welcome <%=username%>
+    </h1>
+    <a href="/logout">Log Out</a>
 
-<div className="physicaltherapists">
-<h2>Physical Therapists Near You:</h2>
-<ul>
-    <% for( let i = 0; i < phystherapists.length; i++ ) { %>
-       <li> <%=phystherapists[i].name%> </li>
-    <% } %>
-</ul>
-</div>
-<div className="midwives">
-    <h2>Midwives Near You:</h2>
-    <ul>
-    <% for( let i = 0; i < midwives.length; i++ ) { %>
-       <li> <%=midwives[i].name%> </li>
-    <% } %>
-    </ul>
-</div>
-<div className="psychologists">
-    <h2>Psychologists Near You:</h2>
-    <ul>
-    <% for( let i = 0; i < psychologists.length; i++ ) { %>
-       <li> <%=psychologists[i].name%> </li>
-    <% } %>
-    </ul>
-</div>
 
-<!-- 
+
+
+    <div className="physicaltherapists">
+        <h2>Physical Therapists Near You:</h2>
+        <ul>
+            <% for( let i=0; i < phystherapists.length; i++ ) { %>
+                <li>
+                    <%=phystherapists[i].name%>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+    <div className="midwives">
+        <h2>Midwives Near You:</h2>
+        <ul>
+            <% for( let i=0; i < midwives.length; i++ ) { %>
+                <li>
+                    <%=midwives[i].name%>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+    <div className="psychologists">
+        <h2>Psychologists Near You:</h2>
+        <ul>
+            <% for( let i=0; i < psychologists.length; i++ ) { %>
+                <li>
+                    <%=psychologists[i].name%>
+                </li>
+                <% } %>
+        </ul>
+    </div>
+
+    <!-- 
 <iframe src="https://www.youtube.com/embed/P1tF1nIZZxo"></iframe>
 <button id=<%=username%>>click me when you are finished watching</button> -->
-<%-include('partials/footer')%>
-
+    <%-include('partials /footer')%>
