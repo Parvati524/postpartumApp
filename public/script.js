@@ -3,7 +3,9 @@
 $("#ppdvideobutton").on("click", function () {
         console.log("button works!")
     let videoId = $("#ppdvideo").attr("src")
-    let username = this.className;
+    let self = this;
+    let username = $(this).attr("class");
+    console.log(username)
     videoId=videoId.split("/")
     videoId=videoId[videoId.length-1]
     console.log(videoId)

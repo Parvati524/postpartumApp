@@ -194,6 +194,7 @@ app.get('/userpage', isLoggedIn, (req, res) => {
                 for (let i = 0; i < ppdvideoinfo.length; i++) {
                     ppdvideoIds.push(ppdvideoinfo[i].id.videoId)
                 }
+                
                 // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
                 res.render("userpage", { username: username, phystherapists: phystherapists, midwives: midwives, psychologists: psychologists, ppdvideoIds: ppdvideoIds, ppdvideoinfo: ppdvideoinfo });
             });
