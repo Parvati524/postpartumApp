@@ -12,6 +12,9 @@ let userSchema = mongoose.Schema({
    videosWatched: {
        type:[String]
    },
+      videosSaved: {           
+        type:[String]
+    },
     location: {
         type: String,
         required: true

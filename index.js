@@ -159,7 +159,6 @@ app.get('/userpage', isLoggedIn, (req, res) => {
             Promise.all([yelp("physicaltherapy", location, 10),  yelp("midwives", location, 10), yelp("psychologists", location, 10)])
                 .then(values =>
                     Promise.all(values.map(value => JSON.stringify(value))))
-                    //we get all the values in an array. this array we are calling finalVals here. this array is whatever each function returns in order.
                 .then(finalVals => {
                     //this is how I access each item in the array.
                     let phystherapists = finalVals[0];
@@ -176,7 +175,6 @@ app.get('/userpage', isLoggedIn, (req, res) => {
                     psychologists= JSON.parse(psychologists);
                     console.log(psychologists);
                     psychologists=psychologists.jsonBody.businesses
-
                     res.render("userpage", { username: username, phystherapists:phystherapists, midwives:midwives, psychologists:psychologists }); 
                 });
                   
@@ -198,7 +196,7 @@ app.get('/username', (req, res) => {
     //form has a put route to /user to update
 });
 
-app.put('/:username', (req, res) => {
+app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;
     let video = req.body.video;
     User.findOneAndUpdate(
@@ -216,6 +214,26 @@ app.put('/:username', (req, res) => {
     console.log(`${username}, it worked!`)
 });
 
+app.put('/:username/videosSaved', (req, res) => {
+
+    let username = req.params.username;
+    let savedVideo = req.body.video;
+    User.findOneAndUpdate(
+        { username: username },
+        { $push: { videosSaved: savedVideo } },
+        function (error, success) {
+            if (error) {
+                console.log(error);
+                res.status(400).json("Error updating document")
+            } else {
+                console.log(success);
+                console.log(`${username}, it worked!`)
+                res.status(201).json(success)
+               
+            }
+        });
+        console.log(`${username}, it worked!`)
+});
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

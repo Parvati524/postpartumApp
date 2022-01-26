@@ -6,7 +6,7 @@
 //     videoId=videoId.split("/")
 //     videoId=videoId[videoId.length-1]
 //     console.log(videoId)
-//     let endpoint = `http://localhost:3000/${username}`
+//     let endpoint = `http://localhost:3000/${username}/videosWatched`
 //     let self = this;
 //     fetch(endpoint, 
         //  {method: "PUT",   
