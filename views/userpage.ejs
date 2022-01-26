@@ -1,7 +1,5 @@
-<%-include('partials /header')%>
-    <h1>User Page - After Authentication</h1>
-    <h1> Welcome <%=username%>
-    </h1>
+<%-include('partials/header')%>
+    <h1> Welcome <%=username%></h1>
     <a href="/logout">Log Out</a>
 
     <div className="physicaltherapists">
@@ -34,8 +32,12 @@
                 <% } %>
         </ul>
     </div>
+    <div className="ppdvideos">
+        <iframe src="https://www.youtube.com/embed/<%=ppdvideoIds[0]%>"></iframe>
+        <button id=<%=username%>>click when watched</button> 
+    </div>
 
-    <!-- 
-<iframe src="https://www.youtube.com/embed/P1tF1nIZZxo"></iframe>
-<button id=<%=username%>>click when watched</button> -->
-    <%-include('partials /footer')%>
+
+    
+
+    <%-include('partials/footer')%>

@@ -148,45 +148,65 @@ const isLoggedIn = (req, res, next) => {
 app.get('/userpage', isLoggedIn, (req, res) => {
     // console.log(req.user)
     const { username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
-    function yelp(category, location, limit){
+    function yelp(category, location, limit) {
         const reqObject = {
             categories: category,
             location: location,
-            limit:limit}
+            limit: limit
+        }
         return client.search(reqObject)
-        }
-        function getData() {
-            Promise.all([yelp("physicaltherapy", location, 10),  yelp("midwives", location, 10), yelp("psychologists", location, 10)])
-                .then(values =>
-                    Promise.all(values.map(value => JSON.stringify(value))))
-                .then(finalVals => {
-                    //this is how I access each item in the array.
-                    let phystherapists = finalVals[0];
-                    phystherapists = JSON.parse(phystherapists)
-                    console.log(phystherapists)
-                    phystherapists = phystherapists.jsonBody.businesses;
-                    //doing same for midwives
-                    let midwives = finalVals[1];
-                    midwives = JSON.parse(midwives)
-                    console.log(midwives)
-                    midwives = midwives.jsonBody.businesses;
-                    //doing same for psychologists
-                    let psychologists = finalVals[2];
-                    psychologists= JSON.parse(psychologists);
-                    console.log(psychologists);
-                    psychologists=psychologists.jsonBody.businesses
-                    res.render("userpage", { username: username, phystherapists:phystherapists, midwives:midwives, psychologists:psychologists }); 
-                });
-                  
-        }
-        getData()
+    }
+    async function youtube(videoCategory) {
+        console.log("Ready to get Youtube data!");
+        let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=100`;
+        const response = await fetch(url);
+        const data = await response.json();
+        const videos = data;
+        return videos
+    }
+    function getData() {
+        Promise.all([yelp("physicaltherapy", location, 10), yelp("midwives", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety")])
+            .then(values =>
+                Promise.all(values.map(value => JSON.stringify(value))))
+            .then(finalVals => {
+                //this is how I access each item in the array.
+                let phystherapists = finalVals[0];
+                phystherapists = JSON.parse(phystherapists)
+                console.log(phystherapists)
+                phystherapists = phystherapists.jsonBody.businesses;
+                //doing same for midwives
+                let midwives = finalVals[1];
+                midwives = JSON.parse(midwives)
+                console.log(midwives)
+                midwives = midwives.jsonBody.businesses;
+                //doing same for psychologists
+                let psychologists = finalVals[2];
+                psychologists = JSON.parse(psychologists);
+                console.log(psychologists);
+                psychologists = psychologists.jsonBody.businesses
+                //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
+                let ppdvideos = finalVals[3];
+                ppdvideos = JSON.parse(ppdvideos);
+                let ppdvideoinfo = ppdvideos.items
+                ppdvideoinfo.forEach(val => String(val))
+                console.log(ppdvideoinfo)
+                let ppdvideoIds = [];
+                for (let i = 0; i < ppdvideoinfo.length; i++) {
+                    ppdvideoIds.push(ppdvideoinfo[i].id.videoId)
+                }
+                // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
+                res.render("userpage", { username: username, phystherapists: phystherapists, midwives: midwives, psychologists: psychologists, ppdvideoIds: ppdvideoIds, ppdvideoinfo: ppdvideoinfo });
+            });
+
+    }
+    getData()
     //order youtube by view count, 
     //subtract second by first
     //send first of each back.
     // let difference = arr1.filter(x => !arr2.includes(x));
     //yelp name, phone number, rating, url 
     //youtube: title, videoId, description, channelTitle
-    
+
 })
 
 app.get('/username', (req, res) => {
@@ -229,10 +249,10 @@ app.put('/:username/videosSaved', (req, res) => {
                 console.log(success);
                 console.log(`${username}, it worked!`)
                 res.status(201).json(success)
-               
+
             }
         });
-        console.log(`${username}, it worked!`)
+    console.log(`${username}, it worked!`)
 });
 
 const port = process.env.PORT || 3000;
