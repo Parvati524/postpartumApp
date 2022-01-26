@@ -1,14 +1,13 @@
 //for this code, in line 4 we can give the iframe a particular ID or class Name so we can reference that particular video since we will have several on page. 
 
-$("#ppdvideobutton").on("click", function () {
+$("#ppdvideowatched").on("click", function () {
         console.log("button works!")
     let videoId = $("#ppdvideo").attr("src")
-    let self = this;
     let username = $(this).attr("class");
-    console.log(username)
+    console.log("username is: " + username)
     videoId=videoId.split("/")
     videoId=videoId[videoId.length-1]
-    console.log(videoId)
+    console.log("video Id is: " + videoId)
     let endpoint = `http://localhost:3000/${username}/videosWatched`
     
     fetch(endpoint, 
