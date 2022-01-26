@@ -148,15 +148,47 @@ const isLoggedIn = (req, res, next) => {
 app.get('/userpage', isLoggedIn, (req, res) => {
     // console.log(req.user)
     const { username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
+    function yelp(category, location, limit){
+        const reqObject = {
+            categories: category,
+            location: location,
+            limit:limit}
+        return client.search(reqObject)
+        }
+        function getData() {
+            Promise.all([yelp("physicaltherapy", location, 10),  yelp("midwives", location, 10), yelp("psychologists", location, 10)])
+                .then(values =>
+                    Promise.all(values.map(value => JSON.stringify(value))))
+                    //we get all the values in an array. this array we are calling finalVals here. this array is whatever each function returns in order.
+                .then(finalVals => {
+                    //this is how I access each item in the array.
+                    let phystherapists = finalVals[0];
+                    phystherapists = JSON.parse(phystherapists)
+                    console.log(phystherapists)
+                    phystherapists = phystherapists.jsonBody.businesses;
+                    //doing same for midwives
+                    let midwives = finalVals[1];
+                    midwives = JSON.parse(midwives)
+                    console.log(midwives)
+                    midwives = midwives.jsonBody.businesses;
+                    //doing same for psychologists
+                    let psychologists = finalVals[2];
+                    psychologists= JSON.parse(psychologists);
+                    console.log(psychologists);
+                    psychologists=psychologists.jsonBody.businesses
 
-    //MAKE API calls
+                    res.render("userpage", { username: username, phystherapists:phystherapists, midwives:midwives, psychologists:psychologists }); 
+                });
+                  
+        }
+        getData()
     //order youtube by view count, 
     //subtract second by first
     //send first of each back.
     // let difference = arr1.filter(x => !arr2.includes(x));
     //yelp name, phone number, rating, url 
     //youtube: title, videoId, description, channelTitle
-    res.render("userpage", { username: username });
+    
 })
 
 app.get('/username', (req, res) => {
