@@ -54,8 +54,10 @@ $("#ppdvideowatched").on("click", function () {
     })
     .then(function(data){
       console.log(data)
+      $('#videoSaved').removeClass('hidden')
     })
     .catch(function(error){
       console.error("Error updating: ", error)
+      $('#alreadySaved').removeClass('hidden')
     }) 
   });

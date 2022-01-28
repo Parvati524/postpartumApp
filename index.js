@@ -225,7 +225,7 @@ app.get('/userpage', (req, res) => {
                 
                 
                 // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
-                res.render("userpage", { username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
             });
 
     }
@@ -265,24 +265,35 @@ app.put('/:username/videosWatched', (req, res) => {
 });
 
 app.put('/:username/videosSaved', (req, res) => {
-
     let username = req.params.username;
-    let savedVideo = req.body.video;
-    User.findOneAndUpdate(
+    let videoSaved = req.body.video;
+    User.find(
         { username: username },
-        { $push: { videosSaved: savedVideo } },
-        function (error, success) {
-            if (error) {
-                console.log(error);
-                res.status(400).json("Error updating document")
-            } else {
-                console.log(success);
+        function (error, user) {
+            if (error) { res.status(400).json("Error updating document") } 
+            else {
+                console.log("Success", user)
+                if (user[0].videosSaved.includes(videoSaved)) {
+                    console.log('Video already saved')
+                    res.status(400).json('Video already saved')
+                } else {
+                User.findOneAndUpdate(
+                    { username: username },
+                    { $push: { videosSaved: videoSaved } },
+                    function (error, success) {
+                        if (error) {
+                            console.log(error);
+                            res.status(400).json("Error updating document")
+                        } else {
+                            console.log(success);
+                            console.log(`${username}, it worked!`)
+                            res.status(201).json(success)
+                        }
+                    });
                 console.log(`${username}, it worked!`)
-                res.status(201).json(success)
-
+                }
             }
-        });
-    console.log(`${username}, it worked!`)
+        })
 });
 
 const port = process.env.PORT || 3000;
