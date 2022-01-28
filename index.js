@@ -165,38 +165,44 @@ app.get('/userpage', isLoggedIn, (req, res) => {
         return videos
     }
     function getData() {
-        Promise.all([yelp("physicaltherapy", location, 10), yelp("midwives", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety")])
+        Promise.all([yelp("physicaltherapy", location, 10), yelp("midwives", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
                 Promise.all(values.map(value => JSON.stringify(value))))
             .then(finalVals => {
                 //this is how I access each item in the array.
                 let phystherapists = finalVals[0];
                 phystherapists = JSON.parse(phystherapists)
-                console.log(phystherapists)
                 phystherapists = phystherapists.jsonBody.businesses;
                 //doing same for midwives
                 let midwives = finalVals[1];
                 midwives = JSON.parse(midwives)
-                console.log(midwives)
                 midwives = midwives.jsonBody.businesses;
                 //doing same for psychologists
                 let psychologists = finalVals[2];
                 psychologists = JSON.parse(psychologists);
-                console.log(psychologists);
                 psychologists = psychologists.jsonBody.businesses
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[3];
                 ppdvideos = JSON.parse(ppdvideos);
                 let ppdvideoinfo = ppdvideos.items
-                ppdvideoinfo.forEach(val => String(val))
-                console.log(ppdvideoinfo)
-                let ppdvideoIds = [];
-                for (let i = 0; i < ppdvideoinfo.length; i++) {
-                    ppdvideoIds.push(ppdvideoinfo[i].id.videoId)
-                }
+                //now postpartum meditation youtube call
+                let meditation = finalVals[4];
+                meditation = JSON.parse(meditation);
+                let medvideoinfo = meditation.items
+                 //now postpartum yoga youtube call
+                 let yoga = finalVals[5];
+                yoga = JSON.parse(yoga);
+                 let yogavideoinfo =yoga.items
+                //now postpartum recovery exercise youtube call
+                let exercise = finalVals[6];
+                exercise = JSON.parse(exercise);
+                let exvideoinfo =exercise.items
+                       
+                 
+                
                 
                 // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
-                res.render("userpage", { username: username, phystherapists: phystherapists, midwives: midwives, psychologists: psychologists, ppdvideoIds: ppdvideoIds, ppdvideoinfo: ppdvideoinfo });
+                res.render("userpage", { username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
             });
 
     }

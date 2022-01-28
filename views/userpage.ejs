@@ -7,27 +7,35 @@
         <ul>
             <% for( let i=0; i < phystherapists.length; i++ ) { %>
                 <li>
-                    <%=phystherapists[i].name%>
+                    Name: <%=phystherapists[i].name%>
+                    Phone: <%=phystherapists[i].phone%>
+                    Rating: <%=phystherapists[i].rating%>
                 </li>
                 <% } %>
         </ul>
+    </div>
+ 
+    <div className="psychologists">
+        <h2>Psychologists Near You:</h2>
+        <ul>
+            <% for( let i=0; i < psychologists.length; i++ ) { %>
+               
+                   <li>
+                    Name: <%=psychologists[i].name%>
+                    Phone: <%=psychologists[i].phone%>
+                   Rating: <%=psychologists[i].rating%>
+                   </li>
+                <% } %>
+      </ul>
     </div>
     <div className="midwives">
         <h2>Midwives Near You:</h2>
         <ul>
             <% for( let i=0; i < midwives.length; i++ ) { %>
                 <li>
-                    <%=midwives[i].name%>
-                </li>
-                <% } %>
-        </ul>
-    </div>
-    <div className="psychologists">
-        <h2>Psychologists Near You:</h2>
-        <ul>
-            <% for( let i=0; i < psychologists.length; i++ ) { %>
-                <li>
-                    <%=psychologists[i].name%>
+                    Name: <%=midwives[i].name%>
+                    Phone: <%=midwives[i].phone%>
+                    Rating: <%=midwives[i].rating%>
                 </li>
                 <% } %>
         </ul>
@@ -36,10 +44,35 @@
         <h3><%=ppdvideoinfo[0].snippet.title%></h3>
         <p><%=ppdvideoinfo[0].snippet.description%></p>
         <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%></p>
-        <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoIds[0]%>"></iframe>
+        <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
         <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
         <button id="ppdvideosaved" class=<%=username%>> click to save</button> 
     </div>
+    <div className="medvideo">
+        <h3><%=medvideoinfo[0].snippet.title%></h3>
+        <p><%=medvideoinfo[0].snippet.description%></p>
+        <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%></p>
+        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
+        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
+        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+    </div>
+    <div className="ppyoga">
+        <h3><%=yogavideoinfo[0].snippet.title%></h3>
+        <p><%=yogavideoinfo[0].snippet.description%></p>
+        <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%></p>
+        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
+        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
+        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+    </div>
+    <div className="ppexercise">
+        <h3><%=exvideoinfo[0].snippet.title%></h3>
+        <p><%=exvideoinfo[0].snippet.description%></p>
+        <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%></p>
+        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
+        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
+        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+    </div>
+
 
 
     
