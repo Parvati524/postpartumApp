@@ -1,4 +1,5 @@
-<%-include('partials/header')%>
+<%- include('partials/header')%>
+
     <h1> Welcome <%=username%></h1>
     <a href="/logout">Log Out</a>
 
@@ -47,6 +48,8 @@
         <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
         <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
         <button id="ppdvideosaved" class=<%=username%>> click to save</button> 
+        <p class="hidden" id="videoSaved">Video Saved!</p>
+        <p class="hidden" id="alreadySaved">Video Already Saved</p>
     </div>
     <div className="medvideo">
         <h3><%=medvideoinfo[0].snippet.title%></h3>

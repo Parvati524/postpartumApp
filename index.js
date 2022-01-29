@@ -52,26 +52,43 @@ mongoose.connect(mongoURIKey)
     .catch(err => {
         console.log(`Error connecting to DB: ${err}`)
     })
+// Creating the middleware function:
+
+    const isLoggedIn = (req, res, next) => {
+        if (req.isAuthenticated()) { 
+            // console.log(isLoggedIn)
+            req.isLoggedIn = true
+        }
+        if (req.url.includes('userpage') && !req.isAuthenticated()) {
+            res.redirect('/login')
+        } else {
+            return next();
+        }
+    }
+    app.use(isLoggedIn)
+    
 
 //root route
 app.get('/', (req, res) => {
-    res.render('home.ejs');
+        console.log(req)
+    res.render('home.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs');
+    console.log(req.isAuthenticated())
+    res.render('login.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.get('/signup', (req, res) => {
-    res.render('signup.ejs');
+    res.render('signup.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.get('/resources', (req, res) => {
-    res.render('resources.ejs');
+    res.render('resources.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.get('/signs', (req, res) => {
-    res.render('signssymptoms.ejs');
+    res.render('signssymptoms.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.post('/signup', (req, res) => {
@@ -138,14 +155,20 @@ app.get('/logout', (req, res) => {
 // And then, we redirect them to the home page
 
 // Creating the middleware function:
-const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) { //
-        // console.log(isLoggedIn)
-        return next();
-    }
-    res.redirect('/')
-}
-app.get('/userpage', isLoggedIn, (req, res) => {
+// const isLoggedIn = (req, res, next) => {
+//     if (req.isAuthenticated()) { 
+//         // console.log(isLoggedIn)
+//         req.isLoggedIn = true
+//     }
+//     if (req.url.includes('userpage') && !req.isAuthenticated()) {
+//         res.redirect('/login')
+//     } else {
+//         return next();
+//     }
+// }
+// app.use(isLoggedIn)
+
+app.get('/userpage', (req, res) => {
     // console.log(req.user)
     const { username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
     function yelp(category, location, limit) {
@@ -202,7 +225,7 @@ app.get('/userpage', isLoggedIn, (req, res) => {
                 
                 
                 // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
-                res.render("userpage", { username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
             });
 
     }
@@ -242,24 +265,35 @@ app.put('/:username/videosWatched', (req, res) => {
 });
 
 app.put('/:username/videosSaved', (req, res) => {
-
     let username = req.params.username;
-    let savedVideo = req.body.video;
-    User.findOneAndUpdate(
+    let videoSaved = req.body.video;
+    User.find(
         { username: username },
-        { $push: { videosSaved: savedVideo } },
-        function (error, success) {
-            if (error) {
-                console.log(error);
-                res.status(400).json("Error updating document")
-            } else {
-                console.log(success);
+        function (error, user) {
+            if (error) { res.status(400).json("Error updating document") } 
+            else {
+                console.log("Success", user)
+                if (user[0].videosSaved.includes(videoSaved)) {
+                    console.log('Video already saved')
+                    res.status(400).json('Video already saved')
+                } else {
+                User.findOneAndUpdate(
+                    { username: username },
+                    { $push: { videosSaved: videoSaved } },
+                    function (error, success) {
+                        if (error) {
+                            console.log(error);
+                            res.status(400).json("Error updating document")
+                        } else {
+                            console.log(success);
+                            console.log(`${username}, it worked!`)
+                            res.status(201).json(success)
+                        }
+                    });
                 console.log(`${username}, it worked!`)
-                res.status(201).json(success)
-
+                }
             }
-        });
-    console.log(`${username}, it worked!`)
+        })
 });
 
 const port = process.env.PORT || 3000;
