@@ -170,7 +170,7 @@ app.get('/logout', (req, res) => {
 
 app.get('/userpage', (req, res) => {
     // console.log(req.user)
-    const { username, location, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
+    const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
     function yelp(category, location, limit) {
         const reqObject = {
             categories: category,
@@ -207,7 +207,13 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[3];
                 ppdvideos = JSON.parse(ppdvideos);
-                let ppdvideoinfo = ppdvideos.items
+                console.log(ppdvideos)
+                let ppdvideoinfo = ppdvideos.items;
+                ppdvideoinfo = ppdvideoinfo.filter(x =>
+                    !videosWatched.includes(x.id.videoId) || !videosSaved.includes(x.id.videoId)
+                )
+               
+                
                 //now postpartum meditation youtube call
                 let meditation = finalVals[4];
                 meditation = JSON.parse(meditation);
