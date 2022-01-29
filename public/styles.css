@@ -4,6 +4,8 @@ body, html{
     border:0;
     width:100%;
     height:100%;
+
+
   
 }
 #backgroundHome{
@@ -26,4 +28,13 @@ form{
     width:40%;
 }
 
-    
+.page-footer {
+
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
