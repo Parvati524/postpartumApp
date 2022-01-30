@@ -238,7 +238,7 @@ app.get('/userpage', (req, res) => {
                 
                 
                 // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy });
             });
 
     }
