@@ -168,6 +168,13 @@ app.get('/logout', (req, res) => {
 // }
 // app.use(isLoggedIn)
 
+
+function filterArr(arrOne, arrTwo, arrThree) {
+    return arrOne.filter(x =>
+        !arrTwo.includes(x.id.videoId) || !arrThree.includes(x.id.videoId)
+    )
+   
+}
 app.get('/userpage', (req, res) => {
     // console.log(req.user)
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
@@ -209,9 +216,8 @@ app.get('/userpage', (req, res) => {
                 ppdvideos = JSON.parse(ppdvideos);
                 console.log(ppdvideos)
                 let ppdvideoinfo = ppdvideos.items;
-                ppdvideoinfo = ppdvideoinfo.filter(x =>
-                    !videosWatched.includes(x.id.videoId) || !videosSaved.includes(x.id.videoId)
-                )
+                ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
+                
                
                 
                 //now postpartum meditation youtube call
