@@ -27,7 +27,7 @@ let userSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
-    trauma_in_pregnancy: {
+    high_risk_pregnancy: {
         type: Boolean,
         required: true
     },

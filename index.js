@@ -114,13 +114,13 @@ app.post('/signup', (req, res) => {
 
     ppd = booleanArray[0];
     ppa = booleanArray[1];
-    pregnancyTrauma = booleanArray[2];
+    highRiskPregnancy = booleanArray[2];
     birthTrauma = booleanArray[3];
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
 
-    let newUser = new User({ username: username, location: location, postpartum_depression: ppd, postpartum_anxiety: ppa, trauma_in_pregnancy: pregnancyTrauma, trauma_in_birth: birthTrauma, back_pain: backPain, pelvic_pain: pelvicPain, abdominal_pain: abdominalPain });
+    let newUser = new User({ username: username, location: location, postpartum_depression: ppd, postpartum_anxiety: ppa, high_risk_pregnancy: highRiskPregnancy, trauma_in_birth: birthTrauma, back_pain: backPain, pelvic_pain: pelvicPain, abdominal_pain: abdominalPain });
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
