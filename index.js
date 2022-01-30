@@ -92,11 +92,11 @@ app.get('/signs', (req, res) => {
 });
 
 app.post('/signup', (req, res) => {
-    let { location, password, username, ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
+    let { location, password, username, ppd, ppa, highRiskPregnancy, birthTrauma, abdominalPain, pelvicPain, backPain } = req.body
     let booleanArray = [];
 
 
-    booleanArray.push(ppd, ppa, pregnancyTrauma, birthTrauma, abdominalPain, pelvicPain, backPain)
+    booleanArray.push(ppd, ppa, highRiskPregnancy, birthTrauma, abdominalPain, pelvicPain, backPain)
     for (let i = 0; i < booleanArray.length; i++) {
         //checks if any of the physical pain areas were unchecked (thus undefined) and converts them to false
         if (booleanArray[i] === undefined) {
@@ -177,7 +177,8 @@ function filterArr(arrOne, arrTwo, arrThree) {
 }
 app.get('/userpage', (req, res) => {
     // console.log(req.user)
-    const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, trauma_in_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
+    const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
+    console.log(high_risk_pregnancy)
     function yelp(category, location, limit) {
         const reqObject = {
             categories: category,
