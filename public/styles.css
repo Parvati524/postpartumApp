@@ -38,6 +38,11 @@ body, html{
     width: 40vw;
     margin: 0 auto;
 }
+
+#signupForm{
+    width:60vw;
+    
+}
 /* 
 form{
     width:40%;
