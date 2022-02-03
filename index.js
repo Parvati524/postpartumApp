@@ -56,7 +56,6 @@ mongoose.connect(mongoURIKey)
 
     const isLoggedIn = (req, res, next) => {
         if (req.isAuthenticated()) { 
-            // console.log(isLoggedIn)
             req.isLoggedIn = true
         }
         if (req.url.includes('userpage') && !req.isAuthenticated()) {
@@ -70,12 +69,10 @@ mongoose.connect(mongoURIKey)
 
 //root route
 app.get('/', (req, res) => {
-        console.log(req)
     res.render('home.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
 app.get('/login', (req, res) => {
-    console.log(req.isAuthenticated())
     res.render('login.ejs', {isLoggedIn: req.isLoggedIn});
 });
 
@@ -164,7 +161,6 @@ function filterArr(arrOne, arrTwo, arrThree) {
 }
 app.get('/userpage', (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
-    console.log(high_risk_pregnancy)
     function yelp(category, location, limit) {
         const reqObject = {
             categories: category,
@@ -174,7 +170,6 @@ app.get('/userpage', (req, res) => {
         return client.search(reqObject)
     }
     async function youtube(videoCategory) {
-        console.log("Ready to get Youtube data!");
         let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=100`;
         const response = await fetch(url);
         const data = await response.json();
@@ -253,8 +248,6 @@ app.put('/:username/videosWatched', (req, res) => {
             }
         });
 
-
-    console.log(`${username}, it worked!`)
 });
 
 app.put('/:username/videosSaved', (req, res) => {
@@ -283,7 +276,7 @@ app.put('/:username/videosSaved', (req, res) => {
                             res.status(201).json(success)
                         }
                     });
-                console.log(`${username}, it worked!`)
+         
                 }
             }
         })
