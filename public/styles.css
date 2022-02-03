@@ -51,3 +51,8 @@ form{
 .hidden {
     display: none;
 }
+.resources{
+    width:60vw;
+    flex-wrap: wrap;
+
+}
