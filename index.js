@@ -119,8 +119,9 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-
+//makes a new user according to our model
     let newUser = new User({ username: username, location: location, postpartum_depression: ppd, postpartum_anxiety: ppa, high_risk_pregnancy: highRiskPregnancy, trauma_in_birth: birthTrauma, back_pain: backPain, pelvic_pain: pelvicPain, abdominal_pain: abdominalPain });
+    //registers this user with passport along with a password.
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
@@ -133,14 +134,14 @@ app.post('/signup', (req, res) => {
     })
 });
 
-// Route handler for POST - login - checking whether the user exist in the database - if it exist - it will redire
+// Route handler for POST login, this will check if the user is in our DB. if so it redirects us to the userpage.
 app.post('/login', passport.authenticate('local',
     {
         successRedirect: '/userpage',
         failureRedirect: '/login',
         failureFlash: true
     }
-    //way to add error message
+    //flash is a way to add error message
 
 ), (req, res) => {
     // We don’t need anything in our callback function
@@ -151,24 +152,10 @@ app.get('/logout', (req, res) => {
     req.logout();  // we run a method called logout
     res.redirect('/');
 });
-// When logout, passport destroys all the user data in the session
+// When logging out, passport destroys all the user data in the session
 // And then, we redirect them to the home page
 
-// Creating the middleware function:
-// const isLoggedIn = (req, res, next) => {
-//     if (req.isAuthenticated()) { 
-//         // console.log(isLoggedIn)
-//         req.isLoggedIn = true
-//     }
-//     if (req.url.includes('userpage') && !req.isAuthenticated()) {
-//         res.redirect('/login')
-//     } else {
-//         return next();
-//     }
-// }
-// app.use(isLoggedIn)
-
-
+//function to filter one array to only have values that are not included in 2 other arrays.
 function filterArr(arrOne, arrTwo, arrThree) {
     return arrOne.filter(x =>
         !arrTwo.includes(x.id.videoId) || !arrThree.includes(x.id.videoId)
@@ -176,7 +163,6 @@ function filterArr(arrOne, arrTwo, arrThree) {
    
 }
 app.get('/userpage', (req, res) => {
-    // console.log(req.user)
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
     console.log(high_risk_pregnancy)
     function yelp(category, location, limit) {
@@ -217,6 +203,7 @@ app.get('/userpage', (req, res) => {
                 ppdvideos = JSON.parse(ppdvideos);
                 console.log(ppdvideos)
                 let ppdvideoinfo = ppdvideos.items;
+                //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
                 ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
                 
                
@@ -233,20 +220,13 @@ app.get('/userpage', (req, res) => {
                 let exercise = finalVals[6];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
-                       
-                 
-                
-                
-                // console.log(ppdvideoinfo.snippet.title) this does not work not sure why. 
+                        
                 res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth });
             });
 
     }
     getData()
     //order youtube by view count, 
-    //subtract second by first
-    //send first of each back.
-    // let difference = arr1.filter(x => !arr2.includes(x));
     //yelp name, phone number, rating, url 
     //youtube: title, videoId, description, channelTitle
 
