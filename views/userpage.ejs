@@ -1,33 +1,43 @@
 <%- include('partials/header')%>
 
-    <h1> Welcome <%=username%></h1>
+    <h1> Welcome <%=username%>
+    </h1>
     <a href="/logout">Log Out</a>
 
     <div className="physicaltherapists">
-        <h2>Physical Therapists Near You:</h2>
-        <ul>
-            <% for( let i=0; i < phystherapists.length; i++ ) { %>
-                <li>
-                    Name: <%=phystherapists[i].name%>
-                    Phone: <%=phystherapists[i].phone%>
-                    Rating: <%=phystherapists[i].rating%>
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="physicaltherapist">
+            <h5 class="card-title">Physical Therapists Near You</h5>
+            <ul class="list-group list-group-flush">
+                <% for( let i=0; i < phystherapists.length; i++ ) { %>
+                    <li class="list-group-item">
+                        Name: <%=phystherapists[i].name%>
+                        <br>
+                        Phone: <%=phystherapists[i].phone%>
+                        <br>
+                        Rating: <%=phystherapists[i].rating%>
+                    </li>
+                    <% } %>
+            </ul>
+        </div>
+    </div>
+
+    <div className="psychologists">
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="helpingHands">
+            <h5 class="card-title">Psychologists Near You</h5>
+            <ul class="list-group list-group-flush">
+            <% for( let i=0; i < psychologists.length; i++ ) { %>
+
+                <li class="list-group-item">
+                    Name: <%=psychologists[i].name%>
+                    <br>
+                    Phone: <%=psychologists[i].phone%>
+                    <br>
+                    Rating: <%=psychologists[i].rating%>
                 </li>
                 <% } %>
         </ul>
-    </div>
- 
-    <div className="psychologists">
-        <h2>Psychologists Near You:</h2>
-        <ul>
-            <% for( let i=0; i < psychologists.length; i++ ) { %>
-               
-                   <li>
-                    Name: <%=psychologists[i].name%>
-                    Phone: <%=psychologists[i].phone%>
-                   Rating: <%=psychologists[i].rating%>
-                   </li>
-                <% } %>
-      </ul>
     </div>
     <div className="midwives">
         <h2>Midwives Near You:</h2>
@@ -35,42 +45,62 @@
             <% for( let i=0; i < midwives.length; i++ ) { %>
                 <li>
                     Name: <%=midwives[i].name%>
-                    Phone: <%=midwives[i].phone%>
-                    Rating: <%=midwives[i].rating%>
+                        Phone: <%=midwives[i].phone%>
+                            Rating: <%=midwives[i].rating%>
                 </li>
                 <% } %>
         </ul>
     </div>
     <div className="ppdvideo">
-        <h3><%=ppdvideoinfo[0].snippet.title%></h3>
-        <p><%=ppdvideoinfo[0].snippet.description%></p>
-        <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%></p>
+        <h3>
+            <%=ppdvideoinfo[0].snippet.title%>
+        </h3>
+        <p>
+            <%=ppdvideoinfo[0].snippet.description%>
+        </p>
+        <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
+        </p>
         <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-        <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
-        <button id="ppdvideosaved" class=<%=username%>> click to save</button> 
+        <button id="ppdvideowatched" class=<%=username%>> click when watched</button>
+        <button id="ppdvideosaved" class=<%=username%>> click to save</button>
         <p class="hidden" id="videoSaved">Video Saved!</p>
         <p class="hidden" id="alreadySaved">Video Already Saved</p>
     </div>
     <div className="medvideo">
-        <h3><%=medvideoinfo[0].snippet.title%></h3>
-        <p><%=medvideoinfo[0].snippet.description%></p>
-        <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%></p>
+        <h3>
+            <%=medvideoinfo[0].snippet.title%>
+        </h3>
+        <p>
+            <%=medvideoinfo[0].snippet.description%>
+        </p>
+        <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
+        </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
         <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
         <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
     </div>
     <div className="ppyoga">
-        <h3><%=yogavideoinfo[0].snippet.title%></h3>
-        <p><%=yogavideoinfo[0].snippet.description%></p>
-        <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%></p>
+        <h3>
+            <%=yogavideoinfo[0].snippet.title%>
+        </h3>
+        <p>
+            <%=yogavideoinfo[0].snippet.description%>
+        </p>
+        <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%>
+        </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
         <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
         <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
     </div>
     <div className="ppexercise">
-        <h3><%=exvideoinfo[0].snippet.title%></h3>
-        <p><%=exvideoinfo[0].snippet.description%></p>
-        <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%></p>
+        <h3>
+            <%=exvideoinfo[0].snippet.title%>
+        </h3>
+        <p>
+            <%=exvideoinfo[0].snippet.description%>
+        </p>
+        <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%>
+        </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
         <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
         <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
@@ -78,34 +108,54 @@
 
     <% if (high_risk_pregnancy) { %>
         <h1>Recovering after a High Risk Pregnancy:</h1>
-     <ul>
-         <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming Home after a High Risk Pregnancy</a></li>
-         <li><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info about Postpatum PTSD</a></li>
-         <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women sharing their stories after a high risk pregnancy</a></li>
-         <li><a href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What to expect after a high risk pregnancy</a></li>
-         <li><a href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD after a high risk pregnancy</a></li>
-         <li><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips for Coping</a></li>
-     </ul>
-    <% } %>
+        <ul>
+            <li><a
+                    href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                    Home after a High Risk Pregnancy</a></li>
+            <li><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info about
+                    Postpatum PTSD</a></li>
+            <li><a
+                    href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
+                    sharing their stories after a high risk pregnancy</a></li>
+            <li><a href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What
+                    to expect after a high risk pregnancy</a></li>
+            <li><a href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD after a
+                    high risk pregnancy</a></li>
+            <li><a
+                    href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                    for Coping</a></li>
+        </ul>
+        <% } %>
 
-    <% if (trauma_in_birth) { %>
-        <h1>Recovering from a Traumatic Birth:</h1>
-     <ul>
-        <li><a href="https://www.birthtraumaassociation.org.uk/">Birth Trauma Association</a></li>
-        <li><a href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia Foundation: Birth Trauma Resources</a></li>
-         <li><a href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps Program: Birth Trauma</a></li>
-         <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming Home after a Traumatc Birth</a></li>
-         <li><a href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal PTSD and Birth Trauma/a></li>
-         <li><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info on Birth Trauma</a></li>
-         <li><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips for Coping</a></li>
-         <li><a href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering from a difficult birth</a></li>
-     </ul>
-    <% } %>
+            <% if (trauma_in_birth) { %>
+                <h1>Recovering from a Traumatic Birth:</h1>
+                <ul>
+                    <li><a href="https://www.birthtraumaassociation.org.uk/">Birth Trauma Association</a></li>
+                    <li><a href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia Foundation: Birth
+                            Trauma Resources</a></li>
+                    <li><a
+                            href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps
+                            Program: Birth Trauma</a></li>
+                    <li><a
+                            href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                            Home after a Traumatc Birth</a></li>
+                    <li><a
+                            href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal
+                            PTSD and Birth Trauma/a></li>
+                    <li><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info on Birth
+                            Trauma</a></li>
+                    <li><a
+                            href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                            for Coping</a></li>
+                    <li><a href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering
+                            from a difficult birth</a></li>
+                </ul>
+                <% } %>
 
-    
 
 
 
-    
 
-    <%-include('partials/footer')%>
+
+
+                    <%-include('partials/footer')%>
