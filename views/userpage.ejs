@@ -61,8 +61,8 @@
         <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
         </p>
         <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-        <button id="ppdvideowatched" class=<%=username%>> click when watched</button>
-        <button id="ppdvideosaved" class=<%=username%>> click to save</button>
+        <button class="videowatched"> click when watched</button> 
+        <button class="videosaved"> click to save</button>
         <p class="hidden" id="videoSaved">Video Saved!</p>
         <p class="hidden" id="alreadySaved">Video Already Saved</p>
     </div>
@@ -76,8 +76,8 @@
         <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
         </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
-        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+        <button class="videowatched"> click when watched</button> 
+        <button class="videosaved"> click to save</button>
     </div>
     <div className="ppyoga">
         <h3>
@@ -89,8 +89,8 @@
         <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%>
         </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
-        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
-        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+        <button class="videowatched"> click when watched</button> 
+        <button class="videosaved"> click to save</button>
     </div>
     <div className="ppexercise">
         <h3>
@@ -102,8 +102,8 @@
         <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%>
         </p>
         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
-        <!-- <button id="ppdvideowatched" class=<%=username%>> click when watched</button> 
-        <button id="ppdvideosaved" class=<%=username%>> click to save</button>  -->
+        <button class="videowatched"> click when watched</button> 
+        <button class="videosaved"> click to save</button>
     </div>
 
     <% if (high_risk_pregnancy) { %>
