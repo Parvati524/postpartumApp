@@ -213,8 +213,8 @@ app.get('/userpage', (req, res) => {
                 let exercise = finalVals[6];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
-                       
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth });
+                        
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, postpartum_anxiety, postpartum_depression });
             });
 
     }
