@@ -52,20 +52,21 @@ mongoose.connect(mongoURIKey)
     .catch(err => {
         console.log(`Error connecting to DB: ${err}`)
     })
-
 // Creating the middleware function:
-const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) { 
-        req.isLoggedIn = true
+
+    const isLoggedIn = (req, res, next) => {
+        if (req.isAuthenticated()) { 
+            req.isLoggedIn = true
+        }
+        if (req.url.includes('userpage') && !req.isAuthenticated()) {
+            res.redirect('/login')
+        } else {
+            return next();
+        }
     }
-    if (req.url.includes('userpage') && !req.isAuthenticated()) {
-        res.redirect('/login')
-    } else {
-        return next();
-    }
-}
-app.use(isLoggedIn)
+    app.use(isLoggedIn)
     
+
 //root route
 app.get('/', (req, res) => {
     res.render('home.ejs', {isLoggedIn: req.isLoggedIn});
@@ -121,7 +122,7 @@ app.post('/signup', (req, res) => {
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render("signup", {isLoggedIn: req.isLoggedIn});
+            return res.render("signup");
         } else {
             passport.authenticate("local")(req, res, () => {
                 res.redirect("/userpage");
@@ -195,6 +196,7 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[3];
                 ppdvideos = JSON.parse(ppdvideos);
+                console.log(ppdvideos)
                 let ppdvideoinfo = ppdvideos.items;
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
                 ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
@@ -213,7 +215,7 @@ app.get('/userpage', (req, res) => {
                 let exercise = finalVals[6];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
-                       
+                        
                 res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth });
             });
 
@@ -232,38 +234,20 @@ app.get('/username', (req, res) => {
     //form has a put route to /user to update
 });
 
-app.get('/user', (req, res) => {
-    res.status(200).json({user: req.user})
-})
-
 app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;
-    let videoWatched = req.body.video;
-    User.find(
+    let video = req.body.video;
+    User.findOneAndUpdate(
         { username: username },
-        function (error, user) {
-            if (error) { res.status(400).json("Error updating document") } 
-            else {
-            console.log("Success", user)
-                if (user[0].videosWatched.includes(videoWatched)) {
-                    console.log('Video already saved to watched')
-                    res.status(400).json('Video already saved to watched')
-                } else {
-                User.findOneAndUpdate(
-                    { username: username },
-                    { $push: { videosWatched: videoWatched } },
-                    function (error, success) {
-                        if (error) {
-                            console.log(error);
-                            res.status(400).json("Error updating document")
-                        } else {
-                            console.log(success);
-                            res.status(201).json(success)
-                        }
-                    });
-                }
+        { $push: { videosWatched: video } },
+        function (error, success) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log(success);
             }
-    })
+        });
+
 });
 
 app.put('/:username/videosSaved', (req, res) => {
@@ -274,7 +258,7 @@ app.put('/:username/videosSaved', (req, res) => {
         function (error, user) {
             if (error) { res.status(400).json("Error updating document") } 
             else {
-            console.log("Success", user)
+                console.log("Success", user)
                 if (user[0].videosSaved.includes(videoSaved)) {
                     console.log('Video already saved')
                     res.status(400).json('Video already saved')
