@@ -154,7 +154,7 @@ app.get('/logout', (req, res) => {
 //function to filter one array to only have values that are not included in 2 other arrays.
 function filterArr(arrOne, arrTwo, arrThree) {
     return arrOne.filter(x =>
-        !arrTwo.includes(x.id.videoId) || !arrThree.includes(x.id.videoId)
+        !(arrTwo.includes(x.id.videoId) || arrThree.includes(x.id.videoId))
     )
    
 }
@@ -169,7 +169,7 @@ app.get('/userpage', (req, res) => {
         return client.search(reqObject)
     }
     async function youtube(videoCategory) {
-        let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=100`;
+        let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
         const response = await fetch(url);
         const data = await response.json();
         const videos = data;
