@@ -39,18 +39,7 @@
                 <% } %>
         </ul>
     </div>
-    <div className="midwives">
-        <h2>Midwives Near You:</h2>
-        <ul>
-            <% for( let i=0; i < midwives.length; i++ ) { %>
-                <li>
-                    Name: <%=midwives[i].name%>
-                        Phone: <%=midwives[i].phone%>
-                            Rating: <%=midwives[i].rating%>
-                </li>
-                <% } %>
-        </ul>
-    </div>
+
     <div className="ppdvideo">
         <h3>
             <%=ppdvideoinfo[0].snippet.title%>
