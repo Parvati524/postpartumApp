@@ -205,14 +205,18 @@ app.get('/userpage', (req, res) => {
                 let meditation = finalVals[4];
                 meditation = JSON.parse(meditation);
                 let medvideoinfo = meditation.items
+               medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)
+                
                  //now postpartum yoga youtube call
                  let yoga = finalVals[5];
                 yoga = JSON.parse(yoga);
                  let yogavideoinfo =yoga.items
+                yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)
                 //now postpartum recovery exercise youtube call
                 let exercise = finalVals[6];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
+                exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                         
                 res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, postpartum_anxiety, postpartum_depression });
             });
