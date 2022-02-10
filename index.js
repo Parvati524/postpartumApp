@@ -177,7 +177,7 @@ app.get('/userpage', (req, res) => {
         return videos
     }
     function getData() {
-        Promise.all([yelp("physicaltherapy", location, 10), yelp("midwives", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
+        Promise.all([yelp("physicaltherapy", location, 10),  yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
                 Promise.all(values.map(value => JSON.stringify(value))))
             .then(finalVals => {
@@ -185,38 +185,37 @@ app.get('/userpage', (req, res) => {
                 let phystherapists = finalVals[0];
                 phystherapists = JSON.parse(phystherapists)
                 phystherapists = phystherapists.jsonBody.businesses;
-                //doing same for midwives
-                let midwives = finalVals[1];
-                midwives = JSON.parse(midwives)
-                midwives = midwives.jsonBody.businesses;
+                
                 //doing same for psychologists
-                let psychologists = finalVals[2];
+                let psychologists = finalVals[1];
                 psychologists = JSON.parse(psychologists);
                 psychologists = psychologists.jsonBody.businesses
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
-                let ppdvideos = finalVals[3];
+                let ppdvideos = finalVals[2];
                 ppdvideos = JSON.parse(ppdvideos);
                 console.log(ppdvideos)
+                
                 let ppdvideoinfo = ppdvideos.items;
+                console.log(ppdvideoinfo.length)
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
                 ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
                 
                
                 
                 //now postpartum meditation youtube call
-                let meditation = finalVals[4];
+                let meditation = finalVals[3];
                 meditation = JSON.parse(meditation);
                 let medvideoinfo = meditation.items
                  //now postpartum yoga youtube call
-                 let yoga = finalVals[5];
+                 let yoga = finalVals[4];
                 yoga = JSON.parse(yoga);
                  let yogavideoinfo =yoga.items
                 //now postpartum recovery exercise youtube call
-                let exercise = finalVals[6];
+                let exercise = finalVals[5];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
                         
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, midwives, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, postpartum_anxiety, postpartum_depression });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, postpartum_anxiety, postpartum_depression });
             });
 
     }
