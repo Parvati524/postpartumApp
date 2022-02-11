@@ -192,9 +192,9 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[2];
                 ppdvideos = JSON.parse(ppdvideos);
-
+                console.log("I am ppdvideos data", ppdvideos)
                 let ppdvideoinfo = ppdvideos.items;
-                console.log(ppdvideoinfo.length)
+               
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
                 ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
                 
@@ -217,7 +217,7 @@ app.get('/userpage', (req, res) => {
                 let exvideoinfo =exercise.items
                 exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                         
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, postpartum_anxiety, postpartum_depression });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression });
             });
 
     }
