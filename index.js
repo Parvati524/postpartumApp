@@ -244,27 +244,17 @@ app.get('/username/:username', function(req, res){
     res.render("profile.ejs", {requestedUser});
 }); 
 
-/*app.put('/update', function(req, res){     
+app.put('/update', function(req, res){     
     let requestedUser = req.params.username;
     let location = req.body.location;
-    User.findOneAndUpdate(requestedUser, (error, result)=>{
-        console.log("Result of requested user :", result)
-        if(error){
-            console.log("Error finding and updating user info", error)
-            res.status(400).json("Error updating to db")
-        } else {
-            User.location = location 
-            result.save((err, result)=>{
-                if(err){
-                    console.log("Error updating document")
-                    res.status(400).json("Error updating document")
-                } else {
-                    console.log(result);
-                }
-            })
+    User.findOneAndUpdate({username: requestedUser }, {location: location}, function(err, doc){
+        if(err){
+            console.log("Something wrong when updating data!");
         }
-    })
-})*/
+        console.log(doc);
+    });;
+
+})
 
 app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;
