@@ -44,20 +44,28 @@
         </div>
 
         <div className="ppdvideo">
-            <h3>
+                <div class="card">
+                <div class="embed-responsive embed-responsive-16by9">
+                <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>?modestbranding=0&autostart=0" class="card-img-top embed-responsive-item"></iframe>
+                </div>
+            <div class="card-body">
+            <h5 class="card-title">
                 <%=ppdvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
+            </h5>
+            <p class="card-text">
                 <%=ppdvideoinfo[0].snippet.description%>
             </p>
-            <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
+            <p class="card-text">from Channel: <%=ppdvideoinfo[0].snippet.channelTitle%></p>
+            
+
+            <button class="btn btn-primary videowatched"> click when watched</button>
+            <button class="btn btn-primary videosaved"> click to save</button>
             <p class="hidden" id="videoSaved">Video Saved!</p>
             <p class="hidden" id="alreadySaved">Video Already Saved</p>
+            </div>
         </div>
+        </div>
+
         <div className="medvideo">
             <h3>
                 <%=medvideoinfo[0].snippet.title%>
