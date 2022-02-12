@@ -1,6 +1,3 @@
-//for this code, in line 4 we can give the iframe a particular ID or class Name so we can reference that particular video since we will have several on page. 
-
-
 $(".videowatched").on("click", function () {
   console.log("button works!")
   let videoId = $($(this).parent()).find('iframe').attr('src')
@@ -71,5 +68,10 @@ $(".videosaved").on("click", function () {
           // $('.alreadyclicked').removeClass('hidden')
         })
     })
+});
+
+$("#updateForm").on("submit", function () {
+console.log("it works")
+ 
 });
 
