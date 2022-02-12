@@ -9,10 +9,10 @@ let userSchema = mongoose.Schema({
     password: {
         type: String
     },
-   videosWatched: {
-       type:[String]
-   },
-      videosSaved: {           
+videosWatched: {
+    type:[String]
+},
+    videosSaved: {           
         type:[String]
     },
     location: {

@@ -156,7 +156,7 @@ function filterArr(arrOne, arrTwo, arrThree) {
     return arrOne.filter(x =>
         !(arrTwo.includes(x.id.videoId) || arrThree.includes(x.id.videoId))
     )
-   
+
 }
 app.get('/userpage', (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
@@ -238,6 +238,33 @@ app.get('/username', (req, res) => {
 app.get('/user', (req, res) => {
     res.status(200).json({user: req.user})
 })
+
+app.get('/username/:username', function(req, res){
+    let requestedUser = req.params.username;
+    res.render("profile.ejs", {requestedUser});
+}); 
+
+/*app.put('/update', function(req, res){     
+    let requestedUser = req.params.username;
+    let location = req.body.location;
+    User.findOneAndUpdate(requestedUser, (error, result)=>{
+        console.log("Result of requested user :", result)
+        if(error){
+            console.log("Error finding and updating user info", error)
+            res.status(400).json("Error updating to db")
+        } else {
+            User.location = location 
+            result.save((err, result)=>{
+                if(err){
+                    console.log("Error updating document")
+                    res.status(400).json("Error updating document")
+                } else {
+                    console.log(result);
+                }
+            })
+        }
+    })
+})*/
 
 app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;

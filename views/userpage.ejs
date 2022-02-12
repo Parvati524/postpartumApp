@@ -1,27 +1,28 @@
 <%- include('partials/header')%>
 
-    <h1> Welcome <%=username%>
-    </h1>
-    <a href="/logout">Log Out</a>
+<h1> Welcome <%=username%>
+</h1>
+<a href="/logout">Log Out</a>
+<a href= <%= `/username/${username}` %>>Edit my Profile</a>
 
-    <div className="physicaltherapists">
+<div className="physicaltherapists">
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+        <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="card-img-top" alt="physicaltherapist">
-            <h5 class="card-title">Physical Therapists Near You</h5>
-            <ul class="list-group list-group-flush">
+        <h5 class="card-title">Physical Therapists Near You</h5>
+        <ul class="list-group list-group-flush">
                 <% for( let i=0; i < phystherapists.length; i++ ) { %>
-                    <li class="list-group-item">
+                <li class="list-group-item">
                         Name: <%=phystherapists[i].name%>
-                            <br>
-                            Phone: <%=phystherapists[i].phone%>
+                        <br>
+                        Phone: <%=phystherapists[i].phone%>
                                 <br>
                                 Rating: <%=phystherapists[i].rating%>
-                    </li>
-                    <% } %>
-            </ul>
+                </li>
+                <% } %>
+        </ul>
         </div>
-    </div>
+</div>
 
     <div className="psychologists">
         <div class="card">
