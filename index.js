@@ -244,10 +244,10 @@ app.get('/username/:username', function(req, res){
     res.render("profile.ejs", {requestedUser});
 }); 
 
-app.put('/update', function(req, res){     
-    let requestedUser = req.params.username;
+app.put('/:username/update', function(req, res){     
+    let username = req.params.username;
     let location = req.body.location;
-    User.findOneAndUpdate({username: requestedUser }, {location: location}, function(err, doc){
+    User.findOneAndUpdate({username: username }, {location: location}, function(err, doc){
         if(err){
             console.log("Something wrong when updating data!");
         }
