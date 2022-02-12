@@ -244,15 +244,17 @@ app.get('/username/:username', function(req, res){
     res.render("profile.ejs", {requestedUser});
 }); 
 
-app.put('/update/:username', function(req, res){     
-    let username = req.params.username;
+app.put('/update', function(req, res){     
+    let username = req.user.username;
     let location = req.body.location;
-    User.findOneAndUpdate({username: username },  {$set:{location:location}},{new: true},  function(err, doc){
+    console.log(username, location)
+    res.end(); 
+    /*User.findOneAndUpdate({username: username },  {$set:{location:location}},{new: true},  function(err, doc){
         if(err){
             console.log("Something wrong when updating data!");
         }
         console.log(doc);
-    });;
+    });;*/
 })
 
 app.put('/:username/videosWatched', (req, res) => {
