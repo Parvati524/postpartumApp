@@ -44,7 +44,6 @@ $(".videowatched").on("click", function () {
 $(".videosaved").on("click", function () {
   let videoId = $(this).attr('data-id')
   console.log("video Id is: " + videoId)
-
   fetch('/user', { headers: { 'Content-Type': 'application/json'}, credentials: 'include' })
     .then(res => res.json())
     .then(data => {
