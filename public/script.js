@@ -5,9 +5,7 @@
 /* Videos Watch and Videos Save */
 $(".videowatched").on("click", function () {
   console.log("button works!")
-  let videoId = $($(this).parent()).find('iframe').attr('src')
-  videoId = videoId.split("/")
-  videoId = videoId[videoId.length - 1]
+  let videoId = $(this).attr('data-id')
   console.log("video Id is: " + videoId)
 
   fetch('/user', { headers: { 'Content-Type': 'application/json'}, credentials: 'include' })
@@ -44,10 +42,7 @@ $(".videowatched").on("click", function () {
 
 /* New Put route /update -  */
 $(".videosaved").on("click", function () {
-
-  let videoId = $($(this).parent()).find('iframe').attr('src')
-  videoId = videoId.split("/")
-  videoId = videoId[videoId.length - 1]
+  let videoId = $(this).attr('data-id')
   console.log("video Id is: " + videoId)
 
   fetch('/user', { headers: { 'Content-Type': 'application/json'}, credentials: 'include' })
