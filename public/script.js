@@ -1,6 +1,8 @@
 //for this code, in line 4 we can give the iframe a particular ID or class Name so we can reference that particular video since we will have several on page. 
 
 
+
+/* Videos Watch and Videos Save */
 $(".videowatched").on("click", function () {
   console.log("button works!")
   let videoId = $($(this).parent()).find('iframe').attr('src')
@@ -37,7 +39,12 @@ $(".videowatched").on("click", function () {
   })
 });
 
+
+
+
+/* New Put route /update -  */
 $(".videosaved").on("click", function () {
+
   let videoId = $($(this).parent()).find('iframe').attr('src')
   videoId = videoId.split("/")
   videoId = videoId[videoId.length - 1]
@@ -73,8 +80,17 @@ $(".videosaved").on("click", function () {
     })
 });
 
-$("#updateForm").on("click", function () {
-console.log("it works")
+/* $("#updateForm").on("click", function (event) {
+  event.preventDefault()
+  console.log("it works!!!")
+ 
+});
+
+ */
+
+$("#test-button").on("click", function (event) {
+  event.preventDefault()
+  console.log("it works!!!")
  
 });
 
