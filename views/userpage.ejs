@@ -54,20 +54,24 @@
         <div class="row">
                 <div class="col-sm-6">
                         <div class="card">
-                                <div className="ppdvideo">
-                                        <h3>
-                                                <%=ppdvideoinfo[0].snippet.title%>
-                                        </h3>
-                                        <p>
-                                                <%=ppdvideoinfo[0].snippet.description%>
-                                        </p>
-                                        <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
-                                        </p>
-                                        <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-                                        <button class="videowatched"> click when watched</button>
-                                        <button class="videosaved"> click to save</button>
-                                        <p class="hidden" id="videoSaved">Video Saved!</p>
-                                        <p class="hidden" id="alreadySaved">Video Already Saved</p>
+                                <div class="card ppdvideo">
+                                        <iframe class="card-img-top" id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+                                    <div class="card-body">
+                                            <div class="card-title">
+                                        <%=ppdvideoinfo[0].snippet.title%>
+                                        </div>
+                                    
+                                    <p class="card-text">
+                                        <%=ppdvideoinfo[0].snippet.description%>
+                                    </p>
+                                    <p class="card-text">from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
+                                    </p>
+                                   
+                                    <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
+                                    <button data id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
+                                    <p class="hidden" id="videoSaved">Video Saved!</p>
+                                    <p class="hidden" id="alreadySaved">Video Already Saved</p>
+                                    </div>
                                 </div>
                         </div>
                 </div>
@@ -75,56 +79,23 @@
                         <div class="card">
                                 <div className="medvideo">
                                         <h3>
-                                                <%=medvideoinfo[0].snippet.title%>
+                                            <%=medvideoinfo[0].snippet.title%>
                                         </h3>
                                         <p>
-                                                <%=medvideoinfo[0].snippet.description%>
+                                            <%=medvideoinfo[0].snippet.description%>
                                         </p>
                                         <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
                                         </p>
                                         <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-                                        <br>
-                                        <span>
-                                        <button class="videowatched"> click when watched</button>
-                                        <button class="videosaved"> click to save</button>
-                                        </span>
-                                </div>
+                                        <button data-id="<%=medvideoinfo[0].id.videoId%>" class="videowatched"> click when watched</button>
+                                        <button data-id= "<%=medvideoinfo[0].id.videoId%>" class="videosaved"> click to save</button>
+                                    </div>
                         </div>
                 </div>
         </div>
         
-        <div class="card ppdvideo">
-                <iframe class="card-img-top" id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-            <div class="card-body">
-                    <div class="card-title">
-                <%=ppdvideoinfo[0].snippet.title%>
-                </div>
-            
-            <p class="card-text">
-                <%=ppdvideoinfo[0].snippet.description%>
-            </p>
-            <p class="card-text">from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
-            </p>
-           
-            <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
-            <button data id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
-            <p class="hidden" id="videoSaved">Video Saved!</p>
-            <p class="hidden" id="alreadySaved">Video Already Saved</p>
-            </div>
-        </div>
-        <div className="medvideo">
-            <h3>
-                <%=medvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
-                <%=medvideoinfo[0].snippet.description%>
-            </p>
-            <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-            <button data-id="<%=medvideoinfo[0].id.videoId%>" class="videowatched"> click when watched</button>
-            <button data-id= "<%=medvideoinfo[0].id.videoId%>" class="videosaved"> click to save</button>
-        </div>
+
+        
         <div className="ppyoga">
             <h3>
                 <%=yogavideoinfo[0].snippet.title%>
