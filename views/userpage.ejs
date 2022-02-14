@@ -5,98 +5,132 @@
 <a href="/logout">Log Out</a>
 <a href= <%= `/${username}` %>>Edit my Profile</a>
 
-<div className="physicaltherapists">
-        <div class="card">
-        <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                class="card-img-top" alt="physicaltherapist">
-        <h5 class="card-title">Physical Therapists Near You</h5>
-        <ul class="list-group list-group-flush">
-                <% for( let i=0; i < phystherapists.length; i++ ) { %>
-                <li class="list-group-item">
-                        Name: <%=phystherapists[i].name%>
-                        <br>
-                        Phone: <%=phystherapists[i].phone%>
-                                <br>
-                                Rating: <%=phystherapists[i].rating%>
-                </li>
-                <% } %>
-        </ul>
+//section for Yelp information
+<div class="container">
+        <div class ="row">
+                <div class="col-md-auto">
+                        <div class="card">
+                                <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                class="card-img-top img-thumbnail" style="width: alt="physicaltherapist">
+                                <h5 class="card-title">Physical Therapists Near You</h5>
+                                <ul class="list-group list-group-flush">
+                                        <% for( let i=0; i < phystherapists.length; i++ ) { %>
+                                        <li class="list-group-item">
+                                                Name: <%=phystherapists[i].name%>
+                                                <br>
+                                                Phone: <%=phystherapists[i].phone%>
+                                                        <br>
+                                                        Rating: <%=phystherapists[i].rating%>
+                                        </li>
+                                        <% } %>
+                                </ul>
+                        </div>
+                </div>
+                <div class="col-md-auto">
+                        <div class="card">
+                                <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                                        class="card-img-top img-thumbnail" alt="helpingHands">
+                                <h5 class="card-title">Psychologists Near You</h5>
+                                <ul class="list-group list-group-flush">
+                                        <% for( let i=0; i < psychologists.length; i++ ) { %>
+
+                                        <li class="list-group-item">
+                                                Name: <%=psychologists[i].name%>
+                                                <br>
+                                                Phone: <%=psychologists[i].phone%>
+                                                        <br>
+                                                        Rating: <%=psychologists[i].rating%>
+                                        </li>
+                                        <% } %>
+                                </ul>
+                        </div>
+                </div>
         </div>
 </div>
 
-    <div className="psychologists">
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                class="card-img-top" alt="helpingHands">
-            <h5 class="card-title">Psychologists Near You</h5>
-            <ul class="list-group list-group-flush">
-                <% for( let i=0; i < psychologists.length; i++ ) { %>
 
-                    <li class="list-group-item">
-                        Name: <%=psychologists[i].name%>
-                            <br>
-                            Phone: <%=psychologists[i].phone%>
-                                <br>
-                                Rating: <%=psychologists[i].rating%>
-                    </li>
-                    <% } %>
-            </ul>
+//section for Youtube information
+<div class="container">
+        <div class="row">
+                <div class="col-sm-6">
+                        <div class="card">
+                                <div className="ppdvideo">
+                                        <h3>
+                                                <%=ppdvideoinfo[0].snippet.title%>
+                                        </h3>
+                                        <p>
+                                                <%=ppdvideoinfo[0].snippet.description%>
+                                        </p>
+                                        <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
+                                        </p>
+                                        <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+                                        <button class="videowatched"> click when watched</button>
+                                        <button class="videosaved"> click to save</button>
+                                        <p class="hidden" id="videoSaved">Video Saved!</p>
+                                        <p class="hidden" id="alreadySaved">Video Already Saved</p>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="card">
+                                <div className="medvideo">
+                                        <h3>
+                                                <%=medvideoinfo[0].snippet.title%>
+                                        </h3>
+                                        <p>
+                                                <%=medvideoinfo[0].snippet.description%>
+                                        </p>
+                                        <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
+                                        </p>
+                                        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
+                                        <br>
+                                        <span>
+                                        <button class="videowatched"> click when watched</button>
+                                        <button class="videosaved"> click to save</button>
+                                        </span>
+                                </div>
+                        </div>
+                </div>
         </div>
+        <div class="row">
+                <div class="col-sm-6">
+                        <div class="card">
+                                <div className="ppyoga">
+                                        <h3>
+                                                <%=yogavideoinfo[0].snippet.title%>
+                                        </h3>
+                                        <p>
+                                                <%=yogavideoinfo[0].snippet.description%>
+                                        </p>
+                                        <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%>
+                                        </p>
+                                        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
+                                        <button class="videowatched"> click when watched</button>
+                                        <button class="videosaved"> click to save</button>
+                                </div>
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="card">
+                                <div className="ppexercise">
+                                        <h3>
+                                                <%=exvideoinfo[0].snippet.title%>
+                                        </h3>
+                                        <p>
+                                                <%=exvideoinfo[0].snippet.description%>
+                                        </p>
+                                        <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%>
+                                        </p>
+                                        <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
+                                        <button class="videowatched"> click when watched</button>
+                                        <button class="videosaved"> click to save</button>
+                                        </div>
+                        </div>
+                </div>
+        </div>
+</div>
 
-        <div className="ppdvideo">
-            <h3>
-                <%=ppdvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
-                <%=ppdvideoinfo[0].snippet.description%>
-            </p>
-            <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
-            <p class="hidden" id="videoSaved">Video Saved!</p>
-            <p class="hidden" id="alreadySaved">Video Already Saved</p>
-        </div>
-        <div className="medvideo">
-            <h3>
-                <%=medvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
-                <%=medvideoinfo[0].snippet.description%>
-            </p>
-            <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
-        </div>
-        <div className="ppyoga">
-            <h3>
-                <%=yogavideoinfo[0].snippet.title%>
-            </h3>
-            <p>
-                <%=yogavideoinfo[0].snippet.description%>
-            </p>
-            <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
-        </div>
-        <div className="ppexercise">
-            <h3>
-                <%=exvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
-                <%=exvideoinfo[0].snippet.description%>
-            </p>
-            <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%>
-            </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
-        </div>
+
 
         <% if (high_risk_pregnancy) { %>
             <h1>Recovering after a High Risk Pregnancy:</h1>
