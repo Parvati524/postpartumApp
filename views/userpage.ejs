@@ -43,20 +43,37 @@
             </ul>
         </div>
 
-        <div className="ppdvideo">
-            <h3>
-                <%=ppdvideoinfo[0].snippet.title%>
-            </h3>
-            <p>
+        <!-- <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+         -->
+        
+        
+        
+        
+        
+        
+        <div class="card ppdvideo">
+                <iframe class="card-img-top" id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+            <div class="card-body">
+               <div class="card-title"><%=ppdvideoinfo[0].snippet.title%></div>
+           
+            <p class="card-text">
                 <%=ppdvideoinfo[0].snippet.description%>
             </p>
-            <p>from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
+            <p class="card-text">from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
             </p>
-            <iframe id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
+           
+            <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
+            <button data id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
             <p class="hidden" id="videoSaved">Video Saved!</p>
             <p class="hidden" id="alreadySaved">Video Already Saved</p>
+            </div>
         </div>
         <div className="medvideo">
             <h3>
@@ -68,8 +85,8 @@
             <p>from channel: <%=medvideoinfo[0].snippet.channelTitle%>
             </p>
             <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
+            <button data-id="<%=medvideoinfo[0].id.videoId%>" class="videowatched"> click when watched</button>
+            <button data-id= "<%=medvideoinfo[0].id.videoId%>" class="videosaved"> click to save</button>
         </div>
         <div className="ppyoga">
             <h3>
@@ -80,9 +97,9 @@
             </p>
             <p>from channel: <%=yogavideoinfo[0].snippet.channelTitle%>
             </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
+            <iframe id="yogavideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
+            <button data-id="<%=yogavideoinfo[0].id.videoId%>" class="videowatched"> click when watched</button>
+            <button data-id="<%=yogavideoinfo[0].id.videoId%>" class="videosaved"> click to save</button>
         </div>
         <div className="ppexercise">
             <h3>
@@ -93,9 +110,9 @@
             </p>
             <p>from channel: <%=exvideoinfo[0].snippet.channelTitle%>
             </p>
-            <iframe id="meditationvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
-            <button class="videowatched"> click when watched</button>
-            <button class="videosaved"> click to save</button>
+            <iframe id="exvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
+            <button data-id="<%=exvideoinfo[0].id.videoId%>" class="videowatched"> click when watched</button>
+            <button data-id="<%=exvideoinfo[0].id.videoId%>" class="videosaved"> click to save</button>
         </div>
 
         <% if (high_risk_pregnancy) { %>
