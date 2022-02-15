@@ -192,8 +192,10 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[2];
                 ppdvideos = JSON.parse(ppdvideos);
-                //console.log("I am ppdvideos data", ppdvideos)
+                console.log(`ppd video data from youtube: ${ppdvideos}`)
                 let ppdvideoinfo = ppdvideos.items;
+                console.log('ppdvideos.items', ppdvideoinfo)
+               
                
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
                 ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
