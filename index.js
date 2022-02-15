@@ -243,7 +243,7 @@ app.get('/:username', function(req, res){
 app.put('/update', function(req, res){     
     let username = req.user.username;
     let location = req.body.location;
-    console.log(username, location)
+    console.log(req.body)
     res.end(); 
     /*User.findOneAndUpdate({username: username },  {$set:{location:location}},{new: true},  function(err, doc){
         if(err){
