@@ -230,12 +230,6 @@ app.get('/userpage', (req, res) => {
 
 })
 
-app.get('/username', (req, res) => {
-
-    //get USERS data back from DB
-    //render the users data on an ejs page with a submit button
-    //form has a put route to /user to update
-});
 
 app.get('/user', (req, res) => {
     res.status(200).json({user: req.user})
