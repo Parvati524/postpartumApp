@@ -74,17 +74,27 @@ $(".videosaved").on("click", function () {
     })
 });
 
-/* $("#updateForm").on("click", function (event) {
-  event.preventDefault()
-  console.log("it works!!!")
- 
+$("#updateForm").on("submit", function (event) {
+  event.preventDefault();
+
+  let data = JSON.stringify(Object.fromEntries(new FormData(event.target)));
+  console.log(data)
+  fetch("/update", {
+    method: "PUT",
+    body: data,
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then(function (response) {
+        return response.json();
+    })
+    .then(function (data) {
+      console.log(data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 });
 
- */
-
-$("#test-button").on("click", function (event) {
-  event.preventDefault()
-  console.log("it works!!!")
- 
-});
 

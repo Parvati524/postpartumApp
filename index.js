@@ -249,14 +249,21 @@ app.get('/:username', function(req, res){
 app.put('/update', function(req, res){     
     let username = req.user.username;
     let location = req.body.location;
-    console.log(username, location)
-    res.end(); 
-    /*User.findOneAndUpdate({username: username },  {$set:{location:location}},{new: true},  function(err, doc){
-        if(err){
-            console.log("Something wrong when updating data!");
+    let ppd = req.body.ppd
+    console.log(req.body)
+    for (let x in req.body) {
+        if(req.body[x] === "true"){
+            req.body[x] = true;
         }
-        console.log(doc);
-    });;*/
+        if(req.body[x] === "false"){
+            req.body[x] = false;
+        }
+    }
+        console.log(req.body)
+
+      
+    res.end(); 
+
 })
 
 app.put('/:username/videosWatched', (req, res) => {
