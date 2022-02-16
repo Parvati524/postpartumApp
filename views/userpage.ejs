@@ -86,7 +86,7 @@
                                 </div>
                         </div>
                         <div class="errorMessage">
-                                <% if (!medvideoinfo || !medvideoinfo[0].id) { %>
+                                <% if (!medvideoinfo || !medvideoinfo[0]) { %>
                                         <h1>You have watched all your videos for this category!
                                         </h1>
                                         <% } %>
@@ -132,7 +132,7 @@
 
                         </div>
                         <div class="errorMessage">
-                                <% if (!yogavideoinfo || !yogavideoinfo[0].id) { %>
+                                <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
                                         <h1>You have watched all your videos for this category!
                                         </h1>
                                         <% } %>
@@ -179,7 +179,7 @@
                                         </div>
                                 </div>
                                 <div class="errorMessage">
-                                        <% if (!exvideoinfo || !exvideoinfo[0].id) { %>
+                                        <% if (!exvideoinfo || !exvideoinfo[0]) { %>
                                                 <h1>You have
                                                         watched
                                                         all

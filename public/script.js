@@ -71,6 +71,7 @@ $(".videosaved").on("click", function () {
 });
 
 $("#updateForm").on("submit", function (event) {
+  console.log('button works')
   event.preventDefault();
   let data = JSON.stringify(Object.fromEntries(new FormData(event.target)));
   console.log(data)
