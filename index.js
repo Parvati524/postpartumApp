@@ -247,9 +247,7 @@ app.get('/:username', function(req, res){
 }); 
 
 app.put('/update', function(req, res){     
-    let username = req.user.username;
-    let location = req.body.location;
-    let ppd = req.body.ppd
+let username = req.user.username;
     console.log(req.body)
     for (let x in req.body) {
         if(req.body[x] === "true"){
@@ -260,9 +258,16 @@ app.put('/update', function(req, res){
         }
     }
         console.log(req.body)
-
+        User.findOneAndUpdate({username: username },  req.body, {upsert:true, new:true}, function(err, doc){
+            if(err){
+                console.log("Something wrong when updating data!");
+                res.render("error.ejs")
+            }
+            console.log(doc);
+            res.render("updatesuccess.ejs", {doc})
+        });;
       
-    res.end(); 
+ 
 
 })
 
