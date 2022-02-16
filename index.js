@@ -244,7 +244,7 @@ app.get('/:username', function(req, res){
 
 app.put('/update', function(req, res){     
 let username = req.user.username;
-    console.log(req.body)
+    console.log(`original ${req.body}`)
     for (let x in req.body) {
         if(req.body[x] === "true"){
             req.body[x] = true;
@@ -253,13 +253,13 @@ let username = req.user.username;
             req.body[x] = false;
         }
     }
-        console.log(req.body)
+        console.log(`after conversion ${req.body}`)
         User.findOneAndUpdate({username: username },  req.body, {upsert:true, new:true}, function(err, doc){
             if(err){
                 console.log("Something wrong when updating data!");
                 res.redirect("/error")
             }
-            console.log(doc);
+            console.log(`doc from database ${doc}`);
             res.render("updatesuccess.ejs", {doc})
         });;
       
