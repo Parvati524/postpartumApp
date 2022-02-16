@@ -192,9 +192,8 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[2];
                 ppdvideos = JSON.parse(ppdvideos);
-                console.log(`ppd video data from youtube: ${ppdvideos}`)
                 let ppdvideoinfo = ppdvideos.items;
-                console.log('ppdvideos.items', ppdvideoinfo)
+               
                
                
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
@@ -230,12 +229,6 @@ app.get('/userpage', (req, res) => {
 
 })
 
-app.get('/username', (req, res) => {
-
-    //get USERS data back from DB
-    //render the users data on an ejs page with a submit button
-    //form has a put route to /user to update
-});
 
 app.get('/user', (req, res) => {
     res.status(200).json({user: req.user})

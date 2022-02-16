@@ -1,8 +1,4 @@
-//for this code, in line 4 we can give the iframe a particular ID or class Name so we can reference that particular video since we will have several on page. 
 
-
-
-/* Videos Watch and Videos Save */
 $(".videowatched").on("click", function () {
   console.log("button works!")
   let videoId = $(this).attr('data-id')
@@ -76,7 +72,6 @@ $(".videosaved").on("click", function () {
 
 $("#updateForm").on("submit", function (event) {
   event.preventDefault();
-
   let data = JSON.stringify(Object.fromEntries(new FormData(event.target)));
   console.log(data)
   fetch("/update", {
