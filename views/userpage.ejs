@@ -47,7 +47,10 @@
                 </div>
         </div>
 </div>
-
+<div class="errorMessage col-sm-6">
+        <% if (ppdvideoinfo===[]) { %>
+              <h1>You have watched all your videos for this category!</h1>
+        <% } %>
 <div class="container">
         <div class="row">
                 <div class="col-sm-6">
@@ -71,6 +74,10 @@
                                 </div>
                         </div>
                 </div>
+                <div class="errorMessage col-sm-6">
+                        <% if (medvideoinfo===[]) { %>
+                              <h1>You have watched all your videos for this category!</h1>
+                        <% } %>
                 <div class="col-sm-6">
                         <div class="card">
                                 <div className="medvideo">
@@ -94,6 +101,10 @@
                         </div>
                 </div>
         </div>
+        <div class="errorMessage col-sm-6">
+                <% if (yogavideoinfo===[]) { %>
+                      <h1>You have watched all your videos for this category!</h1>
+                <% } %>
         <div class="row">
                 <div class="col-sm-6">
                         <div class="card">
@@ -115,6 +126,10 @@
                                                 <p class="hidden" id="alreadySaved">Video Already Saved</p>
                                         </div>
                                 </div>
+                                <div class="errorMessage col-sm-6">
+                                        <% if (exvideoinfo===[]) { %>
+                                              <h1>You have watched all your videos for this category!</h1>
+                                        <% } %>
                                 <div className="ppyoga">
                                         <iframe class="card-img-top" id="exvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
                                         <div class="card-body">                             
