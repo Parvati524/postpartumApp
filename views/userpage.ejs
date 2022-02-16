@@ -3,7 +3,7 @@
 <h1> Welcome <%=username%>
 </h1>
 <a href="/logout">Log Out</a>
-<a href= <%= `/${username}` %>>Edit my Profile</a>
+<a href= <%= `/update/${username}` %>>Edit my Profile</a>
 
 <div class="container">
         <div class ="row">
@@ -47,8 +47,8 @@
                 </div>
         </div>
 </div>
-<div class="errorMessage col-sm-6">
-        <% if (ppdvideoinfo===[]) { %>
+<div class="errorMessage">
+        <% if (!ppdvideoinfo[0].id) { %>
               <h1>You have watched all your videos for this category!</h1>
         <% } %>
 <div class="container">
@@ -74,8 +74,8 @@
                                 </div>
                         </div>
                 </div>
-                <div class="errorMessage col-sm-6">
-                        <% if (medvideoinfo===[]) { %>
+                <div class="errorMessage">
+                        <% if (!medvideoinfo[0].id) { %>
                               <h1>You have watched all your videos for this category!</h1>
                         <% } %>
                 <div class="col-sm-6">
@@ -101,8 +101,8 @@
                         </div>
                 </div>
         </div>
-        <div class="errorMessage col-sm-6">
-                <% if (yogavideoinfo===[]) { %>
+        <div class="errorMessage">
+                <% if (!yogavideoinfo[0].id) { %>
                       <h1>You have watched all your videos for this category!</h1>
                 <% } %>
         <div class="row">
@@ -126,11 +126,11 @@
                                                 <p class="hidden" id="alreadySaved">Video Already Saved</p>
                                         </div>
                                 </div>
-                                <div class="errorMessage col-sm-6">
-                                        <% if (exvideoinfo===[]) { %>
+                                <div class="errorMessage">
+                                        <% if (!exvideoinfo[0].id) { %>
                                               <h1>You have watched all your videos for this category!</h1>
                                         <% } %>
-                                <div className="ppyoga">
+                                <div className="exyoga">
                                         <iframe class="card-img-top" id="exvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
                                         <div class="card-body">                             
                                                 <div class="card-title">

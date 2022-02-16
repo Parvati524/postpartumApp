@@ -241,10 +241,14 @@ app.get('/user', (req, res) => {
     res.status(200).json({user: req.user})
 })
 
-app.get('/:username', function(req, res){
+app.get('/error', (req, res) => {
+    res.render('error.ejs')
+})
+app.get('/update/:username', function(req, res){
     let requestedUser = req.params.username;
     res.render("profile.ejs", {requestedUser});
 }); 
+
 
 app.put('/update', function(req, res){     
 let username = req.user.username;
@@ -261,7 +265,7 @@ let username = req.user.username;
         User.findOneAndUpdate({username: username },  req.body, {upsert:true, new:true}, function(err, doc){
             if(err){
                 console.log("Something wrong when updating data!");
-                res.render("error.ejs")
+                res.redirect("/error")
             }
             console.log(doc);
             res.render("updatesuccess.ejs", {doc})
