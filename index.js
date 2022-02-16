@@ -219,7 +219,7 @@ app.get('/userpage', (req, res) => {
                 let exvideoinfo =exercise.items
                 exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                         
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain});
             });
 
     }
