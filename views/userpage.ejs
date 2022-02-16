@@ -1,9 +1,9 @@
-<%- include('partials/header')%>
+<%- include("partials/header.ejs")%>
 
         <h1> Welcome <%=username%>
         </h1>
         <a href="/logout">Log Out</a>
-        <a href=<%=`/update/${username}` %>>Edit my Profile</a>
+        <a href=<%=`${username}` %>>Edit my Profile</a>
 
         <div class="container">
                 <div class="row">
@@ -514,4 +514,4 @@
 
 
 
-        <%-include('partials/footer')%>
+        <%-include("partials/footer.ejs")%>

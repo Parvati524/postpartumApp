@@ -1,4 +1,3 @@
-
 $(".videowatched").on("click", function () {
   console.log("button works!")
   let videoId = $(this).attr('data-id')
