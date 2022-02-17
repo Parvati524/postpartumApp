@@ -249,8 +249,15 @@ app.put('/update', function(req, res){
 let username = req.user.username;
     console.log(`original ${JSON.stringify(req.body)}`)
 let myArray = Object.keys(req.body)
+//made this array to check what the keys are.
 console.log(myArray)
-
+if(myArray.indexOf("back_pain") === -1){
+let back_pain;
+req.body[back_pain] = false;
+//this console.logs false
+console.log(req.body[back_pain])
+}
+// this code checks if the values are string true or string false, converts them to booleans which is what we need in our DB.
     for (let x in req.body) {
         if(req.body[x] === "true"){
             req.body[x] = true;
@@ -266,6 +273,7 @@ console.log(myArray)
                 res.redirect("/error")
             }
             console.log(`doc from database ${doc}`);
+            //in this, back_pain  still comes back as true. meaning whatever was added previously in the code to add it if it didnt exist, is not showing up.
             res.end()
         });;
       
