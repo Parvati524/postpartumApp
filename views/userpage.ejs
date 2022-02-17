@@ -49,12 +49,13 @@
                 </div>
         </div>
         <div class="errorMessage">
-                <% if (!ppdvideoinfo || !ppdvideoinfo[0]) { %>
+                <% if (!ppdvideoinfo || !ppdvideoinfo[0] || ppdvideoinfo.length===0) { %>
                         <h1>You have watched all your videos for this category!</h1>
+                </div>
                         <% } %>
-        </div>
+      
 
-       
+        <% if (ppdvideoinfo[0].id) { %>
                 <div class="row">
                         <div class="col-sm-6">
                                 <div class="card">
@@ -86,12 +87,17 @@
                                         </div>
                                 </div>
                         </div>
-                        <div class="errorMessage">
+                        <% } %>
+
+                       
                                 <% if (!medvideoinfo || !medvideoinfo[0]) { %>
+                                        <div class="errorMessage">
                                         <h1>You have watched all your videos for this category!
                                         </h1>
+                                        </div>
                                         <% } %>
-                        </div>
+                      
+                        <% if(medvideoinfo[0].id){ %>
                         <div class="col-sm-6">
                                 <div class="card">
                                         <div className="medvideo">
@@ -132,12 +138,17 @@
                                 </div>
 
                         </div>
-                        <div class="errorMessage">
+                        <% } %>
+                        
                                 <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
+                                        <div class="errorMessage"></div>
                                         <h1>You have watched all your videos for this category!
                                         </h1>
+                                        </div>
                                         <% } %>
-                        </div>
+                      
+
+                        <% if(yogavideoinfo[0].id){ %>
                         <div class="row">
                                 <div class="col-sm-6">
                                         <div class="card">
@@ -154,7 +165,7 @@
                                                                 <p>
                                                                         from
                                                                         channel:
-                                                                        <%=medvideoinfo[0].snippet.channelTitle%>
+                                                                        <%=yogavideoinfo[0].snippet.channelTitle%>
                                                                 </p>
                                                                 <button data-id="<%=yogavideoinfo[0].id.videoId%>"
                                                                         class="videowatched btn btn-primary">
@@ -179,8 +190,11 @@
                                                 </div>
                                         </div>
                                 </div>
-                                <div class="errorMessage">
+                                <% } %>
+
+                             
                                         <% if (!exvideoinfo || !exvideoinfo[0]) { %>
+                                                <div class="errorMessage">
                                                 <h1>You have
                                                         watched
                                                         all
@@ -190,8 +204,10 @@
                                                         this
                                                         category!
                                                 </h1>
+                                        </div>
                                                 <% } %>
-                                </div>
+                               
+                                <% if (exvideoinfo[0].id) { %>
                                 <div className="exyoga">
                                         <iframe class="card-img-top" id="exvideo"
                                                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
@@ -231,6 +247,7 @@
                         </div>
                 </div>
         </div>
+        <% } %>
 
         <div class="container">
                 <div class="row">

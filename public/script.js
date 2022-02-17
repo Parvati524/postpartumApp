@@ -69,6 +69,8 @@ $(".videosaved").on("click", function () {
     })
 });
 
+
+
 $("#updateForm").on("submit", function (event) {
   console.log('button works')
   event.preventDefault();

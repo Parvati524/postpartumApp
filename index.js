@@ -194,11 +194,11 @@ app.get('/userpage', (req, res) => {
                 ppdvideos = JSON.parse(ppdvideos);
                 
                 let ppdvideoinfo = ppdvideos.items;
-               
+               if(ppdvideoinfo){
                
                
                 //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
-                ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
+                ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)}
                 
                
                 
@@ -206,18 +206,21 @@ app.get('/userpage', (req, res) => {
                 let meditation = finalVals[3];
                 meditation = JSON.parse(meditation);
                 let medvideoinfo = meditation.items
-               medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)
+                if(medvideoinfo){
+               medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)}
                 
                  //now postpartum yoga youtube call
                  let yoga = finalVals[4];
                 yoga = JSON.parse(yoga);
                  let yogavideoinfo =yoga.items
-                yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)
+                 if(yogavideoinfo){
+                yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)}
                 //now postpartum recovery exercise youtube call
                 let exercise = finalVals[5];
                 exercise = JSON.parse(exercise);
                 let exvideoinfo =exercise.items
-                exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
+                if(exvideoinfo){
+                exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)}
                         
                 res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain});
             });
@@ -244,7 +247,10 @@ app.get('/:username', function(req, res){
 
 app.put('/update', function(req, res){     
 let username = req.user.username;
-    console.log(`original ${req.body}`)
+    console.log(`original ${JSON.stringify(req.body)}`)
+let myArray = Object.keys(req.body)
+console.log(myArray)
+
     for (let x in req.body) {
         if(req.body[x] === "true"){
             req.body[x] = true;
@@ -253,14 +259,14 @@ let username = req.user.username;
             req.body[x] = false;
         }
     }
-        console.log(`after conversion ${req.body}`)
+        console.log(`after conversion ${JSON.stringify(req.body)}`)
         User.findOneAndUpdate({username: username },  req.body, {upsert:true, new:true}, function(err, doc){
             if(err){
                 console.log("Something wrong when updating data!");
                 res.redirect("/error")
             }
             console.log(`doc from database ${doc}`);
-            res.render("updatesuccess.ejs", {doc})
+            res.end()
         });;
       
  
