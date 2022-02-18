@@ -12,6 +12,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="/resources">Resources</a>
             </li>
+            <% if (isAuthenticated){ %>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/userpage">User Page</a>
+                </li>
+
+            <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Log In</a>
+                </li>
+            <% } %>
         </ul>
     </div>
     </div>

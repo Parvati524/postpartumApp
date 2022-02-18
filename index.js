@@ -55,36 +55,35 @@ mongoose.connect(mongoURIKey)
 
 // Creating the middleware function:
 const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        req.isLoggedIn = true
-    }
+        res.locals.isAuthenticated = req.isAuthenticated()
     if (req.url.includes('userpage') && !req.isAuthenticated()) {
         res.redirect('/login')
     } else {
-        return next();
+        next();
     }
 }
 app.use(isLoggedIn)
 
 //root route
 app.get('/', (req, res) => {
-    res.render('home.ejs', { isLoggedIn: req.isLoggedIn });
+    console.log('get', res.locals)
+    res.render('home.ejs');
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('login.ejs');
 });
 
 app.get('/signup', (req, res) => {
-    res.render('signup.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('signup.ejs');
 });
 
 app.get('/resources', (req, res) => {
-    res.render('resources.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('resources.ejs');
 });
 
 app.get('/signs', (req, res) => {
-    res.render('signssymptoms.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('signssymptoms.ejs');
 });
 
 app.post('/signup', (req, res) => {
@@ -121,7 +120,7 @@ app.post('/signup', (req, res) => {
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render("signup", { isLoggedIn: req.isLoggedIn });
+            return res.render("signup");
         } else {
             passport.authenticate("local")(req, res, () => {
                 res.redirect("/userpage");
@@ -226,7 +225,7 @@ app.get('/userpage', (req, res) => {
                     exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                 }
 
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain });
+                res.render("userpage", { username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain });
             });
 
     }
