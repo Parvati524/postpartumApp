@@ -1,47 +1,42 @@
-body, html{
-    margin:0;
-    padding:0;
-    border:0;
-    width:100%;
-    height:100%;
-
-
-  
+body,
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  width: 100%;
+  height: 100%;
 }
-#backgroundHome{
-    background: url("./assets/matthew-henry.jpg") center center no-repeat;
-    width:100%;
-    height:100%;
-    display:flex;
-    align-items:center;
-    background-size:cover;
-    color:white;
-    
+#backgroundHome {
+  background: url("./assets/matthew-henry.jpg") center center no-repeat;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  color: white;
 }
 
-#backgroundLogin{
-    background: url("./assets/zoltan-tasi-unsplash.jpg") center center no-repeat;
-    width:100%;
-    height:100%;
-    display:flex;
-    background-size:cover;
-    color:white;
-    
+#backgroundLogin {
+  background: url("./assets/zoltan-tasi-unsplash.jpg") center center no-repeat;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background-size: cover;
+  color: white;
 }
 
-.message{
-    width:30vw;
-    margin:0 auto;
+.message {
+  width: 30vw;
+  margin: 0 auto;
 }
 
-#login{
-    width: 40vw;
-    margin: 0 auto;
+#login {
+  width: 40vw;
+  margin: 0 auto;
 }
 
-#signupForm{
-    width:60vw;
-    
+#signupForm {
+  width: 60vw;
 }
 /* 
 form{
@@ -49,14 +44,23 @@ form{
 } */
 
 .hidden {
-    display: none;
+  display: none;
 }
-.resources{
-    width:60vw;
-    flex-wrap: wrap;
-
+.resources {
+  width: 60vw;
+  flex-wrap: wrap;
 }
 
 /* .card{
     width:35vw;
 } */
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
