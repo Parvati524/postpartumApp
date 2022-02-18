@@ -1,5 +1,4 @@
 $(".videowatched").on("click", function () {
-  console.log("button works!")
   let videoId = $(this).attr('data-id')
   console.log("video Id is: " + videoId)
 
@@ -23,11 +22,11 @@ $(".videowatched").on("click", function () {
         }
       })
       .then(function () {
-        // $('.clicked').removeClass('hidden')
+        $('#ppdvideowatched').removeClass('hidden')
       })
       .catch(function (error) {
         console.error("Error updating: ", error)
-        // $('.alreadyclicked').removeClass('hidden')
+        $('#ppdalreadywatched').removeClass('hidden')
       })
   })
 });
@@ -39,6 +38,7 @@ $(".videowatched").on("click", function () {
 $(".videosaved").on("click", function () {
   let videoId = $(this).attr('data-id')
   console.log("video Id is: " + videoId)
+
   fetch('/user', { headers: { 'Content-Type': 'application/json'}, credentials: 'include' })
     .then(res => res.json())
     .then(data => {
@@ -60,11 +60,11 @@ $(".videosaved").on("click", function () {
         })
         .then(function (data) {
           console.log(data)
-          // $('.clicked').removeClass('hidden')
+          $('#ppdvideosaved').removeClass('hidden')
         })
         .catch(function (error) {
           console.error("Error updating: ", error.message)
-          // $('.alreadyclicked').removeClass('hidden')
+          $('#ppdalreadysaved').removeClass('hidden')
         })
     })
 });
