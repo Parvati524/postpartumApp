@@ -55,7 +55,7 @@ mongoose.connect(mongoURIKey)
 
 // Creating the middleware function:
 const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) { 
+    if (req.isAuthenticated()) {
         req.isLoggedIn = true
     }
     if (req.url.includes('userpage') && !req.isAuthenticated()) {
@@ -65,26 +65,26 @@ const isLoggedIn = (req, res, next) => {
     }
 }
 app.use(isLoggedIn)
-    
+
 //root route
 app.get('/', (req, res) => {
-    res.render('home.ejs', {isLoggedIn: req.isLoggedIn});
+    res.render('home.ejs', { isLoggedIn: req.isLoggedIn });
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs', {isLoggedIn: req.isLoggedIn});
+    res.render('login.ejs', { isLoggedIn: req.isLoggedIn });
 });
 
 app.get('/signup', (req, res) => {
-    res.render('signup.ejs', {isLoggedIn: req.isLoggedIn});
+    res.render('signup.ejs', { isLoggedIn: req.isLoggedIn });
 });
 
 app.get('/resources', (req, res) => {
-    res.render('resources.ejs', {isLoggedIn: req.isLoggedIn});
+    res.render('resources.ejs', { isLoggedIn: req.isLoggedIn });
 });
 
 app.get('/signs', (req, res) => {
-    res.render('signssymptoms.ejs', {isLoggedIn: req.isLoggedIn});
+    res.render('signssymptoms.ejs', { isLoggedIn: req.isLoggedIn });
 });
 
 app.post('/signup', (req, res) => {
@@ -115,13 +115,13 @@ app.post('/signup', (req, res) => {
     abdominalPain = booleanArray[4];
     pelvicPain = booleanArray[5];
     backPain = booleanArray[6];
-//makes a new user according to our model
+    //makes a new user according to our model
     let newUser = new User({ username: username, location: location, postpartum_depression: ppd, postpartum_anxiety: ppa, high_risk_pregnancy: highRiskPregnancy, trauma_in_birth: birthTrauma, back_pain: backPain, pelvic_pain: pelvicPain, abdominal_pain: abdominalPain });
     //registers this user with passport along with a password.
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render("signup", {isLoggedIn: req.isLoggedIn});
+            return res.render("signup", { isLoggedIn: req.isLoggedIn });
         } else {
             passport.authenticate("local")(req, res, () => {
                 res.redirect("/userpage");
@@ -176,7 +176,7 @@ app.get('/userpage', (req, res) => {
         return videos
     }
     function getData() {
-        Promise.all([yelp("physicaltherapy", location, 10),  yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
+        Promise.all([yelp("physicaltherapy", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
                 Promise.all(values.map(value => JSON.stringify(value))))
             .then(finalVals => {
@@ -184,7 +184,7 @@ app.get('/userpage', (req, res) => {
                 let phystherapists = finalVals[0];
                 phystherapists = JSON.parse(phystherapists)
                 phystherapists = phystherapists.jsonBody.businesses;
-                
+
                 //doing same for psychologists
                 let psychologists = finalVals[1];
                 psychologists = JSON.parse(psychologists);
@@ -192,37 +192,41 @@ app.get('/userpage', (req, res) => {
                 //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
                 let ppdvideos = finalVals[2];
                 ppdvideos = JSON.parse(ppdvideos);
-                
+
                 let ppdvideoinfo = ppdvideos.items;
-               if(ppdvideoinfo){
-               
-               
-                //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
-                ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)}
-                
-               
-                
+                if (ppdvideoinfo) {
+
+
+                    //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
+                    ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
+                }
+
+
+
                 //now postpartum meditation youtube call
                 let meditation = finalVals[3];
                 meditation = JSON.parse(meditation);
                 let medvideoinfo = meditation.items
-                if(medvideoinfo){
-               medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)}
-                
-                 //now postpartum yoga youtube call
-                 let yoga = finalVals[4];
+                if (medvideoinfo) {
+                    medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)
+                }
+
+                //now postpartum yoga youtube call
+                let yoga = finalVals[4];
                 yoga = JSON.parse(yoga);
-                 let yogavideoinfo =yoga.items
-                 if(yogavideoinfo){
-                yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)}
+                let yogavideoinfo = yoga.items
+                if (yogavideoinfo) {
+                    yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)
+                }
                 //now postpartum recovery exercise youtube call
                 let exercise = finalVals[5];
                 exercise = JSON.parse(exercise);
-                let exvideoinfo =exercise.items
-                if(exvideoinfo){
-                exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)}
-                        
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists,  psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain});
+                let exvideoinfo = exercise.items
+                if (exvideoinfo) {
+                    exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
+                }
+
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain });
             });
 
     }
@@ -235,49 +239,61 @@ app.get('/userpage', (req, res) => {
 
 
 app.get('/user', (req, res) => {
-    res.status(200).json({user: req.user})
+    res.status(200).json({ user: req.user })
 })
 
 
-app.get('/:username', function(req, res){
+app.get('/:username', function (req, res) {
     let requestedUser = req.params.username;
-    res.render("profile.ejs", {requestedUser});
-}); 
+    res.render("profile.ejs", { requestedUser });
+});
 
 
-app.put('/update', function(req, res){     
-let username = req.user.username;
+app.put('/update', function (req, res) {
+    let username = req.user.username;
     console.log(`original ${JSON.stringify(req.body)}`)
-let myArray = Object.keys(req.body)
-//made this array to check what the keys are.
-console.log(myArray)
-if(myArray.indexOf("back_pain") === -1){
-let back_pain;
-req.body[back_pain] = false;
-//this console.logs false
-console.log(req.body[back_pain])
-}
-// this code checks if the values are string true or string false, converts them to booleans which is what we need in our DB.
+    let myArray = Object.keys(req.body)
+    //made this array to check what the keys are.
+    console.log(myArray)
+    if (myArray.indexOf("back_pain") === -1) {
+        let back_pain = "back_pain"
+        req.body[back_pain] = false;
+        //this console.logs false
+        console.log(req.body[back_pain])
+    }
+    if (myArray.indexOf("abdominal_pain") === -1) {
+        let abdominal_pain = "abdominal_pain"
+        req.body[abdominal_pain] = false;
+        //this console.logs false
+        console.log(req.body[abdominal_pain])
+    }
+    if (myArray.indexOf("pelvic_pain") === -1) {
+        let pelvic_pain = "pelvic_pain"
+        req.body[pelvic_pain] = false;
+        //this console.logs false
+        console.log(req.body[pelvic_pain])
+    }
+    // this code checks if the values are string true or string false, converts them to booleans which is what we need in our DB.
     for (let x in req.body) {
-        if(req.body[x] === "true"){
+        if (req.body[x] === "true") {
             req.body[x] = true;
         }
-        if(req.body[x] === "false"){
+        if (req.body[x] === "false") {
             req.body[x] = false;
         }
     }
-        console.log(`after conversion ${JSON.stringify(req.body)}`)
-        User.findOneAndUpdate({username: username },  req.body, {upsert:true, new:true}, function(err, doc){
-            if(err){
-                console.log("Something wrong when updating data!");
-                res.redirect("/error")
-            }
-            console.log(`doc from database ${doc}`);
-            //in this, back_pain  still comes back as true. meaning whatever was added previously in the code to add it if it didnt exist, is not showing up.
-            res.end()
-        });;
-      
- 
+    console.log(`after conversion ${JSON.stringify(req.body)}`)
+    User.findOneAndUpdate({ username: username }, req.body, { upsert: true, new: true }, function (err, doc) {
+        if (err) {
+            console.log("Something wrong when updating data!");
+            res.redirect("/error")
+        }
+        console.log(`doc from database ${doc}`);
+        //in this, back_pain  still comes back as true. meaning whatever was added previously in the code to add it if it didnt exist, is not showing up.
+        res.end()
+    });;
+
+
 
 })
 
@@ -287,28 +303,28 @@ app.put('/:username/videosWatched', (req, res) => {
     User.find(
         { username: username },
         function (error, user) {
-            if (error) { res.status(400).json("Error updating document") } 
+            if (error) { res.status(400).json("Error updating document") }
             else {
-            console.log("Success", user)
+                console.log("Success", user)
                 if (user[0].videosWatched.includes(videoWatched)) {
                     console.log('Video already saved to watched')
                     res.status(400).json('Video already saved to watched')
                 } else {
-                User.findOneAndUpdate(
-                    { username: username },
-                    { $push: { videosWatched: videoWatched } },
-                    function (error, success) {
-                        if (error) {
-                            console.log(error);
-                            res.status(400).json("Error updating document")
-                        } else {
-                            console.log(success);
-                            res.status(201).json(success)
-                        }
-                    });
+                    User.findOneAndUpdate(
+                        { username: username },
+                        { $push: { videosWatched: videoWatched } },
+                        function (error, success) {
+                            if (error) {
+                                console.log(error);
+                                res.status(400).json("Error updating document")
+                            } else {
+                                console.log(success);
+                                res.status(201).json(success)
+                            }
+                        });
                 }
             }
-    })
+        })
 });
 
 app.put('/:username/videosSaved', (req, res) => {
@@ -317,27 +333,27 @@ app.put('/:username/videosSaved', (req, res) => {
     User.find(
         { username: username },
         function (error, user) {
-            if (error) { res.status(400).json("Error updating document") } 
+            if (error) { res.status(400).json("Error updating document") }
             else {
-            console.log("Success", user)
+                console.log("Success", user)
                 if (user[0].videosSaved.includes(videoSaved)) {
                     console.log('Video already saved')
                     res.status(400).json('Video already saved')
                 } else {
-                User.findOneAndUpdate(
-                    { username: username },
-                    { $push: { videosSaved: videoSaved } },
-                    function (error, success) {
-                        if (error) {
-                            console.log(error);
-                            res.status(400).json("Error updating document")
-                        } else {
-                            console.log(success);
-                            console.log(`${username}, it worked!`)
-                            res.status(201).json(success)
-                        }
-                    });
-         
+                    User.findOneAndUpdate(
+                        { username: username },
+                        { $push: { videosSaved: videoSaved } },
+                        function (error, success) {
+                            if (error) {
+                                console.log(error);
+                                res.status(400).json("Error updating document")
+                            } else {
+                                console.log(success);
+                                console.log(`${username}, it worked!`)
+                                res.status(201).json(success)
+                            }
+                        });
+
                 }
             }
         })
