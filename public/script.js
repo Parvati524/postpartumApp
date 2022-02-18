@@ -72,10 +72,8 @@ $(".videosaved").on("click", function () {
 
 
 $("#updateForm").on("submit", function (event) {
-  console.log('button works')
   event.preventDefault();
   let data = JSON.stringify(Object.fromEntries(new FormData(event.target)));
-  console.log(data)
   fetch("/update", {
     method: "PUT",
     body: data,
@@ -87,7 +85,7 @@ $("#updateForm").on("submit", function (event) {
         return response.json();
     })
     .then(function (data) {
-      console.log(data);
+      $("#message").html('Your profile has been updated')
     })
     .catch(function (error) {
       console.log(error);
