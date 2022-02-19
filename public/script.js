@@ -85,7 +85,7 @@ $("#updateForm").on("submit", function (event) {
         return response.json();
     })
     .then(function (data) {
-      $("#message").html('Your profile has been updated')
+      $("#message").html("<h1 class='alert alert-success' role='alert' >Success! Your profile has been updated </h1>")
     })
     .catch(function (error) {
       console.log(error);
