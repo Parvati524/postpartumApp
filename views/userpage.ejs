@@ -2,8 +2,8 @@
 
         <h1> Welcome <%=username%>
         </h1>
-        <a href="/logout">Log Out</a>
-        <a href=<%=`${username}` %>>Edit my Profile</a>
+        <a href="/logout" class="btn btn-success">Log Out</a>
+        <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
        
 
         <div class="container">
@@ -77,13 +77,27 @@
                                                         <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
                                                                 class="videowatched btn btn-primary">
                                                                 click when watched</button>
-                                                        <button data id="<%=ppdvideoinfo[0].id.videoId%>"
+                                                                <p class="hidden" id="ppdvideowatched">Video
+                                                                        saved to watched!</p>  
+                                                                <p class="hidden" id="ppdalreadywatched">
+                                                                        Video already saved to watched</p>                   
+                                                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
                                                                 class="videosaved btn btn-primary">
                                                                 click to save</button>
-                                                        <p class="hidden" id="videoSaved">Video
-                                                                Saved!</p>
-                                                        <p class="hidden" id="alreadySaved">
-                                                                Video Already Saved</p>
+
+                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+                                                                <div class="d-flex">
+                                                                        <div class="toast-body hidden" id="ppdvideosaved">
+                                                                                Video Saved!</div>
+                                                                </div>
+                                                        </div>
+
+                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
+                                                                <div class="d-flex">
+                                                                        <div class="toast-body hidden" id="ppdalreadysaved">
+                                                                                Video Already Saved</div>
+                                                                </div>
+                                                        </div>
                                                 </div>
                                         </div>
                                 </div>
@@ -274,7 +288,7 @@
                                                 </li>
                                                 <li class="list-group-item"><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info
                                                                 about
-                                                                Postpatum
+                                                                Postpartum
                                                                 PTSD</a>
                                                 </li>
                                                 <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
@@ -350,7 +364,7 @@
                                                                 PTSD
                                                                 and
                                                                 Birth
-                                                                Trauma/a>
+                                                                Trauma
                                                 </li>
                                                 <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info
                                                                 on
