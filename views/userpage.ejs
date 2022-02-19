@@ -8,11 +8,11 @@
 
         <div class="container">
                 <div class="row">
-                        <div class="col-lg-3 col-md-6 offset-lg-2">
-                                <div class="card">
+                        <div class="col-lg-3 col-md-6 card">
                                         <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                                class="card-img-top img-thumbnail" alt="physicaltherapist">
-                                        <h5 class="card-title">Physical Therapists Near You</h5>
+                                                class="card-img-top" alt="physicaltherapist">
+                                        <div class="card-body">
+                                                <h2 class="card-title">Physical Therapists Near You</h2>
                                         <ul class="list-group list-group-flush">
                                                 <% for( let i=0; i < phystherapists.length; i++ ) { %>
                                                         <li class="list-group-item">
@@ -26,12 +26,13 @@
                                         </ul>
                                 </div>
                         </div>
+                      
 
-                        <div class="col-lg-3 col-md-6 offset-lg-2">
-                                <div class="card">
+                        <div class="col-lg-3 col-md-6 offset-lg-2 card">
                                         <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                                class="card-img-top img-thumbnail" alt="helpingHands">
-                                        <h5 class="card-title">Psychologists Near You</h5>
+                                                class="card-img-top" alt="helpingHands">
+                                                <div class="card-body">
+                                        <h2 class="card-title">Psychologists Near You</h2>
                                         <ul class="list-group list-group-flush">
                                                 <% for( let i=0; i < psychologists.length; i++ ) { %>
 
