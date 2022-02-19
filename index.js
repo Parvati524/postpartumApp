@@ -251,7 +251,6 @@ app.get('/:username', function (req, res) {
 
 app.put('/update', function (req, res) {
     let username = req.user.username;
-    console.log(`original ${JSON.stringify(req.body)}`)
     let myArray = Object.keys(req.body)
     //made this array to check what the keys are.
     console.log(myArray)
@@ -282,16 +281,18 @@ app.put('/update', function (req, res) {
             req.body[x] = false;
         }
     }
-    console.log(`after conversion ${JSON.stringify(req.body)}`)
-    User.findOneAndUpdate({ username: username }, req.body, { upsert: true, new: true }, function (err, doc) {
-        if (err) {
-            console.log("Something wrong when updating data!");
-            res.redirect("/error")
-        }
-        console.log(`doc from database ${doc}`);
-        //in this, back_pain  still comes back as true. meaning whatever was added previously in the code to add it if it didnt exist, is not showing up.
-        res.end()
-    });;
+  
+    User.findOneAndUpdate(
+        { username: username },
+        req.body,
+        { upsert: true, new: true }, function (err, doc) {
+            if (err) {
+                console.log("Something wrong when updating data!");
+                res.send(err)
+            }
+           
+            res.send(doc)
+        });
 
 
 

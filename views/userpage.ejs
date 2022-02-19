@@ -55,7 +55,7 @@
                         <% } %>
       
 
-        <% if (ppdvideoinfo[0].id) { %>
+        <% if (ppdvideoinfo) { %>
                 <div class="row">
                         <div class="col-sm-6">
                                 <div class="card">
@@ -97,7 +97,7 @@
                                         </div>
                                         <% } %>
                       
-                        <% if(medvideoinfo[0].id){ %>
+                        <% if(medvideoinfo){ %>
                         <div class="col-sm-6">
                                 <div class="card">
                                         <div className="medvideo">
@@ -148,7 +148,7 @@
                                         <% } %>
                       
 
-                        <% if(yogavideoinfo[0].id){ %>
+                        <% if(yogavideoinfo){ %>
                         <div class="row">
                                 <div class="col-sm-6">
                                         <div class="card">
@@ -207,7 +207,7 @@
                                         </div>
                                                 <% } %>
                                
-                                <% if (exvideoinfo[0].id) { %>
+                                <% if (exvideoinfo) { %>
                                 <div className="exyoga">
                                         <iframe class="card-img-top" id="exvideo"
                                                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
@@ -251,17 +251,19 @@
 
         <div class="container">
                 <div class="row">
-                        <div class="high-risk col-sm-6">
                                 <% if (high_risk_pregnancy) { %>
-                                        <h1>Recovering
+                                        <div class="high-risk col-sm-6 card">
+                                                <img src="https://images.pexels.com/photos/57529/pexels-photo-57529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="card-img-top" alt="">
+                                                <div class="card-body">
+                                        <h1 class="card-title">Recovering
                                                 after
                                                 a
                                                 High
                                                 Risk
                                                 Pregnancy:
                                         </h1>
-                                        <ul>
-                                                <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
                                                                 Home
                                                                 after
                                                                 a
@@ -269,12 +271,12 @@
                                                                 Risk
                                                                 Pregnancy</a>
                                                 </li>
-                                                <li><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info
+                                                <li class="list-group-item"><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info
                                                                 about
                                                                 Postpatum
                                                                 PTSD</a>
                                                 </li>
-                                                <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
+                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
                                                                 sharing
                                                                 their
                                                                 stories
@@ -284,7 +286,7 @@
                                                                 risk
                                                                 pregnancy</a>
                                                 </li>
-                                                <li><a href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What
+                                                <li class="list-group-item"><a href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What
                                                                 to
                                                                 expect
                                                                 after
@@ -293,117 +295,127 @@
                                                                 risk
                                                                 pregnancy</a>
                                                 </li>
-                                                <li><a href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD
+                                                <li class="list-group-item"><a href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD
                                                                 after
                                                                 a
                                                                 high
                                                                 risk
                                                                 pregnancy</a>
                                                 </li>
-                                                <li><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                                                <li class="list-group-item"><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
                                                                 for
                                                                 Coping</a>
                                                 </li>
                                         </ul>
+                                </div>
+                                </div>
                                         <% } %>
-                        </div>
-                        <div class="Trauma col-sm-6">
+                        
+                       
                                 <% if (trauma_in_birth) { %>
-                                        <h1>Recovering
+                                        <div class="Trauma col-sm-6 card">
+                                               <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="card-img-top" alt="newborn_hands">
+                                                <div class="card-body">
+                                        <h1 class="card-title">Recovering
                                                 from
                                                 a
                                                 Traumatic
                                                 Birth:
                                         </h1>
-                                        <ul>
-                                                <li><a href="https://www.birthtraumaassociation.org.uk/">Birth
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="https://www.birthtraumaassociation.org.uk/">Birth
                                                                 Trauma
                                                                 Association</a>
                                                 </li>
-                                                <li><a href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia
+                                                <li class="list-group-item"><a href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia
                                                                 Foundation:
                                                                 Birth
                                                                 Trauma
                                                                 Resources</a>
                                                 </li>
-                                                <li><a href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps
+                                                <li class="list-group-item"><a href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps
                                                                 Program:
                                                                 Birth
                                                                 Trauma</a>
                                                 </li>
-                                                <li><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
                                                                 Home
                                                                 after
                                                                 a
                                                                 Traumatc
                                                                 Birth</a>
                                                 </li>
-                                                <li><a href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal
+                                                <li class="list-group-item"><a href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal
                                                                 PTSD
                                                                 and
                                                                 Birth
                                                                 Trauma/a>
                                                 </li>
-                                                <li><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info
+                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info
                                                                 on
                                                                 Birth
                                                                 Trauma</a>
                                                 </li>
-                                                <li><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                                                <li class="list-group-item"><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
                                                                 for
                                                                 Coping</a>
                                                 </li>
-                                                <li><a href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering
+                                                <li class="list-group-item"><a href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering
                                                                 from
                                                                 a
                                                                 difficult
                                                                 birth</a>
-                                                </li>
+                                                </li class="list-group-item">
                                         </ul>
+                                </div>
+                                </div>
                                         <% } %>
-                        </div>
-                        <div class="post-anx col-sm-6">
+                        
+                    
                                 <% if (postpartum_anxiety) { %>
-                                        <h1>Postpartum
+                                        <div class="post-anx col-sm-6 card">
+                                            <img class="card-img-top" src="https://images.pexels.com/photos/5699864/pexels-photo-5699864.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_holding_head">   
+                                        <div class="card-body">
+                                            <h1 class="card-title">Postpartum
                                                 Anxiety
                                                 Resources
                                         </h1>
-                                        <ul>
-                                                <li><a href="https://www.mindfulmamasclub.com/bloghub/postpartum-anxiety-is-real-carina-devi">Postpartum
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="https://www.mindfulmamasclub.com/bloghub/postpartum-anxiety-is-real-carina-devi">Postpartum
                                                                 Anxiety
                                                                 is
                                                                 Real</a>
                                                 </li>
-                                                <li><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-anxiety">Panda
+                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-anxiety">Panda
                                                                 PPA
                                                                 Recovery
                                                                 Stories</a>
                                                 </li>
-                                                <li><a href="https://oc87recoverydiaries.org/parent-with-anxiety/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs78zJY-nEWKH7aTRz8JrvxMWRQQlkINT1S-dzk9LEctRiDcM1tEbZgaAuW4EALw_wcB">One
+                                                <li class="list-group-item"><a href="https://oc87recoverydiaries.org/parent-with-anxiety/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs78zJY-nEWKH7aTRz8JrvxMWRQQlkINT1S-dzk9LEctRiDcM1tEbZgaAuW4EALw_wcB">One
                                                                 Woman's
                                                                 Jounrey
                                                                 with
                                                                 Anxiety</a>
                                                 </li>
-                                                <li><a href="https://www.ppdil.org/2015/04/postpartum-anxiety-or-normal-new-mom-fears/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4vhDjRMWXe7UibCQkrpikcatnEI84nIo7pAkHKvgmqPX8juX0tXjIaAvBtEALw_wcB">PPA
+                                                <li class="list-group-item"><a href="https://www.ppdil.org/2015/04/postpartum-anxiety-or-normal-new-mom-fears/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4vhDjRMWXe7UibCQkrpikcatnEI84nIo7pAkHKvgmqPX8juX0tXjIaAvBtEALw_wcB">PPA
                                                                 or
                                                                 Normal
                                                                 New
                                                                 Mom
                                                                 Fears?</a>
                                                 </li>
-                                                <li><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
+                                                <li class="list-group-item"><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
                                                                 Mental
                                                                 Health
                                                                 Video
                                                                 Stories</a>
                                                 </li>
-                                                <li><a href="https://psychcentral.com/anxiety/postpartum-anxiety">Info
+                                                <li class="list-group-item"><a href="https://psychcentral.com/anxiety/postpartum-anxiety">Info
                                                                 on
                                                                 Postpartum
                                                                 Anxiety</a>
                                                 </li>
-                                                <li><a href="https://www.betterhelp.com/advice/anxiety/what-to-do-when-you-have-postpartum-anxiety/?utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=_&utm_content=75597921965&network=g&placement=&target=&matchtype=&utm_campaign=6459244691&ad_type=text&adposition=&gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs6ExKNHFwV0xtx31pZ-8cZYCZ9MyOMvfd2rv2YXXtoSkfrXuiamfZ8aArz8EALw_wcB">What
+                                                <li class="list-group-item"><a href="https://www.betterhelp.com/advice/anxiety/what-to-do-when-you-have-postpartum-anxiety/?utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=_&utm_content=75597921965&network=g&placement=&target=&matchtype=&utm_campaign=6459244691&ad_type=text&adposition=&gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs6ExKNHFwV0xtx31pZ-8cZYCZ9MyOMvfd2rv2YXXtoSkfrXuiamfZ8aArz8EALw_wcB">What
                                                                 to
                                                                 Do
                                                                 If
@@ -411,47 +423,52 @@
                                                                 Have
                                                                 PPA</a>
                                                 </li>
-                                                <li><a href="https://www.romper.com/p/11-resources-for-dealing-with-postpartum-anxiety-18792">Resources
+                                                <li class="list-group-item"><a href="https://www.romper.com/p/11-resources-for-dealing-with-postpartum-anxiety-18792">Resources
                                                                 for
                                                                 Dealing
                                                                 With
                                                                 PPA</a>
                                                 </li>
                                         </ul>
-                                        <% } %>
+                                </div>
                         </div>
-                        <div class="post-dep col-sm-6">
+                       
+                                        <% } %>
+                       
                                 <% if (postpartum_depression) { %>
-                                        <h1>Postpartum
+                                        <div class="post-dep col-sm-6 card">
+                                                <img class="card-img-top" src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_crying">
+                                                <div class="card-body">
+                                        <h1 class="card-title">Postpartum
                                                 Depression
                                                 Resources
                                         </h1>
-                                        <ul>
-                                                <li><a href="hhttps://www.babycenter.com/baby/postpartum-health/postpartum-depression-quiz_20000530">Postpartum
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="hhttps://www.babycenter.com/baby/postpartum-health/postpartum-depression-quiz_20000530">Postpartum
                                                                 Depression
                                                                 Screening</a>
                                                 </li>
-                                                <li><a href="https://postpartumny.org/sharingourstories/">Stories
+                                                <li class="list-group-item"><a href="https://postpartumny.org/sharingourstories/">Stories
                                                                 of
                                                                 Hope</a>
                                                 </li>
-                                                <li><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-depression">PANDA
+                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-depression">PANDA
                                                                 PPD
                                                                 Recovery
                                                                 Stories</a>
                                                 </li>
-                                                <li><a href="https://www.marchofdimes.org/pregnancy/postpartum-depression.aspx">March
+                                                <li class="list-group-item"><a href="https://www.marchofdimes.org/pregnancy/postpartum-depression.aspx">March
                                                                 of
                                                                 Dimes:
                                                                 Postpartum
                                                                 Depression</a>
                                                 </li>
-                                                <li><a href="https://www.healthline.com/health/depression/postpartum-depression#symptoms">Info
+                                                <li class="list-group-item"><a href="https://www.healthline.com/health/depression/postpartum-depression#symptoms">Info
                                                                 on
                                                                 Postpartu
                                                                 Depression</a>
                                                 </li>
-                                                <li><a href="https://postpartumprogress.com/ppd-support-groups-in-the-u-s-canada">Support
+                                                <li class="list-group-item"><a href="https://postpartumprogress.com/ppd-support-groups-in-the-u-s-canada">Support
                                                                 Groups
                                                                 in
                                                                 the
@@ -459,12 +476,12 @@
                                                                 and
                                                                 Candada</a>
                                                 </li>
-                                                <li><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
+                                                <li class="list-group-item"><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
                                                                 Mental
                                                                 Health
                                                                 Stories</a>
                                                 </li>
-                                                <li><a href="https://www.psycom.net/postpartum-depression-test/">Is
+                                                <li class="list-group-item"><a href="https://www.psycom.net/postpartum-depression-test/">Is
                                                                 it
                                                                 More
                                                                 Than
@@ -473,43 +490,48 @@
                                                                 Blues?</a>
                                                 </li>
                                         </ul>
-                                        <% } %>
+                                </div>
                         </div>
-                        <div class="post-pel-pain col-sm-6">
+                                        <% } %>
+                       
+                       
                                 <% if (pelvic_pain) { %>
-                                        <h1>Postpartum
+                                        <div class="post-pel-pain col-sm-6 card">
+                                                <img class="card-img-top" src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_pelvis">
+                                                <div class="card-body">
+                                        <h1 class="card-title">Postpartum
                                                 Pelvic
                                                 Pain
                                         </h1>
-                                        <ul>
-                                                <li><a href="https://www.babycenter.com/baby/postpartum-health/pelvic-rehab-therapy-help-for-uncomfortable-postpartum-sympt_10379562">Pelvic
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="https://www.babycenter.com/baby/postpartum-health/pelvic-rehab-therapy-help-for-uncomfortable-postpartum-sympt_10379562">Pelvic
                                                                 Rehab
                                                                 Info</a>
                                                 </li>
-                                                <li><a href="hhttps://www.pelvicpain.org/public">International
+                                                <li class="list-group-item"><a href="hhttps://www.pelvicpain.org/public">International
                                                                 Pelvic
                                                                 Pain
                                                                 Society
                                                                 resources</a>
                                                 </li>
-                                                <li><a href="https://www.nytimes.com/2020/04/16/parenting/pregnancy/pelvic-floor-therapy.html">Pelvic
+                                                <li class="list-group-item"><a href="https://www.nytimes.com/2020/04/16/parenting/pregnancy/pelvic-floor-therapy.html">Pelvic
                                                                 Floor
                                                                 Therapy
                                                                 and
                                                                 Pelvic
                                                                 Pain</a>
                                                 </li>
-                                                <li><a href="https://www.pregnancybirthbaby.org.au/pelvic-floor-exercises">Pelvic
+                                                <li class="list-group-item"><a href="https://www.pregnancybirthbaby.org.au/pelvic-floor-exercises">Pelvic
                                                                 Floor
                                                                 Exercises</a>
                                                 </li>
-                                                <li><a href="https://www2.hse.ie/conditions/pelvic-girdle-pain-pregnancy/exercises/">Exercises
+                                                <li class="list-group-item"><a href="https://www2.hse.ie/conditions/pelvic-girdle-pain-pregnancy/exercises/">Exercises
                                                                 for
                                                                 Pelvic
                                                                 Girdle
                                                                 Pain</a>
                                                 </li>
-                                                <li><a href="https://feminapt.com/blog/postpartum-pelvic-pain-and-what-you-can-do-about-it">Postpartum
+                                                <li class="list-group-item"><a href="https://feminapt.com/blog/postpartum-pelvic-pain-and-what-you-can-do-about-it">Postpartum
                                                                 Pelvic
                                                                 Pain:
                                                                 What
@@ -517,7 +539,7 @@
                                                                 Can
                                                                 Do</a>
                                                 </li>
-                                                <li><a href="https://www.ivyrehab.com/news/prenatal-postpartum-pelvic-pain-causes-and-treatment/">Postpartum
+                                                <li class="list-group-item"><a href="https://www.ivyrehab.com/news/prenatal-postpartum-pelvic-pain-causes-and-treatment/">Postpartum
                                                                 Pelvic
                                                                 Pain:
                                                                 Causes
@@ -525,32 +547,39 @@
                                                                 Treatment</a>
                                                 </li>
                                         </ul>
-                                        <% } %>
+                                </div>
                         </div>
+                                        <% } %>
+                      
 
-                        <div class="back-pain col-sm-6">
+                      
                                 <% if (back_pain) { %>
-                                        <h1>Postpartum Back Pain</h1>
-                                        <ul>
-                                                <li><a href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">Exercises and Tips for Postpartum Back Pain</a>
+                                        <div class="back-pain col-sm-6 card">
+                                                <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="womans-back-flower">
+                                        <div class="card-body">
+                                                <h1 class="card-title">Postpartum Back Pain</h1>
+                                        <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><a href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">Exercises and Tips for Postpartum Back Pain</a>
                                                 </li>
-                                                <li><a href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">5 Easy PP Back Pain Exercises</a>
+                                                <li class="list-group-item"><a href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">5 Easy PP Back Pain Exercises</a>
                                                 </li>
-                                                <li><a href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">How to Improve PP Back Pain</a>
+                                                <li class="list-group-item"><a href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">How to Improve PP Back Pain</a>
                                                 </li>
-                                                <li><a href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">Back Pain After Childbirth</a>
+                                                <li class="list-group-item"><a href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">Back Pain After Childbirth</a>
                                                 </li>
-                                                <li><a href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">Back Pain After Pregnancy</a>
+                                                <li class="list-group-item"><a href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">Back Pain After Pregnancy</a>
                                                 </li>
-                                                <li><a href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">Back Pain: Get Relief</a>
+                                                <li class="list-group-item"><a href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">Back Pain: Get Relief</a>
                                                 </li>
-                                                <li><a href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">Postpartum Back Pain: Physical Therapy</a>
+                                                <li class="list-group-item"><a href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">Postpartum Back Pain: Physical Therapy</a>
                                                 </li>
                                             
                                         </ul>
-                                        <% } %>
-                        </div>
+                                        </div>
+                                </div>
 
+                                        <% } %>
+                       
 
                         
                 </div>

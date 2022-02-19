@@ -51,6 +51,7 @@ form{
   flex-wrap: wrap;
 }
 
+
 /* .card{
     width:35vw;
 } */
@@ -64,3 +65,9 @@ section {
   padding-top: 5rem;
   padding-bottom: 5rem;
 }
+
+#message{
+    color:green;
+}
+
+

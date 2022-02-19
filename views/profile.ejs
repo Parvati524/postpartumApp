@@ -1,8 +1,11 @@
 <%- include("partials/header")%>
 
-<div><h1>
-    Edit <%= requestedUser %> Profile:  </h1>
-    <a href="/userpage">My Homepage</a>
+<div class="heading">
+<h1 class="text-center">
+    Edit <%= requestedUser %>'s Profile:  </h1>
+    <a href="/userpage" class="btn btn-success">Back to my homepage</a>
+    <a href="" class="btn btn-danger">Delete my Profile</a> 
+</div>
 
     <div id="message"></div>
 <form class="my-3 mx-5" id="updateForm">
@@ -92,6 +95,6 @@
 </div>
 
 
-<a href="">Delete my Profile</a> 
+
 
 <%- include("partials/footer.ejs") %>
