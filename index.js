@@ -226,7 +226,7 @@ app.get('/userpage', (req, res) => {
                     exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                 }
 
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain });
+                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain, abdominal_pain });
             });
 
     }
