@@ -27,16 +27,12 @@ $(".videowatched").on("click", function () {
         //this console.log does not console.log
         var toastTrigger = document.getElementById('videoSavedToast')
         var toastLiveExample = document.getElementById('liveToast')
-        if (toastTrigger) {
           toastTrigger.addEventListener('click', function () {
             console.log('hello')
             var toast = new bootstrap.Toast(toastLiveExample)
-        
             toast.show()
           })
-        }
-
-
+        
 
       })
       .catch(function (error) {
