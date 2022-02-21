@@ -48,70 +48,62 @@
             </div>
         </div>
     </div>
-    <div class="errorMessage">
-        <% if (!ppdvideoinfo || !ppdvideoinfo[0] || ppdvideoinfo.length===0) { %>
-            <h1>You have watched all your videos for this category!</h1>
-    </div>
-    <% } %>
+ <% if (!ppdvideoinfo || !ppdvideoinfo[0]) { %>
+  <h1 class="errorMessage">You have watched all your videos</h1>
+ <% } else{  %>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card ppdvideo">
+                    <iframe class="card-img-top" id="ppdvideo"
+                        src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <%=ppdvideoinfo[0].snippet.title%>
+                        </div>
+                        <p class="card-text">
+                            <%=ppdvideoinfo[0].snippet.description%>
+                        </p>
+                        <p class="card-text">from channel:
+                            <%=ppdvideoinfo[0].snippet.channelTitle%>
+                        </p>
 
-    <% if (ppdvideoinfo) { %>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div class="card ppdvideo">
-                        <iframe class="card-img-top" id="ppdvideo"
-                            src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-                        <div class="card-body">
-                            <div class="card-title">
-                                <%=ppdvideoinfo[0].snippet.title%>
+                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"
+                            id="videoWatchedToast">
+                            click when watched</button>
+                        <p class="hidden" id="ppdvideowatched">Video
+                            saved to watched!</p>
+                        <p class="hidden" id="ppdalreadywatched">
+                            Video already saved to watched</p>
+                        <!-- Fire toast on video saved -->
+                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"
+                            id="videoSavedToast">
+                            click to save</button>
+
+                        <!-- Toast Notification Div -->
+                        <div data-toast="<%=ppdvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert"
+                            aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong class="mr-auto">Message from Admin</strong>
+                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                    aria-label="Close">
+                                </button>
                             </div>
-                            <p class="card-text">
-                                <%=ppdvideoinfo[0].snippet.description%>
-                            </p>
-                            <p class="card-text">from channel:
-                                <%=ppdvideoinfo[0].snippet.channelTitle%>
-                            </p>
-
-                            <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"
-                                id="videoWatchedToast">
-                                click when watched</button>
-                            <p class="hidden" id="ppdvideowatched">Video
-                                saved to watched!</p>
-                            <p class="hidden" id="ppdalreadywatched">
-                                Video already saved to watched</p>
-                            <!-- Fire toast on video saved -->
-                            <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"
-                                id="videoSavedToast">
-                                click to save</button>
-
-                            <!-- Toast Notification Div -->
-                            <div data-toast="<%=ppdvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert"
-                                aria-live="assertive" aria-atomic="true">
-                                <div class="toast-header">
-                                    <strong class="mr-auto">Message from Admin</strong>
-                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                                        aria-label="Close">
-                                    </button>
-                                </div>
-                                <div class="toast-body">
-                                    Your records have been updated!
-                                </div>
+                            <div class="toast-body">
+                                Your records have been updated!
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    <% } %>
+    </div>
+<% } %>
 
     <% if (!medvideoinfo || !medvideoinfo[0]) { %>
-        <div class="errorMessage">
-            <h1>You have watched all your videos for this category!
+            <h1 class="errorMessage">You have watched all your videos for this category!
             </h1>
-        </div>
-    <% } %>
-
-    <% if(medvideoinfo){ %>
+    <% } else { %>
         <div class="col-sm-6">
             <div class="card">
                 <div className="medvideo">
@@ -166,14 +158,9 @@
         <% } %>
 
     <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
-        <div class="errorMessage">
-        <h1>You have watched all your videos for this category!
+        <h1 class="errorMessage">You have watched all your videos for this category!
         </h1>
-        </div>
-        <% } %>
-
-
-    <% if(yogavideoinfo){ %>
+        <% } else { %>
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
@@ -233,10 +220,8 @@
         </div>
         <% } %>
 
-
     <% if (!exvideoinfo || !exvideoinfo[0]) { %>
-        <div class="errorMessage">
-            <h1>You have
+            <h1 class="errorMessage">You have
                 watched
                 all
                 your
@@ -245,10 +230,7 @@
                 this
                 category!
             </h1>
-        </div>
-        <% } %>
-
-    <% if (exvideoinfo) { %>
+        <% } else { %>
         <div className="exyoga">
             <iframe class="card-img-top" id="exvideo"
                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
@@ -300,11 +282,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        </div>
         <% } %>
 
     <div class="container">
