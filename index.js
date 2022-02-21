@@ -247,7 +247,7 @@ app.delete('/:username/delete', function(req, res){
         } else {
             console.log("Result, deleted from db: ", result)
             res.status(200).json(result)
-            res.redirect('/');
+            // res.redirect('/');
         }
     })
 })
