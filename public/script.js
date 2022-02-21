@@ -24,9 +24,19 @@ $(".videowatched").on("click", function () {
           }
         })
         .then(function () {
-          // $('#ppdvideowatched').removeClass('hidden')
-          console.log('Line... 26, hello')
-          //this console.log does not console.log
+      
+          /* Toast Option for animation etc */
+          var option = {
+            animation: true,
+            delay: 3000
+          }
+
+
+          /* Grabbing the correlated div to that video/button through the data-toast which has the videoid as its data to make it unique */
+          var toastDiv = $(`div[data-toast=${videoId}]`)
+          var toast = new bootstrap.Toast(toastDiv, option)
+          toast.show()
+           
 
         })
         .catch(function (error) {
@@ -64,12 +74,7 @@ $(".videosaved").on("click", function () {
           }
         })
         .then(function (data) {
-          console.log(data)
-          $('#ppdvideosaved').removeClass('hidden')
-
-
-          /* After updating  we want toast to run */
-
+          console.log(data);
 
           /* Toast Option for animation etc */
           var option = {
