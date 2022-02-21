@@ -30,14 +30,11 @@ $(".videowatched").on("click", function () {
             animation: true,
             delay: 3000
           }
-
-
           /* Grabbing the correlated div to that video/button through the data-toast which has the videoid as its data to make it unique */
           var toastDiv = $(`div[data-toast=${videoId}]`)
           var toast = new bootstrap.Toast(toastDiv, option)
           toast.show()
-           
-
+      
         })
         .catch(function (error) {
           console.error("Error updating: ", error)
@@ -95,9 +92,6 @@ $(".videosaved").on("click", function () {
     })
 });
 
-
-
-
 /* Update Form */
 $("#updateForm").on("submit", function (event) {
   event.preventDefault();
@@ -119,5 +113,28 @@ $("#updateForm").on("submit", function (event) {
       console.log(error);
     });
 });
-
-
+//trying a delete route
+$("#deleteBtn").on("click", function (event) {
+  let username=$(this).attr('data-id')
+  console.log(username)
+  let endpoint=`${username}/delete`;
+  console.log(endpoint)
+  fetch(endpoint, 
+    {method: "DELETE"
+  })
+  .then(function(response){
+      if(!response.ok){
+          throw Error ("Cannot delete an item from server")
+      } else {
+          return response.json()
+      }
+  })
+  .then(function(data){
+      console.log(data)
+  })
+  .catch(function(error){
+      console.error("Error deleting:", error)
+  })
+  });
+  //define username
+  //('/:username/delete'
