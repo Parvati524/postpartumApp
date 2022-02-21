@@ -75,29 +75,29 @@
                                                         </p>
 
                                                         <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
-                                                                class="videowatched btn btn-primary">
+                                                                class="videowatched btn btn-primary" id="videoWatchedToast" >
                                                                 click when watched</button>
                                                                 <p class="hidden" id="ppdvideowatched">Video
                                                                         saved to watched!</p>  
                                                                 <p class="hidden" id="ppdalreadywatched">
-                                                                        Video already saved to watched</p>                   
+                                                                        Video already saved to watched</p> 
+																													<!-- Fire toast on video saved -->                  
                                                         <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
-                                                                class="videosaved btn btn-primary">
+                                                                class="videosaved btn btn-primary" id="videoSavedToast" >
                                                                 click to save</button>
 
-                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-                                                                <div class="d-flex">
-                                                                        <div class="toast-body hidden" id="ppdvideosaved">
-                                                                                Video Saved!</div>
-                                                                </div>
-                                                        </div>
-
-                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-                                                                <div class="d-flex">
-                                                                        <div class="toast-body hidden" id="ppdalreadysaved">
-                                                                                Video Already Saved</div>
-                                                                </div>
-                                                        </div>
+																																<!-- Toast Notification Div -->
+                                                                <div data-toast="<%=ppdvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                                        <div class="toast-header">
+                                                                          <strong class="mr-auto">Message from Admin</strong>
+                                                                          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+									</button>
+                                                                        </div>
+                                                                        <div class="toast-body">
+                                                                          Your records have been updated!
+                                                                        </div>
+                                                                      </div>
+                                                                </div>                                                         
                                                 </div>
                                         </div>
                                 </div>
@@ -148,6 +148,17 @@
                                                                 Already
                                                                 Saved
                                                         </p>
+                                                        <div data-toast="<%=medvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                                <div class="toast-header">
+                                                                  <strong class="mr-auto">Message from Admin</strong>
+                                                                  <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                                                                </button>
+                                                                </div>
+                                                                <div class="toast-body">
+                                                                  Your records have been updated!
+                                                                </div>
+                                                              </div>
+                                                        </div> 
                                                 </div>
                                         </div>
                                 </div>
@@ -201,6 +212,17 @@
                                                                         Already
                                                                         Saved
                                                                 </p>
+                                                                <div data-toast="<%=yogavideoinfo[0].id.videoId%>" class="toast liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                                        <div class="toast-header">
+                                                                          <strong class="mr-auto">Message from Admin</strong>
+                                                                          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                                                                        </button>
+                                                                        </div>
+                                                                        <div class="toast-body">
+                                                                          Your records have been updated!
+                                                                        </div>
+                                                                      </div>
+                                                                </div>
                                                         </div>
                                                 </div>
                                         </div>
@@ -257,6 +279,17 @@
                                                         Already
                                                         Saved
                                                 </p>
+                                                <div data-toast="<%=exvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert" aria-live="assertive" aria-atomic="true">
+                                                        <div class="toast-header">
+                                                          <strong class="mr-auto">Message from Admin</strong>
+                                                          <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close">
+                                                        </button>
+                                                        </div>
+                                                        <div class="toast-body">
+                                                          Your records have been updated!
+                                                        </div>
+                                                      </div>
+                                                </div>
                                         </div>
                                 </div>
                         </div>

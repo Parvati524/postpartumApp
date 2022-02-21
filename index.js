@@ -339,7 +339,7 @@ app.put('/:username/videosSaved', (req, res) => {
                 console.log("Success", user)
                 if (user[0].videosSaved.includes(videoSaved)) {
                     console.log('Video already saved')
-                    res.status(400).json('Video already saved')
+                    res.status(201).json('Video already saved')
                 } else {
                     User.findOneAndUpdate(
                         { username: username },
@@ -349,7 +349,6 @@ app.put('/:username/videosSaved', (req, res) => {
                                 console.log(error);
                                 res.status(400).json("Error updating document")
                             } else {
-                                console.log(success);
                                 console.log(`${username}, it worked!`)
                                 res.status(201).json(success)
                             }
