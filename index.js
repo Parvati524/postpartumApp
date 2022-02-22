@@ -255,6 +255,10 @@ app.get('/user', (req, res) => {
     res.status(200).json({ user: req.user })
 })
 
+app.get('/about', (req, res) => {
+    res.render('about.ejs')
+});
+
 
 app.get('/:username', function (req, res) {
     let requestedUser = req.params.username;
@@ -303,13 +307,10 @@ app.put('/update', function (req, res) {
                 console.log("Something wrong when updating data!");
                 res.send(err)
             }
-           
             res.send(doc)
         });
-
-
-
 })
+
 
 app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;
