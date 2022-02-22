@@ -158,7 +158,7 @@ function filterArr(arrOne, arrTwo, arrThree) {
 
 }
 
-function yelp(category, location, limit) {
+function yelpCall(category, location, limit) {
     const reqObject = {
         categories: category,
         location: location,
@@ -179,7 +179,7 @@ app.get('/userpage', (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
 
     function getData() {
-        Promise.all([yelp("physicaltherapy", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
+        Promise.all([yelpCall("physicaltherapy", location, 10), yelpCall("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
                 Promise.all(values.map(value => JSON.stringify(value))))
             .then(finalVals => {
@@ -239,6 +239,19 @@ app.get('/userpage', (req, res) => {
     //youtube: title, videoId, description, channelTitle
 
 })
+
+app.get('/perinatal', (req, res) => {
+    let location = req.query.location;
+    yelpCall("perinatal", location, 10)
+    .then(response => {
+        let businesses = response.jsonBody.businesses;
+        res.send(businesses) 
+      }).catch(e => {
+        console.log(e);
+        res.status(400).json(`Error, ${e}`)
+      });
+    })
+
 
 //delete route
 app.get('/delete', function(req, res){
@@ -376,16 +389,7 @@ app.put('/:username/videosSaved', (req, res) => {
         })
 });
 
-app.get('/perinatal', (req, res) => {
-let location = req.query.location;
-yelp("perinatal", location, 10)
-.then(response => {
-    let business = response.jsonBody.businesses;
-    // res.render('perinatal.ejs', { business })
-  }).catch(e => {
-    console.log(e);
-  });
-})
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
