@@ -124,9 +124,17 @@ $("#yelpSubmit").on("click", function (event) {
     })
     .then(function (data) {
       console.log(data);
-     
-      $("#perinatal").html("hello")
-    })
+      let myHtml = "<h2 class='card-title'>Prenatal/Perinatal Resources Near You</h2>"
+                
+      for(let i = 0; i<data.length; i++){
+          myHtml+=  "<li class='list-group-item'>" + "Name: "  + data[i].name +
+          "<br>" + "Phone: " + data[i].phone + "<br>" + "Rating: " + data[i].rating
+            + "</li>"
+ 
+            }
+         
+          $("#perinatal").html(myHtml)
+          })
     .catch(function (error) {
       console.log(error);
     });
