@@ -157,23 +157,27 @@ function filterArr(arrOne, arrTwo, arrThree) {
     )
 
 }
+
+function yelp(category, location, limit) {
+    const reqObject = {
+        categories: category,
+        location: location,
+        limit: limit
+    }
+    return client.search(reqObject)
+}
+async function youtube(videoCategory) {
+    let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const videos = data;
+    return videos
+}
+
+
 app.get('/userpage', (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
-    function yelp(category, location, limit) {
-        const reqObject = {
-            categories: category,
-            location: location,
-            limit: limit
-        }
-        return client.search(reqObject)
-    }
-    async function youtube(videoCategory) {
-        let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
-        const response = await fetch(url);
-        const data = await response.json();
-        const videos = data;
-        return videos
-    }
+
     function getData() {
         Promise.all([yelp("physicaltherapy", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
@@ -371,6 +375,17 @@ app.put('/:username/videosSaved', (req, res) => {
             }
         })
 });
+
+app.get('/perinatal', (req, res) => {
+let location = req.query.location;
+yelp("perinatal", location, 10)
+.then(response => {
+    let business = response.jsonBody.businesses;
+    res.render('searchresults.ejs', { business })
+  }).catch(e => {
+    console.log(e);
+  });
+})
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
