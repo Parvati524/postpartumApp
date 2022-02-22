@@ -238,16 +238,16 @@ app.get('/userpage', (req, res) => {
 })
 
 //delete route
-app.delete('/:username/delete', function(req, res){
-    let requestedUser = req.params.username; 
-    User.deleteOne({requestedUser}, (error, result)=>{ 
+app.get('/delete', function(req, res){
+    let requestedUser = req.user.username; 
+    User.findOneAndDelete({username: requestedUser}, (error, result)=>{ 
         if(error){
             console.log("Error deleting user from db", error)
             res.status(400).json("Error deleting data from db")
         } else {
             console.log("Result, deleted from db: ", result)
-            res.status(200).json(result)
-            // res.redirect('/');
+            res.redirect('/')
+           
         }
     })
 })
