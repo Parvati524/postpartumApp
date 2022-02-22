@@ -242,7 +242,7 @@ app.get('/userpage', (req, res) => {
 
 app.get('/perinatal', (req, res) => {
     let location = req.query.location;
-    yelpCall("perinatal", location, 10)
+    yelpCall("prenatal", location, 10)
     .then(response => {
         let businesses = response.jsonBody.businesses;
         res.send(businesses) 
