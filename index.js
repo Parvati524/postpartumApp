@@ -381,7 +381,7 @@ let location = req.query.location;
 yelp("perinatal", location, 10)
 .then(response => {
     let business = response.jsonBody.businesses;
-    res.render('searchresults.ejs', { business })
+    // res.render('perinatal.ejs', { business })
   }).catch(e => {
     console.log(e);
   });
