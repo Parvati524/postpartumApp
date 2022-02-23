@@ -26,8 +26,9 @@ html {
   background-size: cover;
   color: white;
 }
-.about-img{
- 
+#perinatal{
+ height:100px;
+ overflow:scroll;
 }
 .message {
   width: 30vw;
