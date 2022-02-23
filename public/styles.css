@@ -36,6 +36,14 @@ html {
   color: white;
 }
 
+#signupForm{
+  width: 40vw;
+  min-height: 100%;
+}
+
+#loginContainer{
+  min-height:100%;
+}
 
 /* this creates a scrollbar, needs height and overflow set to scroll */
 #perinatal{
@@ -70,15 +78,6 @@ html {
   margin: 0 auto;
 }
 
-
-
-#signupForm {
-  width: 60vw;
-}
-/* 
-form{
-    width:40%;
-} */
 
 .hidden {
   display: none;
