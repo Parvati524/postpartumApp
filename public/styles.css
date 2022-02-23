@@ -36,10 +36,10 @@ html {
   color: white;
 }
 
-#signupForm{
+/* #signupForm{
   width: 40vw;
   min-height: 100%;
-}
+} */
 
 #loginContainer{
   min-height:100%;
