@@ -124,7 +124,7 @@ $("#yelpSubmit").on("click", function (event) {
     })
     .then(function (data) {
       console.log(data);
-      let myHtml = "<h2 class='card-title'>Prenatal/Perinatal Resources Near You</h2>"
+      let myHtml = "<div class='card'><div class='card-body'><h2 class='card-title'>Prenatal/Perinatal Resources Near You</h2></div></div>"
                 
       for(let i = 0; i<data.length; i++){
           myHtml+=  "<li class='list-group-item'>" + "Name: "  + data[i].name +
