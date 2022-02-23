@@ -28,27 +28,26 @@ html {
 }
 /* this creates a scrollbar, needs height and overflow set to scroll */
 #perinatal{
- height:100px;
+ height:300px;
  overflow:scroll;
 }
 /* ===== Scrollbar CSS ===== */
   /* Firefox */
-  * {
+  #perinatal {
     scrollbar-width: auto;
     scrollbar-color: #870689 #ffffff;
   }
 
   /* Chrome, Edge, and Safari */
-  *::-webkit-scrollbar {
+  #perinatal::-webkit-scrollbar {
     width: 20px;
   }
 
-  *::-webkit-scrollbar-track {
+  #perinatal::-webkit-scrollbar-track {
     background: #ffffff;
     border:gray;
   }
-
-  *::-webkit-scrollbar-thumb {
+  #perinatal::-webkit-scrollbar-thumb {
     background-color: #870689;
     border-radius: 36px;
     border: 3px solid #fefbfb;
