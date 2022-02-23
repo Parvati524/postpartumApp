@@ -124,17 +124,24 @@ $("#yelpSubmit").on("click", function (event) {
     })
     .then(function (data) {
       console.log(data);
-      let myHtml = "<div class='card mt-4'><div class='card-body'><h2 class='card-title'>Prenatal/Perinatal Resources Near You</h2></div></div>"
-                
-      for(let i = 0; i<data.length; i++){
-          myHtml+=  "<li class='list-group-item'>" + "Name: "  + data[i].name +
-          "<br>" + "Phone: " + data[i].phone + "<br>" + "Rating: " + data[i].rating
-            + "</li>"
- 
-            }
-         
-          $("#perinatal").html(myHtml)
-          })
+      let myHtml =
+        "<div class='card mt-4'><div class='card-body'><h2 class='card-title'>Prenatal/Perinatal Resources Near You</h2></div></div>";
+
+      for (let i = 0; i < data.length; i++) {
+        myHtml +=
+          "<li class='list-group-item'>" +
+          "Name: " +
+          data[i].name +
+          "<br>" +
+          "Phone: " +
+          data[i].phone +
+          "<br>" +
+          "Rating: " +
+          data[i].rating +
+          "</li>";
+      }
+      $("#perinatal").html(myHtml);
+    })
     .catch(function (error) {
       console.log(error);
     });
