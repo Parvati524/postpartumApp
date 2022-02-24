@@ -27,23 +27,32 @@ html {
   color: white;
 }
 
-#backgroundSignup {
-  background: url("./assets/zoltan-white-lotus.jpg") center center no-repeat;
+#main {
+  background-image: url("./assets/zoltan-white-lotus.jpg");
+  background-size: cover;
   width: 100%;
   height: 100%;
   display: flex;
-  background-size: cover;
   color: white;
 }
 
-/* #signupForm{
-  width: 40vw;
-  min-height: 100%;
-} */
 
 #loginContainer{
-  min-height:100%;
+
+  margin: 0 auto;
+  width: 45%;
+  /* 0 top and bottom auto left & right */  
+  background-color: rgba(255, 255, 255, 0.753);
+  padding: 25px 35px; /* Spacing inside form */
+  margin: 25px 20px;
+
 }
+
+#formHeading {
+  text-transform: uppercase;
+  text-align: center;
+}
+
 
 /* this creates a scrollbar, needs height and overflow set to scroll */
 #perinatal{
