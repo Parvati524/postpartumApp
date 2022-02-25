@@ -66,7 +66,6 @@ app.use(isLoggedIn)
 
 //root route
 app.get('/', (req, res) => {
-    console.log('get', res.locals)
     res.render('home.ejs');
 });
 
