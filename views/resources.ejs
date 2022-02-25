@@ -111,14 +111,17 @@
 </section>
 
 
-<section class="bg-info bg-opacity-10 justify-content-center">
+<section class="bg-info bg-opacity-10 d-flex justify-content-center">
     <div class="container px-4 my-4">
-        <div class="row gx-4 justify-content-center">
-            <div class="col-lg-8">
-                <form id="yelpForm" class="justify-content-center">
+        <div class="row gx-4">
+            <div>
+                <form id="yelpForm" class="">
                     <h3>Enter your location for Perinatal/Prenatal Resources Near You</h3>
-                    <input type="text" placeholder="location" id="locationInput">
-                    <button id="yelpSubmit"class="btn btn-success">Submit</button>
+                    <div class="d-flex justify-content-center">
+                        <input type="text" placeholder="location" id="locationInput">
+                        <button id="yelpSubmit"class="btn btn-success">Submit</button>
+                    </div>
+
                     </form>
                     <div id="perinatal">
                         <ul id="perinatalList" class="list-group list-group-flush">

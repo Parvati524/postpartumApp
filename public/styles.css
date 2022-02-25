@@ -72,10 +72,10 @@ html {
     border: 3px solid #fefbfb;
     min-height: 60px;
   }
-  /* #parintal::-webkit-scrollbar-corners {
-    background: red !important;
-    background-color: red !important;
-  } */
+
+  #perinatal::-webkit-scrollbar-corner {
+    background-color: bg-info bg-opacity-10 !important;
+  }
 
 .message {
   width: 30vw;
