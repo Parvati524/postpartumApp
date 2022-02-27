@@ -5,15 +5,17 @@
 </header>
 
 <section>
-    <a href="/logout" class="btn btn-success">Log Out</a>
-    <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
+    <div class="justify-content-center">
+        <a href="/logout" class="btn btn-success">Log Out</a>
+        <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
+    </div>
 </section>
 
 
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 card">
+        <div class="col-md-5 card pt-2">
             <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="card-img-top" alt="physicaltherapist">
             <div class="card-body">
@@ -31,7 +33,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-5 offset-lg-2 card">
+        <div class="col-md-5 offset-lg-2 card pt-2">
             <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="card-img-top" alt="helpingHands">
             <div class="card-body">
@@ -288,7 +290,7 @@
     <div class="container">
         <div class="row">
             <% if (high_risk_pregnancy) { %>
-                <div class="high-risk col-sm-4 card">
+                <div class="high-risk col-md-5 card pt-2">
                     <img src="https://images.pexels.com/photos/57529/pexels-photo-57529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                         class="card-img-top" alt="">
                     <div class="card-body">
@@ -319,7 +321,7 @@
                 <% } %>
 
             <% if (trauma_in_birth) { %>
-                <div class="Trauma col-sm-4 offset-md-2 card">
+                <div class="Trauma col-md-5 offset-md-2 card pt-2">
                     <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                         class="card-img-top"
                         alt="newborn_hands">
@@ -362,9 +364,11 @@
                 <% } %>
             </div>
 
+
+    <section>
         <div class="row">
             <% if (postpartum_anxiety) { %>
-            <div class="post-anx col-sm-4 card">
+            <div class="post-anx col-md-5 card pt-2">
                 <img class="card-img-top" src="https://images.pexels.com/photos/5699864/pexels-photo-5699864.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_holding_head">     
                 <div class="card-body">
                     <h1 class="card-title">Postpartum Anxiety Resources</h1>
@@ -409,11 +413,9 @@
                 </div>
             </div>
             <% } %>
-        
-
 
         <% if (postpartum_depression) { %>
-        <div class="post-dep col-sm-4 offset-md-2 card"> 
+        <div class="post-dep col-md-5 offset-md-2 card pt-2"> 
             <img class="card-img-top" src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_crying">
             <div class="card-body">
                 <h1 class="card-title"> Postpartum Depression Resources </h1>
@@ -457,18 +459,19 @@
         </div>
         <% } %>
     </div>
+</section>
 
-
+<section>
     <div class="row">
         <% if (pelvic_pain){ %>
-            <div class="post-pel-pain col-sm-4 card" style="width: 50%;">
+            <div class="post-pel-pain col-md-5 card pt-2">
                 <img class="card-img-top" src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_pelvis">
                 <div class="card-body">
                     <h1 class="card-title"> Postpartum Pelvic Pain </h1>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             <a href="https://www.babycenter.com/baby/postpartum-health/pelvic-rehab-therapy-help-for-uncomfortable-postpartum-sympt_10379562">
-                                Pelvic Rehab Info</a>
+                            Pelvic Rehab Info</a>
                         </li>
                         <li class="list-group-item">
                             <a href="hhttps://www.pelvicpain.org/public">
@@ -497,54 +500,54 @@
                     </ul>
                 </div>
             </div>
-            <% } %>
-    <% if (back_pain)  { %>
-        <div class="back-pain col-sm-4 offset-md-2 card" style="width: 50%; height: 50%;">
-            <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="womans-back-flower">
-            <div class="card-body">
-                <h1 class="card-title">
-                    Postpartum Back Pain </h1>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <a href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">
-                            Exercises and Tips for Postpartum Back Pain</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">
-                            5 Easy PP Back Pain Exercises</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">
-                            How to Improve PP Back Pain</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">
-                        Back Pain After Childbirth</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">
-                            Back Pain After Pregnancy</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">
-                            Back Pain: Get Relief</a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">
-                            Postpartum Back Pain: Physical Therapy</a>
-                    </li>
-                </ul>
+        <% } %>
+        <% if (back_pain)  { %>
+            <div class="back-pain col-md-5 offset-md-2 card pt-2">
+                <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="womans-back-flower">
+                <div class="card-body">
+                    <h1 class="card-title">
+                        Postpartum Back Pain </h1>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <a href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">
+                                Exercises and Tips for Postpartum Back Pain</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">
+                                5 Easy PP Back Pain Exercises</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">
+                                How to Improve PP Back Pain</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">
+                            Back Pain After Childbirth</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">
+                                Back Pain After Pregnancy</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">
+                                Back Pain: Get Relief</a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">
+                                Postpartum Back Pain: Physical Therapy</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
         <% } %>
     </div>
+</section>
 
-
-
-<div class="row">
+<section>
+    <div class="row">
     <% if(abdominal_pain){ %>
-        <div class="back-pain col-sm-4 card" style="width: 50%;">
-            <img src="https://images.pexels.com/photos/3807733/pexels-photo-3807733.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top" alt="womans-back-flower">
+        <div class=" card back-pain col-sm-5 pt-2">
+            <img src="https://images.pexels.com/photos/3807733/pexels-photo-3807733.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top  img-fluid" alt="womans-back-flower">
             <div class="card-body">
                 <h1 class="card-title">Postpartum Abdominal Pain </h1>
                 <ul class="list-group list-group-flush">
@@ -584,11 +587,9 @@
                 </ul>
             </div>
         </div>
-        <% }
-            %>
-            </div>
+    <% } %>
+</div>
+</section>
 
 
-
-
-    <%-include("partials/footer.ejs")%>
+<%-include("partials/footer.ejs")%>
