@@ -27,34 +27,41 @@ html {
   color: white;
 }
 
-#backgroundSignup {
-  background: url("./assets/zoltan-white-lotus.jpg") center center no-repeat;
+#main {
+  background-image: url("./assets/zoltan-white-lotus.jpg");
+  background-position: center;
+  background-size: cover;
   width: 100%;
   height: 100%;
   display: flex;
-  background-size: cover;
-  color: white;
+  justify-content: end;
 }
 
-#backgroundProfile {
-  background: url("./assets/gorans-eidens.jpg") center center no-repeat;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  background-size: cover;
-  color: white;
-}
-/* #signupForm{
-  width: 40vw;
-  min-height: 100%;
-} */
 
-#loginContainer{
-  min-height:100%;
+.questions-container {
+  padding: 20px 20px;
+
+}
+
+.form-check {
+  display: inline-block;
 }
 #profileContainer{
   min-height:100%;
 }
+
+#login-container {
+  background: rgba(255, 255, 255, 0.768);
+  margin: 25px 20px;
+  width: 50%;
+  padding: 15px 20px;
+  border-radius: 8%;
+  display: flex;
+  justify-content: center;
+}
+
+
+
 
 /* this creates a scrollbar, needs height and overflow set to scroll */
 #perinatal{
