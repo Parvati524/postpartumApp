@@ -37,6 +37,7 @@ html {
   justify-content: end;
 }
 
+
 .questions-container {
   padding: 20px 20px;
 
@@ -44,6 +45,9 @@ html {
 
 .form-check {
   display: inline-block;
+}
+#profileContainer{
+  min-height:100%;
 }
 
 #login-container {
@@ -77,7 +81,7 @@ html {
   }
 
   #perinatal::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: bg-info bg-opacity-10;
     border:gray;
   }
   #perinatal::-webkit-scrollbar-thumb {
@@ -85,8 +89,12 @@ html {
     border-radius: 36px;
     border: 3px solid #fefbfb;
     min-height: 60px;
-
   }
+
+  #perinatal::-webkit-scrollbar-corner {
+    background-color: bg-info bg-opacity-10 !important;
+  }
+
 .message {
   width: 30vw;
   margin: 0 auto;
@@ -120,4 +128,9 @@ section {
     color:green;
 }
 
+
+#navbarLogo {
+  width: 20px;
+  height: 20px;
+}
 
