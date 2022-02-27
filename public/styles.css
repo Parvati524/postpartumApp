@@ -42,7 +42,25 @@ html {
 form{
     width:40%;
 } */
+#ppdImage{
+  height:80vh;
+  width:40vw;
+}
+#ppaImage{
+  height:80vh;
+  width:40vw;
+}
+#ptsdImage{
+  height:80vh;
+  width:40vw;
+}
 
+#ppd_signs{
+  background-color:#F2E6E8;
+}
+#ptsd_signs{
+  background-color:#E3FFFC;
+}
 .hidden {
   display: none;
 }
