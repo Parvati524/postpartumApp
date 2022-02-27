@@ -5,7 +5,7 @@
     <div class="container" id="login-container">
       <!-- Everything related to form is inside login-container-->
       <form action="/signup" method="POST" id="signupForm">
-        <h1 id="formHeading" class="text-center">Sign Up</h1>
+        <h1 id="formHeading" class="text-center text-uppercase">Sign Up</h1>
         <!-- Username -->
         <div class="form-group col-auto">
           <label for="username" class="form-label"></label>
@@ -22,10 +22,8 @@
           <label for="location" class="form-label"></label>
           <input type="text" class="form-control" id="location" placeholder="Enter your city" name="location" />
         </div>
-
         <!-- Questions Container -->
         <div class="container questions-container">
-          
           <!-- Depression -->
           <div class="form-group col-auto">
             <p class="signup-question m-0">Do you feel you may be experiencing Postpartum Depression?</p>
@@ -51,8 +49,6 @@
               <label class="form-check-label" for="ppaFalse"> No </label>
             </div>
           </div>
-
-
           <!-- High Risk -->
           <div class="form-group col-auto">
             <p class="signup-question m-0">Did you have a high risk pregnancy?</p>
@@ -66,7 +62,6 @@
               <label class="form-check-label" for="pregTraumaFalse"> No </label>
             </div>
           </div>
-
           <!-- Birth Trauma -->
           <div class="form-group col-auto">
             <p class="signup-question m-0">Did you experience trauma during the birth?</p>
@@ -79,8 +74,6 @@
               <label class="form-check-label" for="birthTraumaFalse"> No </label>
             </div>
           </div>
-
-
           <!-- Pain Areas -->
           <div class="form-group">
             <p class="signup-question m-0">Are you currently experiencing physical pain in any of these areas?</p>
@@ -99,10 +92,9 @@
           </div>
           <!-- Close Questions container -->
         </div>
-
         <!-- Submit Button -->
         <div class="text-center">
-          <button type="submit" class="btn btn-success btn-lg btn-block">Sign Up</button>
+          <button type="submit" class="btn btn-success btn-lg btn-block text-uppercase">Sign Up</button>
         </div>
         
         <!-- Close form -->
