@@ -7,7 +7,7 @@
 
 <div class="container">
         <div class ="row">
-                <div class="col-lg-3 col-md-6 offset-lg-2">
+                <div class="col-lg-5">
                         <div class="card">
                                 <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                                 class="card-img-top img-thumbnail" alt="physicaltherapist">
@@ -26,7 +26,7 @@
                         </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6 offset-lg-2">
+                <div class="col-lg-5">
                         <div class="card">
                                 <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                                         class="card-img-top img-thumbnail" alt="helpingHands">
@@ -48,30 +48,29 @@
         </div>
 </div>
 
-<div class="container">
-        <div class="row">
-                <div class="col-sm-6">
-                        <div class="card">
-                                <div class="card ppdvideo">
-                                        <iframe class="card-img-top" id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-                                        <div class="card-body">
-                                                <div class="card-title">
-                                                        <%=ppdvideoinfo[0].snippet.title%>
-                                                </div>
-                                                <p class="card-text">
-                                                        <%=ppdvideoinfo[0].snippet.description%>
-                                                </p>
-                                                <p class="card-text">from channel: <%=ppdvideoinfo[0].snippet.channelTitle%></p>
-                                        
-                                                <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
-                                                <button data id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
-                                                <p class="hidden" id="videoSaved">Video Saved!</p>
-                                                <p class="hidden" id="alreadySaved">Video Already Saved</p>
-                                        </div>
+ <div class="row">
+        <div class="col-md-6">
+                <div class="card">
+                        <div class="card ppdvideo">
+                                <iframe class="card-img-top" id="ppdvideo" src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+                        <div class="card-body">
+                                <div class="card-title">
+                                        <%=ppdvideoinfo[0].snippet.title%>
                                 </div>
+                                <p class="card-text">
+                                <%=ppdvideoinfo[0].snippet.description%>
+                                </p>
+                                <p class="card-text">from channel: <%=ppdvideoinfo[0].snippet.channelTitle%>
+                                </p>
+                                <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
+                                <button data id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
+                                <p class="hidden" id="videoSaved">Video Saved!</p>
+                                <p class="hidden" id="alreadySaved">Video Already Saved</p>
                         </div>
                 </div>
-                <div class="col-sm-6">
+        </div>
+               
+                <div class="col-md-6">
                         <div class="card">
                                 <div className="medvideo">
                                         <iframe class="card-img-top" id="meditationvideo" src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
@@ -94,27 +93,25 @@
                         </div>
                 </div>
         </div>
-        <div class="row">
-                <div class="col-sm-6">
-                        <div class="card">
-                                <div className="ppyoga">
-                                        <iframe class="card-img-top" id="yogavideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
-                                        <div class="card-body">                             
-                                                <div class="card-title">
-                                                        <%=yogavideoinfo[0].snippet.title%>
-                                                </div>
-                                                <p class="card-text">
-                                                        <%=yogavideoinfo[0].snippet.description%>
-                                                </p>
-                                                <p>
-                                                        from channel: <%=medvideoinfo[0].snippet.channelTitle%>
-                                                </p>
-                                                <button data-id="<%=yogavideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
-                                                <button data-id= "<%=yogavideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
-                                                <p class="hidden" id="videoSaved">Video Saved!</p>
-                                                <p class="hidden" id="alreadySaved">Video Already Saved</p>
-                                        </div>
-                                </div>
+        <div class="col-md-6">
+              <div class="card ppyoga">
+                   <iframe class="card-img-top" id="yogavideo" src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
+                    <div class="card-body">                             
+                        <div class="card-title">
+                        <%=yogavideoinfo[0].snippet.title%>
+                        </div>
+                        <p class="card-text">
+                        <%=yogavideoinfo[0].snippet.description%>
+                        </p>
+                        <p>
+                        from channel: <%=medvideoinfo[0].snippet.channelTitle%>
+                        </p>
+                        <button data-id="<%=yogavideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"> click when watched</button>
+                        <button data-id= "<%=yogavideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"> click to save</button>
+                        <p class="hidden" id="videoSaved">Video Saved!</p>
+                        <p class="hidden" id="alreadySaved">Video Already Saved</p>
+                    </div>
+        </div>
                                 <div className="ppyoga">
                                         <iframe class="card-img-top" id="exvideo" src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
                                         <div class="card-body">                             
