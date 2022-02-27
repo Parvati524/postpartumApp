@@ -29,29 +29,34 @@ html {
 
 #main {
   background-image: url("./assets/zoltan-white-lotus.jpg");
+  background-position: center;
   background-size: cover;
   width: 100%;
   height: 100%;
   display: flex;
-  color: white;
+  justify-content: end;
 }
 
+.questions-container {
+  padding: 20px 20px;
 
-#loginContainer{
+}
 
-  margin: 0 auto;
-  width: 45%;
-  /* 0 top and bottom auto left & right */  
-  background-color: rgba(255, 255, 255, 0.753);
-  padding: 25px 35px; /* Spacing inside form */
+.form-check {
+  display: inline-block;
+}
+
+#login-container {
+  background: rgba(255, 255, 255, 0.768);
   margin: 25px 20px;
-
+  width: 50%;
+  padding: 15px 20px;
+  border-radius: 8%;
+  display: flex;
+  justify-content: center;
 }
 
-#formHeading {
-  text-transform: uppercase;
-  text-align: center;
-}
+
 
 
 /* this creates a scrollbar, needs height and overflow set to scroll */
