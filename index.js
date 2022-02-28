@@ -55,36 +55,35 @@ mongoose.connect(mongoURIKey)
 
 // Creating the middleware function:
 const isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        req.isLoggedIn = true
-    }
+        res.locals.isAuthenticated = req.isAuthenticated()
     if (req.url.includes('userpage') && !req.isAuthenticated()) {
         res.redirect('/login')
     } else {
-        return next();
+        next();
     }
 }
 app.use(isLoggedIn)
 
 //root route
 app.get('/', (req, res) => {
-    res.render('home.ejs', { isLoggedIn: req.isLoggedIn });
+    console.log('get', res.locals)
+    res.render('home.ejs');
 });
 
 app.get('/login', (req, res) => {
-    res.render('login.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('login.ejs');
 });
 
 app.get('/signup', (req, res) => {
-    res.render('signup.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('signup.ejs');
 });
 
 app.get('/resources', (req, res) => {
-    res.render('resources.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('resources.ejs');
 });
 
 app.get('/signs', (req, res) => {
-    res.render('signssymptoms.ejs', { isLoggedIn: req.isLoggedIn });
+    res.render('signssymptoms.ejs');
 });
 
 app.post('/signup', (req, res) => {
@@ -121,7 +120,7 @@ app.post('/signup', (req, res) => {
     User.register(newUser, password, (err, user) => {
         if (err) {
             console.log(err);
-            return res.render("signup", { isLoggedIn: req.isLoggedIn });
+            return res.render("signup");
         } else {
             passport.authenticate("local")(req, res, () => {
                 res.redirect("/userpage");
@@ -158,25 +157,29 @@ function filterArr(arrOne, arrTwo, arrThree) {
     )
 
 }
+
+function yelpCall(category, location, limit) {
+    const reqObject = {
+        categories: category,
+        location: location,
+        limit: limit
+    }
+    return client.search(reqObject)
+}
+async function youtube(videoCategory) {
+    let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const videos = data;
+    return videos
+}
+
+
 app.get('/userpage', (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
-    function yelp(category, location, limit) {
-        const reqObject = {
-            categories: category,
-            location: location,
-            limit: limit
-        }
-        return client.search(reqObject)
-    }
-    async function youtube(videoCategory) {
-        let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
-        const response = await fetch(url);
-        const data = await response.json();
-        const videos = data;
-        return videos
-    }
+
     function getData() {
-        Promise.all([yelp("physicaltherapy", location, 10), yelp("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
+        Promise.all([yelpCall("physicaltherapy", location, 10), yelpCall("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
             .then(values =>
                 Promise.all(values.map(value => JSON.stringify(value))))
             .then(finalVals => {
@@ -226,7 +229,7 @@ app.get('/userpage', (req, res) => {
                     exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
                 }
 
-                res.render("userpage", { isLoggedIn: req.isLoggedIn, username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain, abdominal_pain });
+                res.render("userpage", { username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain, abdominal_pain });
             });
 
     }
@@ -237,10 +240,41 @@ app.get('/userpage', (req, res) => {
 
 })
 
+app.get('/perinatal', (req, res) => {
+    let location = req.query.location;
+    yelpCall("prenatal", location, 10)
+    .then(response => {
+        let businesses = response.jsonBody.businesses;
+        res.send(businesses) 
+      }).catch(e => {
+        console.log(e);
+        res.status(400).json(`Error, ${e}`)
+      });
+    })
+
+
+//delete route
+app.get('/delete', function(req, res){
+    let requestedUser = req.user.username; 
+    User.findOneAndDelete({username: requestedUser}, (error, result)=>{ 
+        if(error){
+            console.log("Error deleting user from db", error)
+            res.status(400).json("Error deleting data from db")
+        } else {
+            console.log("Result, deleted from db: ", result)
+            res.redirect('/')
+           
+        }
+    })
+})
 
 app.get('/user', (req, res) => {
     res.status(200).json({ user: req.user })
 })
+
+app.get('/about', (req, res) => {
+    res.render('about.ejs')
+});
 
 
 app.get('/:username', function (req, res) {
@@ -290,13 +324,10 @@ app.put('/update', function (req, res) {
                 console.log("Something wrong when updating data!");
                 res.send(err)
             }
-           
             res.send(doc)
         });
-
-
-
 })
+
 
 app.put('/:username/videosWatched', (req, res) => {
     let username = req.params.username;
@@ -339,7 +370,7 @@ app.put('/:username/videosSaved', (req, res) => {
                 console.log("Success", user)
                 if (user[0].videosSaved.includes(videoSaved)) {
                     console.log('Video already saved')
-                    res.status(400).json('Video already saved')
+                    res.status(201).json('Video already saved')
                 } else {
                     User.findOneAndUpdate(
                         { username: username },
@@ -349,7 +380,6 @@ app.put('/:username/videosSaved', (req, res) => {
                                 console.log(error);
                                 res.status(400).json("Error updating document")
                             } else {
-                                console.log(success);
                                 console.log(`${username}, it worked!`)
                                 res.status(201).json(success)
                             }
@@ -359,6 +389,8 @@ app.put('/:username/videosSaved', (req, res) => {
             }
         })
 });
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

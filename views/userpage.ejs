@@ -1,628 +1,929 @@
 <%- include("partials/header.ejs")%>
 
-        <h1> Welcome <%=username%>
-        </h1>
-        <a href="/logout" class="btn btn-success">Log Out</a>
-        <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
-       
+    <h1> Welcome, <%=username%>
+    </h1>
+    <a href="/logout" class="btn btn-success">Log Out</a>
+    <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
 
-        <div class="container">
-                <div class="row">
-                        <div class="col-lg-3 col-md-6 card">
-                                        <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                                class="card-img-top" alt="physicaltherapist">
-                                        <div class="card-body">
-                                                <h2 class="card-title">Physical Therapists Near You</h2>
-                                        <ul class="list-group list-group-flush">
-                                                <% for( let i=0; i < phystherapists.length; i++ ) { %>
-                                                        <li class="list-group-item">
-                                                                Name: <%=phystherapists[i].name%>
-                                                                        <br>
-                                                                        Phone: <%=phystherapists[i].phone%>
-                                                                                <br>
-                                                                                Rating: <%=phystherapists[i].rating%>
-                                                        </li>
-                                                        <% } %>
-                                        </ul>
-                                </div>
-                        </div>
-                      
 
-                        <div class="col-lg-3 col-md-6 offset-lg-2 card">
-                                        <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
-                                                class="card-img-top" alt="helpingHands">
-                                                <div class="card-body">
-                                        <h2 class="card-title">Psychologists Near You</h2>
-                                        <ul class="list-group list-group-flush">
-                                                <% for( let i=0; i < psychologists.length; i++ ) { %>
-
-                                                        <li class="list-group-item">
-                                                                Name: <%=psychologists[i].name%>
-                                                                        <br>
-                                                                        Phone: <%=psychologists[i].phone%>
-                                                                                <br>
-                                                                                Rating: <%=psychologists[i].rating%>
-                                                        </li>
-                                                        <% } %>
-                                        </ul>
-                                </div>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 card">
+                <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    class="card-img-top" alt="physicaltherapist">
+                <div class="card-body">
+                    <h2 class="card-title">Physical Therapists Near You</h2>
+                    <ul class="list-group list-group-flush">
+                        <% for( let i=0; i < phystherapists.length; i++ ) { %>
+                            <li class="list-group-item">
+                                Name: <%=phystherapists[i].name%>
+                                    <br>
+                                    Phone: <%=phystherapists[i].phone%>
+                                        <br>
+                                        Rating: <%=phystherapists[i].rating%>
+                            </li>
+                            <% } %>
+                    </ul>
                 </div>
+            </div>
+
+
+            <div class="col-md-5 offset-md-2 card">
+                <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    class="card-img-top" alt="helpingHands">
+                <div class="card-body">
+                    <h2 class="card-title">Psychologists Near You</h2>
+                    <ul class="list-group list-group-flush">
+                        <% for( let i=0; i < psychologists.length; i++ ) { %>
+                            <li class="list-group-item">
+                                Name: <%=psychologists[i].name%>
+                                    <br>
+                                    Phone: <%=psychologists[i].phone%>
+                                        <br>
+                                        Rating: <%=psychologists[i].rating%>
+                            </li>
+                            <% } %>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="errorMessage">
-                <% if (!ppdvideoinfo || !ppdvideoinfo[0] || ppdvideoinfo.length===0) { %>
-                        <h1>You have watched all your videos for this category!</h1>
+    </div>
+ <% if (!ppdvideoinfo || !ppdvideoinfo[0]) { %>
+  <h1 class="errorMessage">You have watched all your videos</h1>
+ <% } else{  %>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card ppdvideo">
+                    <iframe class="card-img-top" id="ppdvideo"
+                        src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <%=ppdvideoinfo[0].snippet.title%>
+                        </div>
+                        <p class="card-text">
+                            <%=ppdvideoinfo[0].snippet.description%>
+                        </p>
+                        <p class="card-text">from channel:
+                            <%=ppdvideoinfo[0].snippet.channelTitle%>
+                        </p>
+
+                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videowatched btn btn-primary"
+                            id="videoWatchedToast">
+                            click when watched</button>
+                        <p class="hidden" id="ppdvideowatched">Video
+                            saved to watched!</p>
+                        <p class="hidden" id="ppdalreadywatched">
+                            Video already saved to watched</p>
+                        <!-- Fire toast on video saved -->
+                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>" class="videosaved btn btn-primary"
+                            id="videoSavedToast">
+                            click to save</button>
+
+                        <!-- Toast Notification Div -->
+                        <div data-toast="<%=ppdvideoinfo[0].id.videoId%>" class="toast liveToast" role="alert"
+                            aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong class="mr-auto">Message from Admin</strong>
+                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                    aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                                Your records have been updated!
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                        <% } %>
-      
+            </div>
+        </div>
+    </div>
+<% } %>
 
-        <% if (ppdvideoinfo) { %>
-                <div class="row">
-                        <div class="col-sm-6">
-                                <div class="card">
-                                        <div class="card ppdvideo">
-                                                <iframe class="card-img-top" id="ppdvideo"
-                                                        src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
-                                                <div class="card-body">
-                                                        <div class="card-title">
-                                                                <%=ppdvideoinfo[0].snippet.title%>
-                                                        </div>
-                                                        <p class="card-text">
-                                                                <%=ppdvideoinfo[0].snippet.description%>
-                                                        </p>
-                                                        <p class="card-text">from channel:
-                                                                <%=ppdvideoinfo[0].snippet.channelTitle%>
-                                                        </p>
-
-                                                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
-                                                                class="videowatched btn btn-primary">
-                                                                click when watched</button>
-                                                                <p class="hidden" id="ppdvideowatched">Video
-                                                                        saved to watched!</p>  
-                                                                <p class="hidden" id="ppdalreadywatched">
-                                                                        Video already saved to watched</p>                   
-                                                        <button data-id="<%=ppdvideoinfo[0].id.videoId%>"
-                                                                class="videosaved btn btn-primary">
-                                                                click to save</button>
-
-                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-                                                                <div class="d-flex">
-                                                                        <div class="toast-body hidden" id="ppdvideosaved">
-                                                                                Video Saved!</div>
-                                                                </div>
-                                                        </div>
-
-                                                        <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000">
-                                                                <div class="d-flex">
-                                                                        <div class="toast-body hidden" id="ppdalreadysaved">
-                                                                                Video Already Saved</div>
-                                                                </div>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
+    <% if (!medvideoinfo || !medvideoinfo[0]) { %>
+            <h1 class="errorMessage">You have watched all your videos for this category!
+            </h1>
+    <% } else { %>
+        <div class="col-sm-6">
+            <div class="card">
+                <div className="medvideo">
+                    <iframe class="card-img-top" id="meditationvideo"
+                        src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
+                    <div class="card-body">
+                        <div class="card-title">
+                            <%=medvideoinfo[0].snippet.title%>
                         </div>
-                        <% } %>
-
-                       
-                                <% if (!medvideoinfo || !medvideoinfo[0]) { %>
-                                        <div class="errorMessage">
-                                        <h1>You have watched all your videos for this category!
-                                        </h1>
-                                        </div>
-                                        <% } %>
-                      
-                        <% if(medvideoinfo){ %>
-                        <div class="col-sm-6">
-                                <div class="card">
-                                        <div className="medvideo">
-                                                <iframe class="card-img-top" id="meditationvideo"
-                                                        src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
-                                                <div class="card-body">
-                                                        <div class="card-title">
-                                                                <%=medvideoinfo[0].snippet.title%>
-                                                        </div>
-                                                        <p class="card-text">
-                                                                <%=medvideoinfo[0].snippet.description%>
-                                                        </p>
-                                                        <p>
-                                                                from
-                                                                channel:
-                                                                <%=medvideoinfo[0].snippet.channelTitle%>
-                                                        </p>
-                                                        <button data-id="<%=medvideoinfo[0].id.videoId%>"
-                                                                class="videowatched btn btn-primary">
-                                                                click
-                                                                when
-                                                                watched</button>
-                                                        <button data-id="<%=medvideoinfo[0].id.videoId%>"
-                                                                class="videosaved btn btn-primary">
-                                                                click to
-                                                                save</button>
-                                                        <p class="hidden" id="videoSaved">
-                                                                Video
-                                                                Saved!
-                                                        </p>
-                                                        <p class="hidden" id="alreadySaved">
-                                                                Video
-                                                                Already
-                                                                Saved
-                                                        </p>
-                                                </div>
-                                        </div>
-                                </div>
-
+                        <p class="card-text">
+                            <%=medvideoinfo[0].snippet.description%>
+                        </p>
+                        <p>
+                            from
+                            channel:
+                            <%=medvideoinfo[0].snippet.channelTitle%>
+                        </p>
+                        <button data-id="<%=medvideoinfo[0].id.videoId%>"
+                            class="videowatched btn btn-primary">
+                            click
+                            when
+                            watched</button>
+                        <button data-id="<%=medvideoinfo[0].id.videoId%>"
+                            class="videosaved btn btn-primary">
+                            click to
+                            save</button>
+                        <p class="hidden" id="videoSaved">
+                            Video
+                            Saved!
+                        </p>
+                        <p class="hidden" id="alreadySaved">
+                            Video
+                            Already
+                            Saved
+                        </p>
+                        <div data-toast="<%=medvideoinfo[0].id.videoId%>" class="toast liveToast"
+                            role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <strong class="mr-auto">Message from Admin</strong>
+                                <button type="button" class="btn-close me-2 m-auto"
+                                    data-bs-dismiss="toast" aria-label="Close">
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                                Your records have been updated!
+                            </div>
                         </div>
-                        <% } %>
-                        
-                                <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
-                                        <div class="errorMessage"></div>
-                                        <h1>You have watched all your videos for this category!
-                                        </h1>
-                                        </div>
-                                        <% } %>
-                      
-
-                        <% if(yogavideoinfo){ %>
-                        <div class="row">
-                                <div class="col-sm-6">
-                                        <div class="card">
-                                                <div className="ppyoga">
-                                                        <iframe class="card-img-top" id="yogavideo"
-                                                                src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
-                                                        <div class="card-body">
-                                                                <div class="card-title">
-                                                                        <%=yogavideoinfo[0].snippet.title%>
-                                                                </div>
-                                                                <p class="card-text">
-                                                                        <%=yogavideoinfo[0].snippet.description%>
-                                                                </p>
-                                                                <p>
-                                                                        from
-                                                                        channel:
-                                                                        <%=yogavideoinfo[0].snippet.channelTitle%>
-                                                                </p>
-                                                                <button data-id="<%=yogavideoinfo[0].id.videoId%>"
-                                                                        class="videowatched btn btn-primary">
-                                                                        click
-                                                                        when
-                                                                        watched</button>
-                                                                <button data-id="<%=yogavideoinfo[0].id.videoId%>"
-                                                                        class="videosaved btn btn-primary">
-                                                                        click
-                                                                        to
-                                                                        save</button>
-                                                                <p class="hidden" id="videoSaved">
-                                                                        Video
-                                                                        Saved!
-                                                                </p>
-                                                                <p class="hidden" id="alreadySaved">
-                                                                        Video
-                                                                        Already
-                                                                        Saved
-                                                                </p>
-                                                        </div>
-                                                </div>
-                                        </div>
-                                </div>
-                                <% } %>
-
-                             
-                                        <% if (!exvideoinfo || !exvideoinfo[0]) { %>
-                                                <div class="errorMessage">
-                                                <h1>You have
-                                                        watched
-                                                        all
-                                                        your
-                                                        videos
-                                                        for
-                                                        this
-                                                        category!
-                                                </h1>
-                                        </div>
-                                                <% } %>
-                               
-                                <% if (exvideoinfo) { %>
-                                <div className="exyoga">
-                                        <iframe class="card-img-top" id="exvideo"
-                                                src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
-                                        <div class="card-body">
-                                                <div class="card-title">
-                                                        <%=exvideoinfo[0].snippet.title%>
-                                                </div>
-                                                <p class="card-text">
-                                                        <%=exvideoinfo[0].snippet.description%>
-                                                </p>
-                                                <p>
-                                                        from
-                                                        channel:
-                                                        <%=exvideoinfo[0].snippet.channelTitle%>
-                                                </p>
-                                                <button data-id="<%=exvideoinfo[0].id.videoId%>"
-                                                        class="videowatched btn btn-primary">
-                                                        click
-                                                        when
-                                                        watched</button>
-                                                <button data-id="<%=exvideoinfo[0].id.videoId%>"
-                                                        class="videosaved btn btn-primary">
-                                                        click
-                                                        to
-                                                        save</button>
-                                                <p class="hidden" id="videoSaved">
-                                                        Video
-                                                        Saved!
-                                                </p>
-                                                <p class="hidden" id="alreadySaved">
-                                                        Video
-                                                        Already
-                                                        Saved
-                                                </p>
-                                        </div>
-                                </div>
-                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
         <% } %>
 
-        <div class="container">
-                <div class="row">
-                                <% if (high_risk_pregnancy) { %>
-                                        <div class="high-risk col-sm-6 card">
-                                                <img src="https://images.pexels.com/photos/57529/pexels-photo-57529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="card-img-top" alt="">
-                                                <div class="card-body">
-                                        <h1 class="card-title">Recovering
-                                                after
-                                                a
-                                                High
-                                                Risk
-                                                Pregnancy:
-                                        </h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
-                                                                Home
-                                                                after
-                                                                a
-                                                                High
-                                                                Risk
-                                                                Pregnancy</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info
-                                                                about
-                                                                Postpartum
-                                                                PTSD</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
-                                                                sharing
-                                                                their
-                                                                stories
-                                                                after
-                                                                a
-                                                                high
-                                                                risk
-                                                                pregnancy</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What
-                                                                to
-                                                                expect
-                                                                after
-                                                                a
-                                                                high
-                                                                risk
-                                                                pregnancy</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD
-                                                                after
-                                                                a
-                                                                high
-                                                                risk
-                                                                pregnancy</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
-                                                                for
-                                                                Coping</a>
-                                                </li>
-                                        </ul>
+    <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
+        <h1 class="errorMessage">You have watched all your videos for this category!
+        </h1>
+        <% } else { %>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div className="ppyoga">
+                        <iframe class="card-img-top" id="yogavideo"
+                            src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <%=yogavideoinfo[0].snippet.title%>
+                            </div>
+                            <p class="card-text">
+                                <%=yogavideoinfo[0].snippet.description%>
+                            </p>
+                            <p>
+                                from
+                                channel:
+                                <%=yogavideoinfo[0].snippet.channelTitle%>
+                            </p>
+                            <button data-id="<%=yogavideoinfo[0].id.videoId%>"
+                                class="videowatched btn btn-primary">
+                                click
+                                when
+                                watched</button>
+                            <button data-id="<%=yogavideoinfo[0].id.videoId%>"
+                                class="videosaved btn btn-primary">
+                                click
+                                to
+                                save</button>
+                            <p class="hidden" id="videoSaved">
+                                Video
+                                Saved!
+                            </p>
+                            <p class="hidden" id="alreadySaved">
+                                Video
+                                Already
+                                Saved
+                            </p>
+                            <div data-toast="<%=yogavideoinfo[0].id.videoId%>"
+                                class="toast liveToast" role="alert"
+                                aria-live="assertive" aria-atomic="true">
+                                <div class="toast-header">
+                                    <strong class="mr-auto">Message from
+                                        Admin</strong>
+                                    <button type="button"
+                                        class="btn-close me-2 m-auto"
+                                        data-bs-dismiss="toast" aria-label="Close">
+                                    </button>
                                 </div>
+                                <div class="toast-body">
+                                    Your records have been updated!
                                 </div>
-                                        <% } %>
-                        
-                       
-                                <% if (trauma_in_birth) { %>
-                                        <div class="Trauma col-sm-6 card">
-                                               <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="card-img-top" alt="newborn_hands">
-                                                <div class="card-body">
-                                        <h1 class="card-title">Recovering
-                                                from
-                                                a
-                                                Traumatic
-                                                Birth:
-                                        </h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://www.birthtraumaassociation.org.uk/">Birth
-                                                                Trauma
-                                                                Association</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia
-                                                                Foundation:
-                                                                Birth
-                                                                Trauma
-                                                                Resources</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps
-                                                                Program:
-                                                                Birth
-                                                                Trauma</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
-                                                                Home
-                                                                after
-                                                                a
-                                                                Traumatc
-                                                                Birth</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal
-                                                                PTSD
-                                                                and
-                                                                Birth
-                                                                Trauma
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info
-                                                                on
-                                                                Birth
-                                                                Trauma</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
-                                                                for
-                                                                Coping</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering
-                                                                from
-                                                                a
-                                                                difficult
-                                                                birth</a>
-                                                </li class="list-group-item">
-                                        </ul>
-                                </div>
-                                </div>
-                                        <% } %>
-                        
-                    
-                                <% if (postpartum_anxiety) { %>
-                                        <div class="post-anx col-sm-6 card">
-                                            <img class="card-img-top" src="https://images.pexels.com/photos/5699864/pexels-photo-5699864.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_holding_head">   
-                                        <div class="card-body">
-                                            <h1 class="card-title">Postpartum
-                                                Anxiety
-                                                Resources
-                                        </h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://www.mindfulmamasclub.com/bloghub/postpartum-anxiety-is-real-carina-devi">Postpartum
-                                                                Anxiety
-                                                                is
-                                                                Real</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-anxiety">Panda
-                                                                PPA
-                                                                Recovery
-                                                                Stories</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://oc87recoverydiaries.org/parent-with-anxiety/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs78zJY-nEWKH7aTRz8JrvxMWRQQlkINT1S-dzk9LEctRiDcM1tEbZgaAuW4EALw_wcB">One
-                                                                Woman's
-                                                                Jounrey
-                                                                with
-                                                                Anxiety</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.ppdil.org/2015/04/postpartum-anxiety-or-normal-new-mom-fears/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4vhDjRMWXe7UibCQkrpikcatnEI84nIo7pAkHKvgmqPX8juX0tXjIaAvBtEALw_wcB">PPA
-                                                                or
-                                                                Normal
-                                                                New
-                                                                Mom
-                                                                Fears?</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
-                                                                Mental
-                                                                Health
-                                                                Video
-                                                                Stories</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://psychcentral.com/anxiety/postpartum-anxiety">Info
-                                                                on
-                                                                Postpartum
-                                                                Anxiety</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.betterhelp.com/advice/anxiety/what-to-do-when-you-have-postpartum-anxiety/?utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=_&utm_content=75597921965&network=g&placement=&target=&matchtype=&utm_campaign=6459244691&ad_type=text&adposition=&gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs6ExKNHFwV0xtx31pZ-8cZYCZ9MyOMvfd2rv2YXXtoSkfrXuiamfZ8aArz8EALw_wcB">What
-                                                                to
-                                                                Do
-                                                                If
-                                                                You
-                                                                Have
-                                                                PPA</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.romper.com/p/11-resources-for-dealing-with-postpartum-anxiety-18792">Resources
-                                                                for
-                                                                Dealing
-                                                                With
-                                                                PPA</a>
-                                                </li>
-                                        </ul>
-                                </div>
+                            </div>
                         </div>
-                       
-                                        <% } %>
-                       
-                                <% if (postpartum_depression) { %>
-                                        <div class="post-dep col-sm-6 card">
-                                                <img class="card-img-top" src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_crying">
-                                                <div class="card-body">
-                                        <h1 class="card-title">Postpartum
-                                                Depression
-                                                Resources
-                                        </h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="hhttps://www.babycenter.com/baby/postpartum-health/postpartum-depression-quiz_20000530">Postpartum
-                                                                Depression
-                                                                Screening</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://postpartumny.org/sharingourstories/">Stories
-                                                                of
-                                                                Hope</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-depression">PANDA
-                                                                PPD
-                                                                Recovery
-                                                                Stories</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.marchofdimes.org/pregnancy/postpartum-depression.aspx">March
-                                                                of
-                                                                Dimes:
-                                                                Postpartum
-                                                                Depression</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.healthline.com/health/depression/postpartum-depression#symptoms">Info
-                                                                on
-                                                                Postpartu
-                                                                Depression</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://postpartumprogress.com/ppd-support-groups-in-the-u-s-canada">Support
-                                                                Groups
-                                                                in
-                                                                the
-                                                                USA
-                                                                and
-                                                                Candada</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
-                                                                Mental
-                                                                Health
-                                                                Stories</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.psycom.net/postpartum-depression-test/">Is
-                                                                it
-                                                                More
-                                                                Than
-                                                                the
-                                                                Baby
-                                                                Blues?</a>
-                                                </li>
-                                        </ul>
-                                </div>
-                        </div>
-                                        <% } %>
-                       
-                       
-                                <% if (pelvic_pain) { %>
-                                        <div class="post-pel-pain col-sm-6 card">
-                                                <img class="card-img-top" src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_pelvis">
-                                                <div class="card-body">
-                                        <h1 class="card-title">Postpartum
-                                                Pelvic
-                                                Pain
-                                        </h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://www.babycenter.com/baby/postpartum-health/pelvic-rehab-therapy-help-for-uncomfortable-postpartum-sympt_10379562">Pelvic
-                                                                Rehab
-                                                                Info</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="hhttps://www.pelvicpain.org/public">International
-                                                                Pelvic
-                                                                Pain
-                                                                Society
-                                                                resources</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.nytimes.com/2020/04/16/parenting/pregnancy/pelvic-floor-therapy.html">Pelvic
-                                                                Floor
-                                                                Therapy
-                                                                and
-                                                                Pelvic
-                                                                Pain</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.pregnancybirthbaby.org.au/pelvic-floor-exercises">Pelvic
-                                                                Floor
-                                                                Exercises</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www2.hse.ie/conditions/pelvic-girdle-pain-pregnancy/exercises/">Exercises
-                                                                for
-                                                                Pelvic
-                                                                Girdle
-                                                                Pain</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://feminapt.com/blog/postpartum-pelvic-pain-and-what-you-can-do-about-it">Postpartum
-                                                                Pelvic
-                                                                Pain:
-                                                                What
-                                                                You
-                                                                Can
-                                                                Do</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.ivyrehab.com/news/prenatal-postpartum-pelvic-pain-causes-and-treatment/">Postpartum
-                                                                Pelvic
-                                                                Pain:
-                                                                Causes
-                                                                and
-                                                                Treatment</a>
-                                                </li>
-                                        </ul>
-                                </div>
-                        </div>
-                                        <% } %>
-                      
-
-                      
-                                <% if (back_pain) { %>
-                                <div class="back-pain col-sm-6 card">
-                                                <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="womans-back-flower">
-                                        <div class="card-body">
-                                                <h1 class="card-title">Postpartum Back Pain</h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">Exercises and Tips for Postpartum Back Pain</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">5 Easy PP Back Pain Exercises</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">How to Improve PP Back Pain</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">Back Pain After Childbirth</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">Back Pain After Pregnancy</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">Back Pain: Get Relief</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">Postpartum Back Pain: Physical Therapy</a>
-                                                </li>
-                                            
-                                        </ul>
-                                        </div>
-                                </div>
-                                 <% } %>
-
-                                <% if (abdominal_pain) { %>
-                                <div class="back-pain col-sm-6 card">
-                                                <img src="https://images.pexels.com/photos/3807733/pexels-photo-3807733.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" class="card-img-top" alt="womans-back-flower">
-                                        <div class="card-body">
-                                                <h1 class="card-title">Postpartum Abdominal Pain</h1>
-                                        <ul class="list-group list-group-flush">
-                                                <li class="list-group-item"><a href="https://pubmed.ncbi.nlm.nih.gov/20619573/"> Abdominal Pain in a Postpartum Patient</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.verywellfamily.com/is-stomach-pain-normal-after-giving-birth-290215">Common Causes of Postpartum Abdominal Pain</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4680577/">Postpartum Acute Abdomen and Its Diagnostic Challenges</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.healthline.com/health/postpartum-cramps#treatment">What Causes Cramping After Birth and What Can You Do to Treat It?</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.livestrong.com/article/306691-pain-in-the-abdomen-post-pregnancy-during-exercise/">Pain in the Abdomen Post Pregnancy During Exercise</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.parents.com/pregnancy/my-body/postpartum/diastasis-recti-the-postpartum-body-problem-no-one-talks-about/">Diastasis Recti</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.morelandobgyn.com/blog/improve-diastasis-recti-after-baby">How to Improve Diastasis Recti After Baby</a>
-                                                </li>
-                                                <li class="list-group-item"><a href="https://www.youtube.com/watch?v=D6u8daRaV9g">Postpartum Pilates Workout and Tummy Flattening Exercies </a>
-                                                </li>
-                                        </ul>
-                                        </div>
-                                </div>
-                                <% } %>
+                    </div>
                 </div>
+            </div>
         </div>
+        <% } %>
+
+    <% if (!exvideoinfo || !exvideoinfo[0]) { %>
+            <h1 class="errorMessage">You have
+                watched
+                all
+                your
+                videos
+                for
+                this
+                category!
+            </h1>
+        <% } else { %>
+        <div class="exyoga col-sm-6">
+            <iframe class="card-img-top" id="exvideo"
+                src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
+            <div class="card-body">
+                <div class="card-title">
+                    <%=exvideoinfo[0].snippet.title%>
+                </div>
+                <p class="card-text">
+                    <%=exvideoinfo[0].snippet.description%>
+                </p>
+                <p>
+                    from
+                    channel:
+                    <%=exvideoinfo[0].snippet.channelTitle%>
+                </p>
+                <button data-id="<%=exvideoinfo[0].id.videoId%>"
+                    class="videowatched btn btn-primary">
+                    click
+                    when
+                    watched</button>
+                <button data-id="<%=exvideoinfo[0].id.videoId%>"
+                    class="videosaved btn btn-primary">
+                    click
+                    to
+                    save</button>
+                <p class="hidden" id="videoSaved">
+                    Video
+                    Saved!
+                </p>
+                <p class="hidden" id="alreadySaved">
+                    Video
+                    Already
+                    Saved
+                </p>
+                <div data-toast="<%=exvideoinfo[0].id.videoId%>"
+                    class="toast liveToast" role="alert"
+                    aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Message from
+                            Admin</strong>
+                        <button type="button"
+                            class="btn-close me-2 m-auto"
+                            data-bs-dismiss="toast"
+                            aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        Your records have been updated!
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
+    <div class="container">
+        <div class="row">
+            <% if (high_risk_pregnancy) { %>
+                <div class="high-risk col-sm-6 card">
+                    <img src="https://images.pexels.com/photos/57529/pexels-photo-57529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                        class="card-img-top" alt="">
+                    <div class="card-body">
+                        <h1 class="card-title">Recovering
+                            after
+                            a
+                            High
+                            Risk
+                            Pregnancy:
+                        </h1>
+                        <ul
+                            class="list-group list-group-flush">
+                            <li class="list-group-item"><a
+                                    href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                                    Home
+                                    after
+                                    a
+                                    High
+                                    Risk
+                                    Pregnancy</a>
+                            </li>
+                            <li class="list-group-item"><a
+                                    href="https://www.postpartum.net/learn-more/postpartum-post-traumatic-stress-disorder/">Info
+                                    about
+                                    Postpartum
+                                    PTSD</a>
+                            </li>
+                            <li class="list-group-item"><a
+                                    href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/how-women-felt-physically">Women
+                                    sharing
+                                    their
+                                    stories
+                                    after
+                                    a
+                                    high
+                                    risk
+                                    pregnancy</a>
+                            </li>
+                            <li class="list-group-item"><a
+                                    href="https://www.parijatdeshpande.com/post/2016/05/02/what-to-expect-after-a-highrisk-pregnancy">What
+                                    to
+                                    expect
+                                    after
+                                    a
+                                    high
+                                    risk
+                                    pregnancy</a>
+                            </li>
+                            <li class="list-group-item"><a
+                                    href="https://utswmed.org/medblog/ptsd-after-pregnancy-when-doctor-becomes-patient/">PTSD
+                                    after
+                                    a
+                                    high
+                                    risk
+                                    pregnancy</a>
+                            </li>
+                            <li class="list-group-item"><a
+                                    href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                                    for
+                                    Coping</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <% } %>
+
+
+                    <% if (trauma_in_birth) { %>
+                        <div class="Trauma col-sm-6 card">
+                            <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                class="card-img-top"
+                                alt="newborn_hands">
+                            <div class="card-body">
+                                <h1 class="card-title">
+                                    Recovering
+                                    from
+                                    a
+                                    Traumatic
+                                    Birth:
+                                </h1>
+                                <ul
+                                    class="list-group list-group-flush">
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.birthtraumaassociation.org.uk/">Birth
+                                            Trauma
+                                            Association</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.preeclampsia.org/birth-trauma-resources">Preeclampsia
+                                            Foundation:
+                                            Birth
+                                            Trauma
+                                            Resources</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.peps.org/ParentResources/by-topic/emotional/at-least-the-baby-is-healthy-and-other-things-people-say">Peps
+                                            Program:
+                                            Birth
+                                            Trauma</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://healthtalk.org/conditions-threaten-womens-lives-childbirth-pregnancy/getting-home-and-trying-to-get-back-to-normal-life">Coming
+                                            Home
+                                            after
+                                            a
+                                            Traumatc
+                                            Birth</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.mind.org.uk/information-support/types-of-mental-health-problems/postnatal-depression-and-perinatal-mental-health/ptsd-and-birth-trauma/">Postnatal
+                                            PTSD
+                                            and
+                                            Birth
+                                            Trauma
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.panda.org.au/info-support/after-birth/child-birth-trauma">Info
+                                            on
+                                            Birth
+                                            Trauma</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.babiesafter35.com/articles/4-tips-coping-difficult-pregnancy-traumatic-birth-experience">Tips
+                                            for
+                                            Coping</a>
+                                    </li>
+                                    <li
+                                        class="list-group-item">
+                                        <a
+                                            href="https://www.tommys.org/pregnancy-information/after-birth/recovering-difficult-birth">Recovering
+                                            from
+                                            a
+                                            difficult
+                                            birth</a>
+                                    </li
+                                        class="list-group-item">
+                                </ul>
+                            </div>
+                        </div>
+                        <% } %>
+
+
+                            <% if (postpartum_anxiety) { %>
+                                <div
+                                    class="post-anx col-sm-6 card">
+                                    <img class="card-img-top"
+                                        src="https://images.pexels.com/photos/5699864/pexels-photo-5699864.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                        alt="woman_holding_head">
+                                    <div class="card-body">
+                                        <h1
+                                            class="card-title">
+                                            Postpartum
+                                            Anxiety
+                                            Resources
+                                        </h1>
+                                        <ul
+                                            class="list-group list-group-flush">
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.mindfulmamasclub.com/bloghub/postpartum-anxiety-is-real-carina-devi">Postpartum
+                                                    Anxiety
+                                                    is
+                                                    Real</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-anxiety">Panda
+                                                    PPA
+                                                    Recovery
+                                                    Stories</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://oc87recoverydiaries.org/parent-with-anxiety/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs78zJY-nEWKH7aTRz8JrvxMWRQQlkINT1S-dzk9LEctRiDcM1tEbZgaAuW4EALw_wcB">One
+                                                    Woman's
+                                                    Jounrey
+                                                    with
+                                                    Anxiety</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.ppdil.org/2015/04/postpartum-anxiety-or-normal-new-mom-fears/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4vhDjRMWXe7UibCQkrpikcatnEI84nIo7pAkHKvgmqPX8juX0tXjIaAvBtEALw_wcB">PPA
+                                                    or
+                                                    Normal
+                                                    New
+                                                    Mom
+                                                    Fears?</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
+                                                    Mental
+                                                    Health
+                                                    Video
+                                                    Stories</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://psychcentral.com/anxiety/postpartum-anxiety">Info
+                                                    on
+                                                    Postpartum
+                                                    Anxiety</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.betterhelp.com/advice/anxiety/what-to-do-when-you-have-postpartum-anxiety/?utm_source=AdWords&utm_medium=Search_PPC_c&utm_term=_&utm_content=75597921965&network=g&placement=&target=&matchtype=&utm_campaign=6459244691&ad_type=text&adposition=&gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs6ExKNHFwV0xtx31pZ-8cZYCZ9MyOMvfd2rv2YXXtoSkfrXuiamfZ8aArz8EALw_wcB">What
+                                                    to
+                                                    Do
+                                                    If
+                                                    You
+                                                    Have
+                                                    PPA</a>
+                                            </li>
+                                            <li
+                                                class="list-group-item">
+                                                <a
+                                                    href="https://www.romper.com/p/11-resources-for-dealing-with-postpartum-anxiety-18792">Resources
+                                                    for
+                                                    Dealing
+                                                    With
+                                                    PPA</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <% } %>
+
+                                    <% if
+                                        (postpartum_depression)
+                                        { %>
+                                        <div
+                                            class="post-dep col-sm-6 card">
+                                            <img class="card-img-top"
+                                                src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                                alt="woman_crying">
+                                            <div
+                                                class="card-body">
+                                                <h1
+                                                    class="card-title">
+                                                    Postpartum
+                                                    Depression
+                                                    Resources
+                                                </h1>
+                                                <ul
+                                                    class="list-group list-group-flush">
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="hhttps://www.babycenter.com/baby/postpartum-health/postpartum-depression-quiz_20000530">Postpartum
+                                                            Depression
+                                                            Screening</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://postpartumny.org/sharingourstories/">Stories
+                                                            of
+                                                            Hope</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://www.panda.org.au/info-support/after-birth/postnatal-recovery-stories/personal-stories-postnatal-depression">PANDA
+                                                            PPD
+                                                            Recovery
+                                                            Stories</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://www.marchofdimes.org/pregnancy/postpartum-depression.aspx">March
+                                                            of
+                                                            Dimes:
+                                                            Postpartum
+                                                            Depression</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://www.healthline.com/health/depression/postpartum-depression#symptoms">Info
+                                                            on
+                                                            Postpartu
+                                                            Depression</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://postpartumprogress.com/ppd-support-groups-in-the-u-s-canada">Support
+                                                            Groups
+                                                            in
+                                                            the
+                                                            USA
+                                                            and
+                                                            Candada</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://www.maternalmentalhealthnow.org/stories-video-library/?gclid=Cj0KCQiA0eOPBhCGARIsAFIwTs4OnzODDggnYFrVqznwDrwWcR2a-FpuWGlbTtyUd9S7gzEd2iGvlSUaAozvEALw_wcB">Maternal
+                                                            Mental
+                                                            Health
+                                                            Stories</a>
+                                                    </li>
+                                                    <li
+                                                        class="list-group-item">
+                                                        <a
+                                                            href="https://www.psycom.net/postpartum-depression-test/">Is
+                                                            it
+                                                            More
+                                                            Than
+                                                            the
+                                                            Baby
+                                                            Blues?</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <% } %>
+
+
+                                            <% if
+                                                (pelvic_pain)
+                                                { %>
+                                                <div
+                                                    class="post-pel-pain col-sm-6 card">
+                                                    <img class="card-img-top"
+                                                        src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+                                                        alt="woman_pelvis">
+                                                    <div
+                                                        class="card-body">
+                                                        <h1
+                                                            class="card-title">
+                                                            Postpartum
+                                                            Pelvic
+                                                            Pain
+                                                        </h1>
+                                                        <ul
+                                                            class="list-group list-group-flush">
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://www.babycenter.com/baby/postpartum-health/pelvic-rehab-therapy-help-for-uncomfortable-postpartum-sympt_10379562">Pelvic
+                                                                    Rehab
+                                                                    Info</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="hhttps://www.pelvicpain.org/public">International
+                                                                    Pelvic
+                                                                    Pain
+                                                                    Society
+                                                                    resources</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://www.nytimes.com/2020/04/16/parenting/pregnancy/pelvic-floor-therapy.html">Pelvic
+                                                                    Floor
+                                                                    Therapy
+                                                                    and
+                                                                    Pelvic
+                                                                    Pain</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://www.pregnancybirthbaby.org.au/pelvic-floor-exercises">Pelvic
+                                                                    Floor
+                                                                    Exercises</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://www2.hse.ie/conditions/pelvic-girdle-pain-pregnancy/exercises/">Exercises
+                                                                    for
+                                                                    Pelvic
+                                                                    Girdle
+                                                                    Pain</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://feminapt.com/blog/postpartum-pelvic-pain-and-what-you-can-do-about-it">Postpartum
+                                                                    Pelvic
+                                                                    Pain:
+                                                                    What
+                                                                    You
+                                                                    Can
+                                                                    Do</a>
+                                                            </li>
+                                                            <li
+                                                                class="list-group-item">
+                                                                <a
+                                                                    href="https://www.ivyrehab.com/news/prenatal-postpartum-pelvic-pain-causes-and-treatment/">Postpartum
+                                                                    Pelvic
+                                                                    Pain:
+                                                                    Causes
+                                                                    and
+                                                                    Treatment</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <% } %>
 
 
 
-        <%-include("partials/footer.ejs")%>
+                                                    <% if
+                                                        (back_pain)
+                                                        { %>
+                                                        <div
+                                                            class="back-pain col-sm-6 card">
+                                                            <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+                                                                class="card-img-top"
+                                                                alt="womans-back-flower">
+                                                            <div
+                                                                class="card-body">
+                                                                <h1
+                                                                    class="card-title">
+                                                                    Postpartum
+                                                                    Back
+                                                                    Pain
+                                                                </h1>
+                                                                <ul
+                                                                    class="list-group list-group-flush">
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://www.airrosti.com/exercises-and-recovery-tips-for-postpartum-back-pain/">Exercises
+                                                                            and
+                                                                            Tips
+                                                                            for
+                                                                            Postpartum
+                                                                            Back
+                                                                            Pain</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://postpartumtrainer.com/postpartum-back-pain-exercises/">5
+                                                                            Easy
+                                                                            PP
+                                                                            Back
+                                                                            Pain
+                                                                            Exercises</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://www.mother.ly/life/how-to-improve-postpartum-back-pain-according-to-a-chiropractor/">How
+                                                                            to
+                                                                            Improve
+                                                                            PP
+                                                                            Back
+                                                                            Pain</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://hcah.in/health-advantage/10-ways-to-get-relief-from-back-pain-after-childbirth/">Back
+                                                                            Pain
+                                                                            After
+                                                                            Childbirth</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://www.spine-health.com/conditions/pregnancy-and-back-pain/back-pain-after-pregnancy">Back
+                                                                            Pain
+                                                                            After
+                                                                            Pregnancy</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://www.babycenter.com/baby/postpartum-health/postpartum-back-pain-how-to-get-relief_1152191y">Back
+                                                                            Pain:
+                                                                            Get
+                                                                            Relief</a>
+                                                                    </li>
+                                                                    <li
+                                                                        class="list-group-item">
+                                                                        <a
+                                                                            href="https://share.upmc.com/2015/11/treating-postpartum-back-pain-with-physical-therapy/">Postpartum
+                                                                            Back
+                                                                            Pain:
+                                                                            Physical
+                                                                            Therapy</a>
+                                                                    </li>
+
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <% }
+                                                            %>
+
+                                                            <% if
+                                                                (abdominal_pain)
+                                                                {
+                                                                %>
+                                                                <div
+                                                                    class="back-pain col-sm-6 card">
+                                                                    <img src="https://images.pexels.com/photos/3807733/pexels-photo-3807733.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                                                                        class="card-img-top"
+                                                                        alt="womans-back-flower">
+                                                                    <div
+                                                                        class="card-body">
+                                                                        <h1
+                                                                            class="card-title">
+                                                                            Postpartum
+                                                                            Abdominal
+                                                                            Pain
+                                                                        </h1>
+                                                                        <ul
+                                                                            class="list-group list-group-flush">
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://pubmed.ncbi.nlm.nih.gov/20619573/">
+                                                                                    Abdominal
+                                                                                    Pain
+                                                                                    in
+                                                                                    a
+                                                                                    Postpartum
+                                                                                    Patient</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.verywellfamily.com/is-stomach-pain-normal-after-giving-birth-290215">Common
+                                                                                    Causes
+                                                                                    of
+                                                                                    Postpartum
+                                                                                    Abdominal
+                                                                                    Pain</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4680577/">Postpartum
+                                                                                    Acute
+                                                                                    Abdomen
+                                                                                    and
+                                                                                    Its
+                                                                                    Diagnostic
+                                                                                    Challenges</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.healthline.com/health/postpartum-cramps#treatment">What
+                                                                                    Causes
+                                                                                    Cramping
+                                                                                    After
+                                                                                    Birth
+                                                                                    and
+                                                                                    What
+                                                                                    Can
+                                                                                    You
+                                                                                    Do
+                                                                                    to
+                                                                                    Treat
+                                                                                    It?</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.livestrong.com/article/306691-pain-in-the-abdomen-post-pregnancy-during-exercise/">Pain
+                                                                                    in
+                                                                                    the
+                                                                                    Abdomen
+                                                                                    Post
+                                                                                    Pregnancy
+                                                                                    During
+                                                                                    Exercise</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.parents.com/pregnancy/my-body/postpartum/diastasis-recti-the-postpartum-body-problem-no-one-talks-about/">Diastasis
+                                                                                    Recti</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.morelandobgyn.com/blog/improve-diastasis-recti-after-baby">How
+                                                                                    to
+                                                                                    Improve
+                                                                                    Diastasis
+                                                                                    Recti
+                                                                                    After
+                                                                                    Baby</a>
+                                                                            </li>
+                                                                            <li
+                                                                                class="list-group-item">
+                                                                                <a
+                                                                                    href="https://www.youtube.com/watch?v=D6u8daRaV9g">Postpartum
+                                                                                    Pilates
+                                                                                    Workout
+                                                                                    and
+                                                                                    Tummy
+                                                                                    Flattening
+                                                                                    Exercies
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <% }
+                                                                    %>
+        </div>
+    </div>
+
+
+
+    <%-include("partials/footer.ejs")%>

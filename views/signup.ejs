@@ -1,99 +1,103 @@
 <%- include("partials/header")%>
-<div>
-    
-    <form action='/signup' method="POST" class="my-3 mx-5" id="signupForm">
-        <h1 id="formHeading">Sign Up:</h1>
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter a password"
-                    name="password" required>
-            </div>
-            <div class="mb-3">
-                <label for="location" class="form-label">City</label>
-                <input type="text" class="form-control" id="location" placeholder="Enter your city" name="location">
-            </div>
-            <div class="ppdContainer mt-3">
-                <h6>Do you feel you may be experiencing Postpartum Depression?</h6>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppd" id="ppdTrue" value="true">
-                    <label class="form-check-label" for="ppdTrue">
-                        yes
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppd" id="ppdFalse" value="false">
-                    <label class="form-check-label" for="ppdFalse">
-                        no
-                    </label>
-                </div>
-            </div>
-            <div class="ppaContainer mt-3">
-                <h6>Do you feel you may be experiencing Postpartum Anxiety?</h6>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppa" id="ppaTrue" value='true'>
-                    <label class="form-check-label" for="ppaTrue">
-                        yes
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="ppa" id="ppaFalse" value=false>
-                    <label class="form-check-label" for="ppaFalse">
-                        no
-                    </label>
-                </div>
-            </div>
-            <div class="pregnancyTraumaContainer mt-3">
-                <h6>Did you have a high risk pregnancy?</h6>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="highRiskPregnancy" id="highRiskPregnancyTrue" value=true>
-                    <label class="form-check-label" for="highRiskPregnancyTrue">
-                        yes
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="pregnancyTrauma" id="pregTraumaFalse"
-                        value=false>
-                    <label class="form-check-label" for="pregTraumaFalse">
-                        no
-                    </label>
-                </div>
-            </div>
-            <div class="birthTraumaContainer mt-3">
-                <h6>Did you experience trauma during the birth?</h6>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaTrue" value=true>
-                    <label class="form-check-label" for="birthTraumaTrue">
-                        yes
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaFalse" value=false>
-                    <label class="form-check-label" for="birthTraumaFalse">
-                        no
-                    </label>
-                </div>
-            </div>
-            <div class="physicalPainContainer mt-3">
-                <h6>Are you currently experiencing physical pain in any of these areas?</h6>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="abdominalPain" name="abdominalPain" value=true>
-                    <label class="form-check-label" for="abdominalPain">Abdominal</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="pelvicPain" name="pelvicPain" value=true>
-                    <label class="form-check-label" for="pelvicPain">Pelvic</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="backPain" name="backPain" value=true>
-                    <label class="form-check-label" for="backPain">Back</label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-success my-3">Submit</button>
+
+<!-- Background will go on this -->
+<div class="container-fluid" id="signup-container">
+  <!-- Form should take up 6 on md, small take up 10 -->
+  <div class="col-md-6 col-sm-10 m-auto signup-form">
+    <h1 id="formHeading" class="text-center text-uppercase text-dark">Sign Up</h1>
+    <form action="/signup" method="POST"  id="signupForm">
+      <!-- Username -->
+      <div class="form-group col-auto">
+        <label for="username" class="form-label"></label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" />
+      </div>
+      <!-- Password -->
+      <div class="form-group col-auto">
+        <label for="password" class="form-label"></label>
+        <input type="password" class="form-control" id="password" placeholder="Enter a password" name="password"
+          required />
+      </div>
+      <!-- Location -->
+      <div class="form-group col-auto">
+        <label for="location" class="form-label"></label>
+        <input type="text" class="form-control" id="location" placeholder="Enter your city" name="location" />
+      </div>
+        <!-- Depression -->
+        <div class="form-group col-auto mt-1">
+          <p class="signup-question m-0 text-dark">Do you feel you may be experiencing Postpartum Depression?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ppd" id="ppdTrue" value="true" />
+            <label class="form-check-label" for="ppdTrue"> Yes </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ppd" id="ppdFalse" value="false" />
+            <label class="form-check-label" for="ppdFalse"> No</label>
+          </div>
+        </div>
+
+        <!-- Anxiety -->
+        <div class="form-group col-auto">
+          <p class="signup-question m-0">Do you feel you may be experienceing Postpatrum Anxiety?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ppa" id="ppaTrue" value="true" />
+            <label class="form-check-label" for="ppaTrue"> Yes </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="ppa" id="ppaFalse" value="false" />
+            <label class="form-check-label" for="ppaFalse"> No </label>
+          </div>
+        </div>
+        <!-- High Risk -->
+        <div class="form-group col-auto">
+          <p class="signup-question m-0">Did you have a high risk pregnancy?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="highRiskPregnancy" id="highRiskPregnancyTrue"
+              value="true" />
+            <label class="form-check-label" for="highRiskPregnancyTrue">Yes</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="pregnancyTrauma" id="pregTraumaFalse" value="false" />
+            <label class="form-check-label" for="pregTraumaFalse"> No </label>
+          </div>
+        </div>
+        <!-- Birth Trauma -->
+        <div class="form-group col-auto">
+          <p class="signup-question m-0">Did you experience trauma during the birth?</p>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaTrue" value="true" />
+            <label class="form-check-label" for="birthTraumaTrue"> Yes </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="birthTrauma" id="birthTraumaFalse" value="false" />
+            <label class="form-check-label" for="birthTraumaFalse"> No </label>
+          </div>
+        </div>
+        <!-- Pain Areas -->
+        <div class="form-group">
+          <p class="signup-question m-0">Are you currently experiencing physical pain in any of these areas?</p>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="abdominalPain" name="abdominalPain" value="true" />
+            <label class="form-check-label" for="abdominalPain">Abdominal</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="pelvicPain" name="pelvicPain" value="true" />
+            <label class="form-check-label" for="pelvicPain">Pelvic</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="backPain" name="backPain" value="true" />
+            <label class="form-check-label" for="backPain">Back</label>
+          </div>
+        </div>
+      <!-- Submit Button -->
+      <div class="text-center d-grid gap-2 col-6 mx-auto">
+        <button type="submit" class="btn btn-success btn-lg text-uppercase mt-3">Sign Up</button>
+      </div>
+      <!-- Close form -->
     </form>
+  </div>
 </div>
 
 
-<%- include("partials/footer")%>
+
+
+  <%- include("partials/footer")%>
