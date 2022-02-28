@@ -4,21 +4,19 @@
     <h1> Welcome, <%=username%></h1>
 </header>
 
-<section>
-    <div class="justify-content-center">
+<section class="text-center text-uppercase">
         <a href="/logout" class="btn btn-success">Log Out</a>
         <a href=<%=`${username}` %> class="btn btn-success">Edit my Profile</a>
-    </div>
 </section>
 
 
 
 <div class="container">
     <div class="row">
-        <div class="col-md-5 card pt-2">
+        <div class="col-md-6 card pt-2">
             <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="card-img-top" alt="physicaltherapist">
-            <div class="card-body">
+            <div class=" yelpcard card-body">
                 <h2 class="card-title">Physical Therapists Near You</h2>
                 <ul class="list-group list-group-flush">
                     <% for( let i=0; i < phystherapists.length; i++ ) { %>
@@ -33,10 +31,10 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-5 offset-lg-2 card pt-2">
+        <div class="col-md-6 card pt-2">
             <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                 class="card-img-top" alt="helpingHands">
-            <div class="card-body">
+            <div class="yelpcard card-body">
                 <h2 class="card-title">Psychologists Near You</h2>
                 <ul class="list-group list-group-flush">
                     <% for( let i=0; i < psychologists.length; i++ ) { %>
@@ -320,6 +318,8 @@
                 </div>
                 <% } %>
 
+                
+
             <% if (trauma_in_birth) { %>
                 <div class="Trauma col-md-5 offset-md-2 card pt-2">
                     <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
@@ -416,7 +416,7 @@
 
         <% if (postpartum_depression) { %>
         <div class="post-dep col-md-5 offset-md-2 card pt-2"> 
-            <img class="card-img-top" src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_crying">
+            <img class="card-img-top img-fluid" src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_crying">
             <div class="card-body">
                 <h1 class="card-title"> Postpartum Depression Resources </h1>
                 <ul class="list-group list-group-flush">
@@ -465,7 +465,7 @@
     <div class="row">
         <% if (pelvic_pain){ %>
             <div class="post-pel-pain col-md-5 card pt-2">
-                <img class="card-img-top" src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_pelvis">
+                <img class="card-img-top thumb img-fluid" src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="woman_pelvis">
                 <div class="card-body">
                     <h1 class="card-title"> Postpartum Pelvic Pain </h1>
                     <ul class="list-group list-group-flush">
@@ -503,7 +503,7 @@
         <% } %>
         <% if (back_pain)  { %>
             <div class="back-pain col-md-5 offset-md-2 card pt-2">
-                <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="womans-back-flower">
+                <img src="https://images.unsplash.com/photo-1525005712886-ca67585e2206?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHdvbWFuJTIwYmFjayUyMHBhaW58ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60" class="card-img-top img-fluid thumb" alt="womans-back-flower">
                 <div class="card-body">
                     <h1 class="card-title">
                         Postpartum Back Pain </h1>
