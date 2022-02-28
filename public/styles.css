@@ -7,7 +7,9 @@ html {
   height: 100%;
   font-family: 'Lato', sans-serif;
 }
-
+#headerBg{
+  background-color: #b19cd9;
+}
 #backgroundHome {
   background: url("./assets/matthew-henry.jpg") center center no-repeat;
   width: 100%;
