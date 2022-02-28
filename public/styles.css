@@ -91,7 +91,6 @@ form{
 }
 
 
-
 /* this creates a scrollbar, needs height and overflow set to scroll */
 #perinatal{
  height:300px;
@@ -182,12 +181,45 @@ section {
   object-fit: cover;
 }
 
+
+
+
+ /* ===== Scrollbar CSS ===== */
+
 .yelpcard {
-  flex: 1 1 auto;
-  padding: 1rem 1rem;
-  overflow: auto;
+  overflow: scroll;
   height: 300px;
 }
+   /* Firefox */
+   .yelpcard {
+     scrollbar-width: auto;
+     scrollbar-color: #870689 #ffffff;
+   }
+ 
+   /* Chrome, Edge, and Safari */
+   .yelpcard::-webkit-scrollbar {
+     width: 20px;
+   }
+ 
+  .yelpcard::-webkit-scrollbar-track {
+     background: bg-info bg-opacity-10;
+     border:gray;
+   }
+   .yelpcard::-webkit-scrollbar-thumb {
+     background-color: #870689;
+     border-radius: 36px;
+     border: 3px solid #fefbfb;
+     min-height: 60px;
+   }
+ 
+  .yelpcard::-webkit-scrollbar-corner {
+     background-color: bg-info bg-opacity-10 !important;
+   }
+
+
+
+
+
 
 #footer{
   min-width:100vw;
