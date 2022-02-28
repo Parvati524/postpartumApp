@@ -192,3 +192,8 @@ section {
 #footer{
   min-width:100vw;
 }
+
+iframe{
+  min-height: 500px;
+}
+
