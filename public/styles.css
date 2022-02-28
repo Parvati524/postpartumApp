@@ -60,6 +60,23 @@ html {
   justify-content: end;
 }
 
+
+/* 
+form{
+    width:40%;
+} */
+.signsImages{
+  max-width: 100%;
+  height:auto;
+}
+#ppd_signs{
+  background-color:#F2E6E8;
+}
+#ptsd_signs{
+  background-color:#E3FFFC;
+}
+
+
 /* Update profile form */
 #updateForm {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -112,6 +129,7 @@ html {
   width: 30vw;
   margin: 0 auto;
 }
+
 
 
 .hidden {
