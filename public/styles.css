@@ -136,3 +136,6 @@ section {
   height: 20px;
 }
 
+#footer{
+  min-width:100vw;
+}
