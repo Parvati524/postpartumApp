@@ -10,7 +10,6 @@
 </section>
 
 
-
 <div class="container">
     <div class="row">
         <div class="col-md-5 card pt-2">
@@ -24,6 +23,18 @@
                             Name: <%=phystherapists[i].name%>
                                 <br>
                                 Phone: <%=phystherapists[i].phone%>
+
+
+
+            <div class="col-md-5 offset-md-2 card">
+                <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+                    class="card-img-top" alt="helpingHands">
+                <div class="card-body">
+                    <h2 class="card-title">Psychologists Near You</h2>
+                    <ul class="list-group list-group-flush">
+                        <% for( let i=0; i < psychologists.length; i++ ) { %>
+                            <li class="list-group-item">
+                                Name: <%=psychologists[i].name%>
                                     <br>
                                     Rating: <%=phystherapists[i].rating%>
                         </li>
@@ -236,7 +247,7 @@
     <% if (!exvideoinfo || !exvideoinfo[0]) { %>
             <h1 class="errorMessage">You have watched all your videos for this category! </h1>
         <% } else { %>
-        <div className="exyoga">
+        <div class="exyoga col-sm-6">
             <iframe class="card-img-top" id="exvideo"
                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
             <div class="card-body">

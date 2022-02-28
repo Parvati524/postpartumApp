@@ -6,6 +6,11 @@ html {
   width: 100%;
   height: 100%;
 }
+
+#headerBg{
+  background-color:#e0d6ff;
+}
+
 #backgroundHome {
   background: url("./assets/matthew-henry.jpg") center center no-repeat;
   width: 100%;
@@ -26,7 +31,9 @@ html {
 }
 
 
-#main {
+/* Signup Form */
+#signup-container {
+
   background-image: url("./assets/zoltan-white-lotus.jpg");
   background-position: center;
   background-size: cover;
@@ -36,29 +43,56 @@ html {
   justify-content: end;
 }
 
-
-.questions-container {
-  padding: 20px 20px;
-
+.signup-form {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.8) 100%);
+  padding: 30px 30px;
+  border-radius: 8%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
+
+
+
+/* Backgrounf Profile */
+#backgroundProfile {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%), url("./assets/gorans-eidens.jpg");
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+
+/* 
+form{
+    width:40%;
+} */
+.signsImages{
+  max-width: 100%;
+  height:auto;
+}
+#ppd_signs{
+  background-color:#F2E6E8;
+}
+#ptsd_signs{
+  background-color:#E3FFFC;
+}
+
+
+/* Update profile form */
+#updateForm {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
 
 .form-check {
   display: inline-block;
 }
+
 #profileContainer{
   min-height:100%;
 }
-
-#login-container {
-  background: rgba(255, 255, 255, 0.768);
-  margin: 25px 20px;
-  width: 50%;
-  padding: 15px 20px;
-  border-radius: 8%;
-  display: flex;
-  justify-content: center;
-}
-
 
 
 
@@ -120,12 +154,14 @@ form{
   width:40vw;
 }
 
+
 #ppd_signs{
   background-color:#F2E6E8;
 }
 #ptsd_signs{
   background-color:#E3FFFC;
 }
+
 .hidden {
   display: none;
 }
@@ -164,4 +200,8 @@ section {
   padding: 1rem 1rem;
   overflow: auto;
   height: 300px;
+
+#footer{
+  min-width:100vw;
+
 }
