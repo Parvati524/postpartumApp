@@ -8,7 +8,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 card">
+            <div class="col-md-6 card">
                 <img src="https://images.unsplash.com/photo-1620051844584-15ac31d5fccd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                     class="card-img-top" alt="physicaltherapist">
                 <div class="card-body">
@@ -28,7 +28,7 @@
             </div>
 
 
-            <div class="col-lg-3 col-md-6 offset-lg-2 card">
+            <div class="col-md-5 offset-md-1 card">
                 <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
                     class="card-img-top" alt="helpingHands">
                 <div class="card-body">
@@ -48,13 +48,11 @@
             </div>
         </div>
     </div>
+    
  <% if (!ppdvideoinfo || !ppdvideoinfo[0]) { %>
   <h1 class="errorMessage">You have watched all your videos</h1>
  <% } else{  %>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card ppdvideo">
+        <div class="col-md-6 card">
                     <iframe class="card-img-top" id="ppdvideo"
                         src="https://www.youtube.com/embed/<%=ppdvideoinfo[0].id.videoId%>"></iframe>
                     <div class="card-body">
@@ -94,18 +92,15 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
         </div>
-    </div>
+          
 <% } %>
 
     <% if (!medvideoinfo || !medvideoinfo[0]) { %>
             <h1 class="errorMessage">You have watched all your videos for this category!
             </h1>
     <% } else { %>
-        <div class="col-sm-6">
-            <div class="card">
+        <div class="col-md-6 card">
                 <div className="medvideo">
                     <iframe class="card-img-top" id="meditationvideo"
                         src="https://www.youtube.com/embed/<%=medvideoinfo[0].id.videoId%>"></iframe>
@@ -154,17 +149,13 @@
                     </div>
                 </div>
             </div>
-        </div>
         <% } %>
 
     <% if (!yogavideoinfo || !yogavideoinfo[0]) { %>
         <h1 class="errorMessage">You have watched all your videos for this category!
         </h1>
         <% } else { %>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <div className="ppyoga">
+              <div class="col-md-6 card ppyoga">
                         <iframe class="card-img-top" id="yogavideo"
                             src="https://www.youtube.com/embed/<%=yogavideoinfo[0].id.videoId%>"></iframe>
                         <div class="card-body">
@@ -215,9 +206,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
         <% } %>
 
     <% if (!exvideoinfo || !exvideoinfo[0]) { %>
@@ -231,7 +219,7 @@
                 category!
             </h1>
         <% } else { %>
-        <div className="exyoga">
+        <div className="exyoga col-md-6 card">
             <iframe class="card-img-top" id="exvideo"
                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
             <div class="card-body">
@@ -282,12 +270,13 @@
                     </div>
                 </div>
             </div>
-        <% } %>
+       </div>
+   
+            <% } %>
 
-    <div class="container">
-        <div class="row">
+        
             <% if (high_risk_pregnancy) { %>
-                <div class="high-risk col-sm-6 card">
+                <div class="high-risk col-md-6 card">
                     <img src="https://images.pexels.com/photos/57529/pexels-photo-57529.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                         class="card-img-top" alt="">
                     <div class="card-body">
@@ -356,7 +345,7 @@
 
 
                     <% if (trauma_in_birth) { %>
-                        <div class="Trauma col-sm-6 card">
+                        <div class="Trauma col-md-6 card">
                             <img src="https://images.pexels.com/photos/208189/pexels-photo-208189.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                                 class="card-img-top"
                                 alt="newborn_hands">
@@ -441,12 +430,13 @@
                                 </ul>
                             </div>
                         </div>
+
                         <% } %>
 
 
                             <% if (postpartum_anxiety) { %>
                                 <div
-                                    class="post-anx col-sm-6 card">
+                                    class="post-anx col-md-6 card">
                                     <img class="card-img-top"
                                         src="https://images.pexels.com/photos/5699864/pexels-photo-5699864.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                                         alt="woman_holding_head">
@@ -541,7 +531,7 @@
                                         (postpartum_depression)
                                         { %>
                                         <div
-                                            class="post-dep col-sm-6 card">
+                                            class="post-dep col-md-6 card">
                                             <img class="card-img-top"
                                                 src="https://images.pexels.com/photos/568027/pexels-photo-568027.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                                                 alt="woman_crying">
@@ -634,7 +624,7 @@
                                                 (pelvic_pain)
                                                 { %>
                                                 <div
-                                                    class="post-pel-pain col-sm-6 card">
+                                                    class="post-pel-pain col-md-6 card">
                                                     <img class="card-img-top"
                                                         src="https://images.pexels.com/photos/6542718/pexels-photo-6542718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
                                                         alt="woman_pelvis">
