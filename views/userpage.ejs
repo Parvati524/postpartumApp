@@ -236,7 +236,7 @@
     <% if (!exvideoinfo || !exvideoinfo[0]) { %>
             <h1 class="errorMessage">You have watched all your videos for this category! </h1>
         <% } else { %>
-        <div className="exyoga">
+        <div class="exyoga col-sm-6">
             <iframe class="card-img-top" id="exvideo"
                 src="https://www.youtube.com/embed/<%=exvideoinfo[0].id.videoId%>"></iframe>
             <div class="card-body">
