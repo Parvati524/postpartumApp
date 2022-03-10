@@ -8,7 +8,8 @@ const yelpApiKey = keys.yelpApiKey;
 const youtubeApiKey = keys.youtubeApiKey;
 const client = yelp.client(yelpApiKey);
 const flash = require("connect-flash");
-
+const {yelpCall, youtube, getData} = require("./helpers/apiHelpers")
+const {filterArr} = require("./helpers/dataOperations")
 
 const mongoURIKey = keys.mongoURIKey;
 app.use(express.json());//getting information through body
@@ -150,90 +151,28 @@ app.get('/logout', (req, res) => {
 // When logging out, passport destroys all the user data in the session
 // And then, we redirect them to the home page
 
-//function to filter one array to only have values that are not included in 2 other arrays.
-function filterArr(arrOne, arrTwo, arrThree) {
-    return arrOne.filter(x =>
-        !(arrTwo.includes(x.id.videoId) || arrThree.includes(x.id.videoId))
-    )
-
-}
-
-function yelpCall(category, location, limit) {
-    const reqObject = {
-        categories: category,
-        location: location,
-        limit: limit
-    }
-    return client.search(reqObject)
-}
-async function youtube(videoCategory) {
-    let url = `https://www.googleapis.com/youtube/v3/search?key=${youtubeApiKey}&type=video&part=snippet&q=${videoCategory}&videoEmbeddable=true&maxResults=10`;
-    const response = await fetch(url);
-    const data = await response.json();
-    const videos = data;
-    return videos
-}
 
 
-app.get('/userpage', (req, res) => {
+
+app.get('/userpage', async (req, res) => {
     const { username, location, videosWatched, videosSaved, postpartum_depression, postpartum_anxiety, high_risk_pregnancy, trauma_in_birth, back_pain, pelvic_pain, abdominal_pain } = req.user
+   
+    const videos = await getData(location, videosWatched, videosSaved)
 
-    function getData() {
-        Promise.all([yelpCall("physicaltherapy", location, 10), yelpCall("psychologists", location, 10), youtube("postpartum_depression_and_anxiety"), youtube("postpartum_meditation"), youtube("postpartum_yoga"), youtube("postpartum_recovery_exercise")])
-            .then(values =>
-                Promise.all(values.map(value => JSON.stringify(value))))
-            .then(finalVals => {
-                //this is how I access each item in the array.
-                let phystherapists = finalVals[0];
-                phystherapists = JSON.parse(phystherapists)
-                phystherapists = phystherapists.jsonBody.businesses;
-
-                //doing same for psychologists
-                let psychologists = finalVals[1];
-                psychologists = JSON.parse(psychologists);
-                psychologists = psychologists.jsonBody.businesses
-                //now doing ppd/ppa youtube call. going to drill down to get videoIds and push to an array.
-                let ppdvideos = finalVals[2];
-                ppdvideos = JSON.parse(ppdvideos);
-
-                let ppdvideoinfo = ppdvideos.items;
-                if (ppdvideoinfo) {
-
-
-                    //filtering our array of videoinfo from youtube to not include videos that are in our users DB under videosSaved or videosWatched
-                    ppdvideoinfo = filterArr(ppdvideoinfo, videosWatched, videosSaved)
-                }
-
-
-
-                //now postpartum meditation youtube call
-                let meditation = finalVals[3];
-                meditation = JSON.parse(meditation);
-                let medvideoinfo = meditation.items
-                if (medvideoinfo) {
-                    medvideoinfo = filterArr(medvideoinfo, videosWatched, videosSaved)
-                }
-
-                //now postpartum yoga youtube call
-                let yoga = finalVals[4];
-                yoga = JSON.parse(yoga);
-                let yogavideoinfo = yoga.items
-                if (yogavideoinfo) {
-                    yogavideoinfo = filterArr(yogavideoinfo, videosWatched, videosSaved)
-                }
-                //now postpartum recovery exercise youtube call
-                let exercise = finalVals[5];
-                exercise = JSON.parse(exercise);
-                let exvideoinfo = exercise.items
-                if (exvideoinfo) {
-                    exvideoinfo = filterArr(exvideoinfo, videosWatched, videosSaved)
-                }
-
-                res.render("userpage", { username, phystherapists, psychologists, ppdvideoinfo, medvideoinfo, yogavideoinfo, exvideoinfo, high_risk_pregnancy, trauma_in_birth, pelvic_pain, postpartum_anxiety, postpartum_depression, back_pain, abdominal_pain });
-            });
-
-    }
-    getData()
+    console.log(videos)
+    res.render("userpage", {
+        username,
+        ...videos,
+        videosSaved,
+        videosWatched,
+        high_risk_pregnancy,
+        trauma_in_birth,
+        pelvic_pain,
+        postpartum_anxiety,
+        postpartum_depression,
+        back_pain,
+        abdominal_pain,
+      });
     //order youtube by view count, 
     //yelp name, phone number, rating, url 
     //youtube: title, videoId, description, channelTitle
