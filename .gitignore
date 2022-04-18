@@ -107,6 +107,3 @@ dist
 .vscode
 .DS_Store/
 
-# hey ignore any files named this
-dev.js
-config/dev.js
